@@ -16,14 +16,24 @@
 ---
 
 ### RN Layout
-- Default Flexbox
+- Flexbox
 - Default Flex Direction : Column (웹과의 차이점)
 - Responsible Design 
     - Width, Height 쓰지 않을 것.
 - flex 로 비율 설정
     - 부모 View에도 style={{flex:1}} 설정 필수
 - StyleSheet
+- ScrollView 
+    - (p)horizontal : 가로방향
+    - (p)pagingEnabled : allow paging throw views using swiping gestures
+    - (p)showsHorizontalScrollIndicator={false} 
+    - (p)contentContainerStyle 
+    - ScrollView 안의 뷰들은 모두 렌더링되기 때문에, 작은 양의 뷰를 다룰 때 추천. (아이템 많다면 FlatList)
+- Dimensions 
+    - const { width: SCREEN_WIDTH } = Dimensions.get("window"); 
 ---
+### RN Container 
+- ActivityIndicator : 로딩중;;;
 
 ### Location
 - expo Location API
@@ -42,3 +52,14 @@ https://openweathermap.org/
 const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts&appid=${API_KEY}`);
 const json = await response.json();
 ```
+- url에 추가 : units=matric
+---
+### Icon 
+- import { Ionicons } from '@expo/vector-icons';
+- https://icons.expo.fyi/
+- 아이콘 짱많음.
+---
+
+#### 기타
+- 실수를 소수점 1의자리로 반올림하고 싶을때
+    - parseFloat(NUMBER).toFixed(1)
