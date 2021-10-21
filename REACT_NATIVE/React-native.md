@@ -86,6 +86,20 @@ const json = await response.json();
 
 ---
 
+### TextInput
+
+- onChangeText
+- onSubmitEditing
+- keyboardType
+- returnKeyType
+
+---
+
+### Todo -> Object
+
+- toDos 를 Object로..
+- toDos[Date.now()] = {text:"blabla", work:true/false}
+
 #### 기타
 
 - 실수를 소수점 1의자리로 반올림하고 싶을때
