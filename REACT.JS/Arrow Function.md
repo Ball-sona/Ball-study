@@ -45,10 +45,19 @@ class TestClass extends React {
 
 #### Arrow Function으로 해결
 
+1.
+
 ```js
 const clickHandler = () => {
   console.log(this);
 };
+```
+
+2.
+
+```js
+return <button onClick={()=>this.clickHandler())} />;
+
 ```
 
 화살표 함수의 this는 부모함수(clickHandler)의 this를 상속받는다. 그러니 전역객체를 가리킬 우려 없음 !
