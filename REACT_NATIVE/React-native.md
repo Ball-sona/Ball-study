@@ -95,12 +95,51 @@ const json = await response.json();
 
 ---
 
-### Todo -> Object
+### TodoList
 
 - toDos 를 Object로..
-- toDos[Date.now()] = {text:"blabla", work:true/false}
+- <형태> toDos[Date.now()] = {text:"blabla", working:true/false}
+- 새로 만들고 싶을땐? =>
+  1. const newTodos = Object.assign({}}, toDos, {[Date.now()]:{text, working}})
+  2. [ES6] const newTodos = {...toDos, [Date.now()]:{text,working}}
+     <br />
+- toDos 리스트 나열하는 법
+  - Object.keys(toDos)는 Date.now() 배열을 반환한다.(key 리스트)
+
+```js
+<ScrollView>
+  {Object.keys(toDos).map((key) => (
+    <View style={styles.toDo}>
+      <Text key={key} style={styles.toDoText}>
+        {toDos[key].text}
+      </Text>
+    </View>
+  ))}
+</ScrollView>
+```
+
+- Delete
+  - Alert API
+    1. alert()
+    2. prompt() // IOS만 가능 ㅠㅠ
+  - 기존 배열 복사 => delete 복사본[key] => setTodos(복사본)
+  - 삭제 버튼 클릭시 onPress={()=>deleteTodo(key)} 임을 잊지말자. 함수 실행문 말고 선언문을 바인딩해야함!!!
+
+### Storage
+
+- AsyncStorage.setItem/getItem
+
+* Loading 구현 해보기
+
+---
 
 #### 기타
 
 - 실수를 소수점 1의자리로 반올림하고 싶을때
+
   - parseFloat(NUMBER).toFixed(1)
+
+- Object => String
+  - JSON.stringfy([Object])
+- String => Object
+  - JSON.parse([String])
