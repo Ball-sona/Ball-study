@@ -1,5 +1,6 @@
 ## null is not an object
 
+// Android Emulator 해당.
 AsyncStroage.getItem()을 통해 toDos Object를 불러와야하는데
 Iphone에서는 잘불러와지는데, Android Emulator에서는 불러와지지 않음.
 
