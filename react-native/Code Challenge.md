@@ -76,7 +76,7 @@ const doneTodo = (key) => {
 <Text
   style={{
     ...styles.toDoText,
-    textDecorationLine: toDos[key].done ? "line-through" : "none",
+    textDecorationLine: toDos[key].done ? 'line-through' : 'none',
   }}
 >
   {toDos[key].text}
