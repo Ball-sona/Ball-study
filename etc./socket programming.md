@@ -4,7 +4,7 @@
 
 ##### 소켓 프로그래밍 과정
 
-<img src="./스크린샷 2022-10-08 23.03.44.png" alt="스크린샷 2022-10-08 23.03.44" style="zoom: 50%;" /> 
+<img width="658" alt="스크린샷 2022-10-08 23 03 44" src="https://user-images.githubusercontent.com/67703882/194759136-bf94e6ac-0179-422e-a0c2-1b1a11261489.png"> 
 
 ##### socket 생성 함수
 
@@ -130,3 +130,36 @@ int connect(int sock, const struct sockaddr* servaddr, socklen_t addrlen);
 
 
 
+##### 데이터 읽기
+
+```c
+#include <unistd.h>
+
+/**
+* @param sock 소켓 디스크립터 
+* @param buffer 읽은 데이터가 저장될 버퍼 변수
+* @param count 읽을 데이터의 count 크기
+* @return 읽은 데이터의 크기(byte). 실패시 -1
+**/
+ssize_t read(int sock, void *buffer, size_t count);
+```
+
+- 소켓에서 count 크기만큼의 데이터를 읽어서 buffer에 저장하는 함수.
+
+
+
+##### 데이터 쓰기
+
+```c
+#include <unistd.h>
+
+/**
+* @param sock 소켓 디스크립터 
+* @param buffer 보낼 데이터가 저장되어 있는 버퍼
+* @param count 보낼 데이터의 count 크기
+* @return 보낸 데이터의 크기(byte). 실패시 -1
+**/
+ssize_t write(int sock, void *buffer, size_t count);
+```
+
+- `write(fd, (void *)&mydata, sizeof(mydata))`
