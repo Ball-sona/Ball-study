@@ -47,6 +47,26 @@ docker start [container-name]
 
    
 
+##### 도커 컨테이너 - 로컬 디렉토리 파일 복사하기
+
+- 도커 -> 로컬
+
+  ```bash
+  docker cp [container-name]:[복사할 파일] [붙여넣을 폴더 경로]
+  ```
+
+- 로컬 -> 도커
+
+  ```c
+  docker cp [복사할 파일] [container-name]:[붙여넣을 폴더 경로]
+  ```
+
+  
+
+
+
+
+
 +Ubuntu 설정
 
 ```
