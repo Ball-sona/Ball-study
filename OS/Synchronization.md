@@ -176,3 +176,97 @@
 - 모니터 더 이해하고 정리할 것
 - 애플리케이션은 P나 V 연산에 대한 고려 없이 Procedure 호출하므로서 동기화 해결 가능해짐
 - ex. Transaction in Database
+
+
+
+동기화의 고전적인 문제 3가지를 알아보자. 
+
+### Bounded-Buffer Problem
+
+![스크린샷 2022-12-02 19.25.31.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2f0b7c18-8805-45d9-bc32-73d5e534f226/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-02_19.25.31.png)
+
+- n개의 아이템을 삽입할 수 있는 buffer에 여러 생산자와 소비자가 접근
+
+  - 생산자 : 하나의 아이템을 생산해 버퍼에 저장
+  - 소비자 : 버퍼에서 하나의 아이템을 가져온 후 버퍼를 비운다
+
+- buffer : 1차원 배열로 구현이 되어있고, n개의 `empty` 값으로 초기화
+
+  - 생산자는 버퍼 값이 empty 인 index 를 찾아서 empty → full
+  - 소비자는 버퍼 값이 full 인 index 를 찾아서 full → empty
+
+- 세마포어
+
+  - Empty : 저장할 공간이 있음을 표시 → 생산자 관리. 초기값 n
+  - Full : 소비할 아이템이 있음을 표시 → 소비자 관리. 초기값 0
+  - Mutex : 버퍼에 대한 접근 관리 → 상태값 변경을 위한. 초기값 1
+
+- 생산자 Process
+
+  ```c
+  do {
+  	// item 생산 
+  	P(empty); // 버퍼의 빈공간 생길 때까지 대기
+  	P(mutex); // CS 진입하기 위해 대기
+  	// add item to buffer
+  	V(mutex); // CS 빠져나왔음을 알림
+  	V(full);  // 버퍼에 아이템이 있음을 알림 -> 소비자에게
+  } while(1) 
+  ```
+
+- 소비자 Process
+
+  ```c
+  do {
+  	P(full);  // 버퍼에 하나의 아이템이 들어가기를 기다림 
+  	P(mutex); // CS 진입하기 위해 대기
+  	// remove item from buffer
+  	V(mutex); // CS 빠져나왔음을 알림
+  	V(full);  // 버퍼에 빈공간이 생겼음을 알림 -> 생산자에게
+  } while(1) 
+  ```
+
+### Readers and Writers Problem
+
+![스크린샷 2022-12-02 19.34.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b27f90a-2fb3-481c-a76f-cdb39821ee22/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-02_19.34.13.png)
+
+- 여러 Reader 와 Writer 가 하나의 공유 데이터를 읽거나 쓰기 위해 접근
+
+  - Reader : 공유 데이터 읽기. 여러 리더가 동시에 데이터 읽기 가능
+  - Writer : 공유 데이터 작성. 데이터 작성할때 다른 Reader/Writer 작업 X
+
+- 세마포어
+
+  - int Readcount : 버퍼에 현재 몇개의 리더가 접근중인지 표시. 초기값 0
+  - semaphore Wrt : Writers 간의 동기화 관리. 초기값 1
+  - semaphore Mutex : readcount 와 wrt의 접근이 원자적으로 수행됨을 보장하기 위한 세마포어.. 초기값 1
+
+- Writer Process
+
+  ```c
+  P(wrt); // CS 진입함을 알림
+  // writing data
+  V(wrt); // CS 빠져나왔음을 알림
+  ```
+
+- Reader Process
+
+  ```c
+  P(mutex);
+  readcount++; 
+  if(readcount == 1) P(wrt); // 데이터 읽을동안 write 금지 
+  V(mutex);
+  // reading data
+  P(mutex);
+  readcount--;
+  if(readcount == 0) V(wrt); // write 금지 해제
+  V(mutex);
+  ```
+
+- Writer의 Starvation
+
+  - Readcount 가 0이 되어야하만 Writer 가 비로소 작업을 수행할 수 있다
+  - ???
+  - 여러 Reader 들이 계속 진입하면 readcount 가 0까지 떨어지지 않아서 Writer 들의 작업이 밀려날 수 있다
+
+### Dining Philosophers Problem
