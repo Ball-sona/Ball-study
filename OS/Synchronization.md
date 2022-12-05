@@ -167,7 +167,7 @@
 
 - 두개 이상의 프로세스들이 다들 대기만 끝없이 하고 있는 상황
 
-![스크린샷 2022-12-02 18.33.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/09ecf0cc-94cd-401f-8efa-d64a553fb619/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-02_18.33.16.png)
+<img width="280" alt="스크린샷 2022-12-05 21 53 42" src="https://user-images.githubusercontent.com/67703882/205642009-9dcfc1f2-bc11-48f9-bb1d-28a34386359b.png">
 
 ### Monitor
 
@@ -183,7 +183,7 @@
 
 ### Bounded-Buffer Problem
 
-![스크린샷 2022-12-02 19.25.31.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2f0b7c18-8805-45d9-bc32-73d5e534f226/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-02_19.25.31.png)
+<img width="329" alt="스크린샷 2022-12-05 21 54 28" src="https://user-images.githubusercontent.com/67703882/205642176-919a624b-235f-4444-b472-36028813419b.png">
 
 - n개의 아이템을 삽입할 수 있는 buffer에 여러 생산자와 소비자가 접근
 
@@ -228,12 +228,10 @@
 
 ### Readers and Writers Problem
 
-![스크린샷 2022-12-02 19.34.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b27f90a-2fb3-481c-a76f-cdb39821ee22/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-02_19.34.13.png)
+<img width="432" alt="스크린샷 2022-12-05 21 54 48" src="https://user-images.githubusercontent.com/67703882/205642257-f2aaef19-4023-43fb-80be-a3525cb1c8c0.png">여러 Reader 와 Writer 가 하나의 공유 데이터를 읽거나 쓰기 위해 접근
 
-- 여러 Reader 와 Writer 가 하나의 공유 데이터를 읽거나 쓰기 위해 접근
-
-  - Reader : 공유 데이터 읽기. 여러 리더가 동시에 데이터 읽기 가능
-  - Writer : 공유 데이터 작성. 데이터 작성할때 다른 Reader/Writer 작업 X
+- Reader : 공유 데이터 읽기. 여러 리더가 동시에 데이터 읽기 가능
+- Writer : 공유 데이터 작성. 데이터 작성할때 다른 Reader/Writer 작업 X
 
 - 세마포어
 
