@@ -40,14 +40,14 @@
 
 - CPU에서 Physical Relative Addree를 사용하면?
 
-  ![스크린샷 2022-12-04 22.53.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9219ba1e-9f91-4e86-8ab9-f6c99f95438c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_22.53.58.png)
+  <img width="292" alt="스크린샷 2022-12-06 23 14 20" src="https://user-images.githubusercontent.com/67703882/205935223-e2d1754e-3a5c-4dd1-b1a0-0c717cd3f000.png"> 
 
   - 프로그램 내 연산자들의 주소 = 시작 주소로부터의 상대적인 offset
   - 절대 주소 = 시작 주소 + 상대 주소의 합
 
 - CPU에서 Virtual Address를 사용하면?
 
-  ![스크린샷 2022-12-04 22.54.37.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cf88dcd2-b4ea-492a-bd75-48d17dbc2993/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_22.54.37.png)
+  <img width="363" alt="스크린샷 2022-12-06 23 10 18" src="https://user-images.githubusercontent.com/67703882/205934329-83686803-bcaf-464f-ad5b-7fef549d74fd.png"> 
 
   - Translation의 속도가 중요해짐
 
@@ -62,7 +62,7 @@
 - 메모리로서 실제로(물리적으로) 존재하지는 않지만, 사용자에게 메모리로서의 역할을 하는 가상 메모리
 - 프로세스의 실행을 위해 프로그램의 모든 부분이 다 메모리에 올라가있을 필요는 없다 → 실행되고 있는 코드만 실제 메모리에 올려놓고 프로세스를 실행시키자!
 
-![스크린샷 2022-12-04 22.56.58.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c6058af7-c1c0-4a0a-acec-d48087de36f3/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_22.56.58.png)
+<img width="395" alt="스크린샷 2022-12-06 23 10 43" src="https://user-images.githubusercontent.com/67703882/205934434-74329645-46fa-448a-95e4-e79c544325f9.png">
 
 ### Paging
 
@@ -79,7 +79,7 @@
 
 - Page Table
 
-  ![스크린샷 2022-12-04 23.09.54.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/14da59d0-6d1d-4ba4-bed7-672642ab98a9/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_23.09.54.png)
+  <img width="344" alt="스크린샷 2022-12-06 23 12 12" src="https://user-images.githubusercontent.com/67703882/205934760-45bd85d2-164e-4efd-a120-8299cde6b410.png"> 
 
   - 각 프로세스의 페이지 정보를 저장. 즉 프로세스마다 하나씩 가지고 있음
   - 해당 page에 할당된 물리 메모리의 시작 주소 정보를 가지고 있다. → 이 시작 주소랑 page 주소를 결합하면 실제 원하는 데이터 주소를 알 수 있음
@@ -105,7 +105,7 @@
 - TLB는 레지스터이기 때문에 빠른 수행 가능
 - TLB Hit Ratio, 즉 TLB에서 원하는 주소를 찾을 확률을 높일수록 성능 향상
 
-![스크린샷 2022-12-04 23.15.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fcd4f5f3-83ac-418c-8338-febf24c1c9c8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_23.15.59.png)
+<img width="391" alt="스크린샷 2022-12-06 23 12 31" src="https://user-images.githubusercontent.com/67703882/205934827-26bb38a6-780b-4b69-a9be-c302e30da0e2.png">
 
 시스템 발전에 따라 가상 주소 공간도 큰 용량을 요구하게 되면서 페이지 테이블 역시 차지하는 공간이 켜졌다. 이러한 문제를 해결한 방법들을 알아보자
 
@@ -113,7 +113,7 @@
 
 - 2 Level Page Table → Outer page Table을 하나 더 둔다
 
-  ![스크린샷 2022-12-04 23.20.26.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/30f246e3-91fa-4937-ac9f-d5cd9834283e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_23.20.26.png)
+  <img width="363" alt="스크린샷 2022-12-06 23 12 47" src="https://user-images.githubusercontent.com/67703882/205934899-c5892a9e-894c-4133-9372-0d4f98f86e72.png"> 
 
 - Paget Table의 레벨이 높아지면?
 
@@ -126,11 +126,11 @@
 
 - 기존에는 page 번호를 이용해 frame 번호를 검색했다면 이를 반대로 생각
 
-  ![스크린샷 2022-12-04 23.24.38.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe94675e-55bd-43be-a0b2-6ccd799a99da/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_23.24.38.png)
+  <img width="368" alt="스크린샷 2022-12-06 23 13 06" src="https://user-images.githubusercontent.com/67703882/205934968-9e085139-1b51-452d-85cf-47812f0d0bab.png"> 
 
 - CPU에서 참조하는 address와 PID 조합으로 Page ID를 만들어서 page table 내에서 page ID를 검색한다.
 
-  ![스크린샷 2022-12-04 23.25.36.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/78fcb346-3cdb-4646-ae08-8c6b2ce2efb9/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_23.25.36.png)
+  <img width="350" alt="스크린샷 2022-12-06 23 13 30" src="https://user-images.githubusercontent.com/67703882/205935051-1dab56de-0229-48bf-8b8f-2b5740abc43a.png"> 
 
 - 시스템 전체에 하나의 Page Table만 둔다.
 
@@ -138,7 +138,7 @@
 
 ### Demand Paging
 
-![스크린샷 2022-12-04 23.29.52.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2c6361dd-e4ab-4ce4-a85b-d195f1553965/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-12-04_23.29.52.png)
+<img width="364" alt="스크린샷 2022-12-06 23 13 50" src="https://user-images.githubusercontent.com/67703882/205935119-a5a367e5-d7e1-4e79-9a7a-5cbdab6cc344.png">
 
 - 프로세스 실행을 위한 모든 페이지를 메모리에 올리지 않고 필요한 페이지 요청이 발생할때 메모리에 올리는 Paging 기법
 - Page 를 Memory 와 Secondary Storage 간 이동시킨다
