@@ -74,31 +74,55 @@
 
 - 도큐먼트 접근하려면 _doc 사용 
 
-- 입력 
+- 입력 (PUT)
 
-  ```c
-  PUT my_index/_doc/1
-  '{ "message": "안녕하세요 Elasticsearch"}'
-  ```
+  - id 지정해야함
 
-  - 기존 도큐먼트가 덮어씌워지는 걸 방지하려면 _doc 말고 _create 사용 
-  - _update 하면 원하는 필드 내용만 업데이트 
+  - 처음에는 생성, 이후에는 덮어쓰기. `_doc` 사용
 
-- 조회 
+    ```c
+    PUT my_index/_doc/1
+    {
+      "name":"Jongmin Kim",
+      "message":"안녕하세요 Elasticsearch"
+    }
+    ```
 
-  ```c
-  GET my_index/_doc/1
-  ```
+  - 실수로 덮어쓰기 하는 것을 방지하기 위해 `_create` 사용
 
-- 삭제 
+    ```c
+    PUT my_index/_create/1
+    {
+      "name":"Jongmin Kim",
+      "message":"안녕하세요 Elasticsearch"
+    }
+    // 만약 있는 데이터라면 오류남 
+    ```
 
-- 검색 자ㅋ
+- 수정 (POST)
 
+  - POST 로 입력 수행 → id 자동 생성 (PUT은 지정해줘야함)
 
+    ```c
+    POST my_index/_doc
+    {
+      "name":"Jongmin Kim",
+      "message":"안녕하세요 Elasticsearch"
+    }
+    ```
 
-- bulk API
+  - 부분 수정하고 싶다면 `_update` 사용
 
+    ```c
+    POST my_index/_update/1
+    {
+      "name":"Sona Gong",
+    }
+    ```
 
+- 삭제 (DELETE)
+
+​	
 
 참고
 
