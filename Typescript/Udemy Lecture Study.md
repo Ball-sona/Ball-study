@@ -1,0 +1,252 @@
+# Typescript Udemy Lecture Study
+
+### Typescript Types
+
+- TS Type vs JS Type
+  - JS : 동적 타입. 런타임에서 타입을 확인할 수 있는 `typeof` 사용
+  - TS : 정적 타입. 개발 도중에 타입을 명확히 설정.
+- Core Types
+  - number
+  - string
+  - boolean
+  - object
+  - array
+  - tuple
+  - enum
+  - any
+  - union
+
+### 함수 반환 타입
+
+```tsx
+function printResultWithVoid(num:number):void{ 
+	console.log(num);
+}
+
+function printResultWithUndefined(num:number): undefined{ 
+	console.log(num);
+	return ;
+}
+```
+
+- 함수의 반환 타입을 `void` 로 설정하면 이 함수의 반환값은 `undefined` 가 되지만, 그렇다고 반환값이 없는 함수의 반환 타입을 `undefined` 로 설정하게 되면 에러가 난다.
+
+- 그렇다면 void 와 undefined 의 차이는 무엇일까?
+
+  1. void가 반환 타입인 함수는 **truthiness** 를 검증할 수 없다.
+
+  ```tsx
+  const voidResult = printResultWithVoid();
+  voidResult && console.log(voidResult); // error 
+  
+  const undefinedResult = printResultWithUndefined();
+  undefinedResult && console.log(undefinedResult);
+  ```
+
+  1. void를 반환하는 contextual 함수 타이핑은 함수에게 아무것도 반환하지 않을 것을 강제하지 않는다.
+
+  ```tsx
+  function addFunc(n1: number, n2: number, cb: (n: number) => void) {
+    const r = cb(n1+n2);
+    console.log(r); // undefined ??
+    return r;
+  }
+  
+  function callbackFunc (res:number) {
+    console.log(res);
+    return res;
+  }
+  
+  addFunc(10, 20, callbackFunc);
+  ```
+
+  https://woojeongmin.com/2022/study-log/typescript-void-vs-undefined/
+
+  근데 콘솔 찍어보면 제대로 반환하는 진기한 상황….. 집가서 알아보자
+
+### Typescript Compiler
+
+- 관찰 모드(시계 모드)
+
+  - typescript 코드를 변경할때마다 변경 사항을 감지하여 자동으로 컴파일해줄 수 있다.
+  - `tsc -w` or `tsc --watch`
+
+- ts 프로젝트 등록하기
+
+  - `tsc --init`
+
+- ```
+  tsconfig.json
+  ```
+
+   설정하기
+
+  - exclude : tsc 실행할때 컴파일 안되도록 지정할 파일  (ex. node_mudules 자동으로 포함)
+  - include : tsc 실행할때 컴파일 하고자 하는 폴더 (해당 폴더 내 파일들을 제외한 파일들은 컴파일 안됨)
+  - files : 컴파일하고자 하는 개별 파일
+  - compilerOptions
+    - target : 어떤 자바스크립트 버전으로 컴파일 할지. es5 사용하면 var를 지원하기 때문에 구형 포함한 모든 브라우저 지원 가능 (es6 쓰면 const, let 사용)
+    - module
+    - lib : dom으로 작업을 수행하는 항목들. 지정하지 않으면 target에 따라 달라지는데, 기본적으로 브라우저에서 작동하는데 필요한 dom API 등이 포함된다.
+    - allowJS : 바닐라 자바스크립트 파일도 같이 사용하고 싶은 경우
+    - declation : `.d.ts` 파일은 manifest 파일..
+    - sourceMap : `.js.map` 파일을 생성하여 개발자 도구에서 ts 파일도 디버깅할 수 있다.
+    - rootDir : ts 파일을 보관할 폴더
+    - outDir : 컴파일된 js 파일을 보관할 폴더 (폴더 구조 유지)
+    - removeComment : 컴파일 시 주석 제거. 파일 크기 줄이는 데 도움
+    - noEmit : 자바스크립트 파일을 생성하지 않을 수 있다.
+    - downlevelIteration :
+    - noEmitOnError : 타입스크립트 파일에 에러가 있는 경우 자바스크립트 파일을 생성하지 않는다.
+    - strict : 개별 옵션을 한번에 설정 가능.
+    - noImplictAny : true면 any를 허용하지 않는다. js에서 마이그레이션되는 경우가 아니라면 false를 사용하지 않는다.
+      - 변수를 선언할때는 타입 지정을 안해줘도 되지만, 함수의 매개변수를 선언할 때는 타입을 지정해줘야한다. 왜? …
+    - strickNullCheck
+    - noUnusedLocals :
+    - noUnusedParameters
+    - noImplictReturns : 함수가 무조건 무언가를 반환하도록
+
+### OOP with TS
+
+- ts 를 사용하여 생성자 코드를 축약 가능하다.
+
+  ```tsx
+  private id:string;
+  private name:string;
+  constructor(id, name){
+  	this.id = id;
+  	this.name = name;
+  }
+  
+  // 위 코드를 한줄로 축약이 가능하다. 
+  constructor(private id:string, public name:string){}
+  ```
+
+- `private` `public` `protected`
+
+- `readonly`
+
+  - 초기화 후에는 값 변경 불가능
+
+- 상속
+
+  ```tsx
+  class ITDeparmtnet extends Department{
+  	constructor(){
+  		super(); // Department constructor 
+  	}
+  }
+  ```
+
+- 정적 메서드 `static`
+
+- 추상 메서드 `abstract`
+
+- 싱글턴 패턴
+
+  - 클래스가 하나의 객체만 갖도록 제한
+  - `private constructor`
+
+### Why Interface?
+
+- 인터페이스는 `type` 와 비슷해보이지만, 객체의 구조를 설명하기 위해서만 사용한다. 객체의 타입을 정의할 경우 일반적으로 인터페이스를 사용한다.
+- `implements` 키워드를 사용하여 클래스가 인터페이스를 이행하고 준수하는 약속처럼 사용하게 만들 수 있다.
+- `extends` 키워드를 사용하여 인터페이스는 상속이 가능하다. 여러 인터페이스 상속 가능
+- 함수 정의 가능
+
+### 고급 타입
+
+- 인터섹션 타입
+
+  ```tsx
+  interface ElvatedEmployee extends Employee, Admin {};
+  
+  type ElvatedEmployee = Admin & Employee;
+  ```
+
+- 타입 가드
+
+  - `in` 키워드를 통해 타입에 해당 속성이 있는지를 확인하기
+
+    ```tsx
+    type UnknownEmployee = Employee | Admin;
+    
+    function printEmpInfo(emp: UnknownEmployee) {
+      console.log(emp.name); // name은 Employee, Admin 공통 속성
+    	console.log(emp.priv); // priv는 Admin에만 있는 속성으로 에러
+    
+      if ('priv' in emp) { 	// priv 속성이 있는지 확인 후 있다면 로직 처리
+        console.log(emp.priv);
+      }
+    }
+    ```
+
+  - `instanceof` 키워드를 통해 해당 클래스의 인스턴스인지 확인하기
+
+    - 인스턴스는 타입스크립트에서만 동작하는 것으로, instanceof 를 쓸 수 없다.
+
+    ```tsx
+    type Vehicle = Car | Truck;
+    
+    function useVehicle(vehicle: Vehicle) {
+      // Truck의 인스턴스라면 if문 처리 
+      if (vehicle instanceof Truck) { 
+        vehicle.loadCargo(1000);
+      }
+    }
+    ```
+
+  - `switch` 문 사용하기
+
+    ```tsx
+    type Animal = Bird | Horse; // Bird, Horse 는 인터페이스
+    
+    function moveAnimal(animal:Animal){
+    	let speed;
+    	swtich(animal.type){
+    		case 'bird':
+    		case 'horse':
+    	}
+    }
+    ```
+
+### 타입 단언
+
+```tsx
+// 현재 타입은 HTMLElement | null
+const userInputElement = document.getElementById('user-input');
+
+// ! 를 사용하여 해당값이 null이 아님을 확신시켜줄 수 있다.
+const userInputElement = document.getElementById('user-input')!
+
+// as 
+const userInputElement = document.getElementById('user-input') as HTMLInputElement;
+// <> 
+const userInputElement = <HTMLInputElement>document.getElementById('user-input');
+```
+
+### 인덱스 타입
+
+- 유연한 타입 정의가 가능하다.
+- prop은 number, string, symbol 타입만 가능
+
+```tsx
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'wrong email',
+  username: 'wrong name',
+};
+```
+
+### 제네릭 타입
+
+```tsx
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U,
+) {
+  return obj[key];
+}
+```
