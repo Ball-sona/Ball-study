@@ -1,4 +1,4 @@
-## Event
+# Browser Event
 
 [자주 사용되는 DOM 이벤트 모음](#자주-사용되는-DOM-이벤트-모음)
 

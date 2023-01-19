@@ -1,6 +1,33 @@
+# C 언어 관련 
+
+## 데이터 타입
+
+#### unsigned int 
+
+- int의 양의 정수 범위만 사용하는 자료형
+- 양의 표현이 int에 비해 2배.
+
+#### size_t
+
+- `long unsigned int` 의 별칭. 가장 큰 사이즈를 담을 수 있는 unsigned 데이터 타입
+
+  
+
+## 포인터
+
+#### 포인터
+
+- const char* ptr = 'hello' 라고 한다면 ptr은  read only data 영역에 저장되어 있는 'hello' 라는 문자열의 주소를 가리키는 포인터다. 
+
+- const char* 은 32비트 운영체제에서는 4바이트, 64비트 운영체제에서는 8바이트로 고정되어있다. 
+
+#### 다중 포인터
+
+- const char** 은 const char * 의 주소값을 매개변수로 다루는 자료형
+
+
+
 ## File 관련 함수
-
-
 
 #### fopen
 
@@ -30,8 +57,6 @@ int fputs(char const* message, FILE* file_stream);
 ```c
 size_t fwrite(void const* buffer, size_t elementSize, size_t elementCount, FILE* file_stream);
 ```
-
-- 
 
 
 

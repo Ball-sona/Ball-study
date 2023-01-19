@@ -1,12 +1,10 @@
+# Socket Programming
 
-
-## Socket Programming
-
-##### 소켓 프로그래밍 과정
+### 소켓 프로그래밍 과정
 
 <img width="658" alt="스크린샷 2022-10-08 23 03 44" src="https://user-images.githubusercontent.com/67703882/194759136-bf94e6ac-0179-422e-a0c2-1b1a11261489.png"> 
 
-##### socket 생성 함수
+### socket 생성 함수
 
 ```c
 #include <sys/socket.h>
@@ -53,7 +51,7 @@ int socket(int domain, int type, int protocol);
 
 
 
-##### 연결 요청 대기 상태
+### 연결 요청 대기 상태
 
 ```c
 /**
@@ -66,7 +64,7 @@ int listen(int sock, int backlog);
 
 
 
-##### 클라이언트의 연결 요청 수락
+### 클라이언트의 연결 요청 수락
 
 ```c
 /**
@@ -80,7 +78,7 @@ int accept(int sock, struct sockaddr* addr, socklen_t* addrlen);
 
 
 
-##### 클라이언트의 연결 요청
+### 클라이언트의 연결 요청
 
 ```c
 /**
@@ -130,7 +128,7 @@ int connect(int sock, const struct sockaddr* servaddr, socklen_t addrlen);
 
 
 
-##### 데이터 읽기
+### 데이터 읽기
 
 ```c
 #include <unistd.h>
@@ -148,7 +146,7 @@ ssize_t read(int sock, void *buffer, size_t count);
 
 
 
-##### 데이터 쓰기
+### 데이터 쓰기
 
 ```c
 #include <unistd.h>

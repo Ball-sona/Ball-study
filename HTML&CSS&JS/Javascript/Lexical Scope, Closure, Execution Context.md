@@ -1,4 +1,4 @@
-## Lexical Scope, Closure, Execution Context
+# Lexical Scope, Closure, Execution Context
 
 ### Lexical Scope
 

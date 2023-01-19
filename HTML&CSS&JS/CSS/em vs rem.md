@@ -1,4 +1,4 @@
-### em, rem
+# em vs rem
 em : 부모 요소의 크기와 비례
 rem : 최상위 요소(html)의 크기에 비례
 ```html

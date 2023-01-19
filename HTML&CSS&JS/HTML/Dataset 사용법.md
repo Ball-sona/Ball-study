@@ -1,6 +1,6 @@
-### dataset
+# Dataset 사용법
 
-html
+#### html
 
 ```html
 <div id='drum' data-code="Enter" data-key='81' />
@@ -9,7 +9,7 @@ html
 <audio data-code='Backspace' />
 ```
 
-javascript
+#### javascript
 
 ```javascript
 window.addEventListener('keydown',(e)=>{
@@ -23,7 +23,7 @@ window.addEventListener('keydown',(e)=>{
 
 ```
 
-css
+#### css
 
 ```css
 div[data-code='Enter']{
