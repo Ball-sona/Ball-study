@@ -131,6 +131,8 @@ git hook을 활용하면 커밋 전 lint 를 실행하여 코드를 검사할 �
   yarn add @commitlint/cli @commitlint/config-conventional -D
   ```
 
+- 패키지를 설치하지 않고 사용하고 싶다면 `npx --no-install` 옵션을 사용해주면 된다.
+
 - commitlint.config.js 에 추가한다. 
 
   ```
