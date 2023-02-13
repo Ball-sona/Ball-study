@@ -8,6 +8,12 @@ zero-runtime stylesheets in Typescript
 npm install @vanilla-extract/css
 ```
 
+### Bundler Integration
+
+vanilla-extracts를 사용하여 CSS를 다루기 위해서는 번들러를 설치 및 세팅해야한다. 이를 통해 우리는 스타일 코드를 다른 종속성과 동일하게 처리하여 필요한 항목만 가져오고 묶을 수 있다. 
+
+Vite, Esbuild, Webpack, Next, Parcel, Rollup, Gatsby 중 하나를 선택하여 설치한다. 
+
 ### 특징 
 
 - Type-safe static CSS
