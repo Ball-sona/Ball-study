@@ -2,14 +2,14 @@
 
 여러 프로그램들이 한정된 자원인 메모리 영역을 공유하게 되면서 이를 잘 관리할 필요성이 등장한다.
 
-### Address Space
+## Address Space
 
 - 주소 공간 = 프로세스에서 **참조**할 수 있는 주소들의 범위
 - 프로세스와 1:1 관계이고, 스레드들은 주소 공간을 공유한다.
 - 주소 공간의 크기는 CPU의 주소 버스(address bus)에 의존한다.
   - 주소 버스가 32bit 라면 주소 공간 크기는 2^32 임
 
-### Physical Address and Virtual Address
+## Physical Address and Virtual Address
 
 - 물리 주소
 
@@ -51,20 +51,20 @@
 
   - Translation의 속도가 중요해짐
 
-### MMU
+## MMU
 
 - Memory Management Unit
 - 가상 주소와 물리 주소간의 변환을 수행하는 하드웨어 장치
 - CPU 내에 존재
 
-### Virtual Memory
+## Virtual Memory
 
 - 메모리로서 실제로(물리적으로) 존재하지는 않지만, 사용자에게 메모리로서의 역할을 하는 가상 메모리
 - 프로세스의 실행을 위해 프로그램의 모든 부분이 다 메모리에 올라가있을 필요는 없다 → 실행되고 있는 코드만 실제 메모리에 올려놓고 프로세스를 실행시키자!
 
 <img width="395" alt="스크린샷 2022-12-06 23 10 43" src="https://user-images.githubusercontent.com/67703882/205934434-74329645-46fa-448a-95e4-e79c544325f9.png">
 
-### Paging
+## Paging
 
 - **가상 메모리**를 동일한 크기인 Page 단위로 나누어서 관리 → 보통 1 페이지 크기 = 4KB
 
@@ -97,7 +97,7 @@
     - Present Bit
     - Read/Write Bit
 
-### TLB
+## TLB
 
 - Translation Look-aside Buffers
 - Paging → 데이터 한번 접근할때 페이지 테이블, 물리 메모리 총 2번 메모리에 접근해야한다 → 메모리 접근 속도 떨어트림 → 해결방법 TLB
@@ -109,7 +109,7 @@
 
 시스템 발전에 따라 가상 주소 공간도 큰 용량을 요구하게 되면서 페이지 테이블 역시 차지하는 공간이 켜졌다. 이러한 문제를 해결한 방법들을 알아보자
 
-### Multilevel Page Table
+## Multilevel Page Table
 
 - 2 Level Page Table → Outer page Table을 하나 더 둔다
 
@@ -120,7 +120,7 @@
   - page table이 차지하는 메모리 영역의 크기가 줄어들겠지만.
   - Table walk 에 걸리는 시간이 증가한다
 
-### Inverted Page Table
+## Inverted Page Table
 
 - 모든 물리 메모리는 가상 메모리의 페이지에 매핑되어있지 않을까? ← 가상 메모리 용량이 커지면서 물리 메모리가 인기가 더 많아진거잖아
 
@@ -136,7 +136,7 @@
 
 - 적은 용량을 차지하게 되지만 테이블 검색하는데 더 오랜 시간이 걸린다.
 
-### Demand Paging
+## Demand Paging
 
 <img width="364" alt="스크린샷 2022-12-06 23 13 50" src="https://user-images.githubusercontent.com/67703882/205935119-a5a367e5-d7e1-4e79-9a7a-5cbdab6cc344.png">
 
@@ -154,3 +154,9 @@
     - Page Table 재구성
     - 프로세스 작업 재시작
   - page fault 횟수를 줄이는것이 성능에 있어서 중요함
+
+
+
+## 참고 자료
+
+숭실대 3학년 1학기 운영체제 전공 수업 

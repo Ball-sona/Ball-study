@@ -1,12 +1,12 @@
 # CPU Scheduling
 
-### Scheduling
+## Scheduling
 
 - 어떻게 프로세스에게 CPU 의 사용을 할당할 것인가 (멀티 프로그래밍 기반)
 - 여러 ready state 인 프로세스들이 있을 때 어떤 프로세스를 선택할 것인가?
 - CPU 사용률과 처리량의 극대화
 
-### 프로세스 수행 사이클의 구성
+## 프로세스 수행 사이클의 구성
 
 - Burst Cycle
   - CPU Burst : CPU가 연산 수행하는 시간
@@ -16,7 +16,7 @@
   - CPU-bound Process : 데이터 양은 적으나 연산이 긴 케이스. I/O Burst < CPU Burst
   - I/O-bound Process : 연산은 적으나 데이터가 많은 케이스. I/O Burst > CPU Burst
 
-### Scheduling 종류
+## Scheduling 종류
 
 - 언제 CPU Scheduling 해야하는가?
   1. `running` → `waiting` : I/O or event 발생
@@ -30,7 +30,7 @@
   - 어느 케이스든 사용 가능하다
   - CPU가 강제로 프로세스의 수행을 정지하는 경우
 
-### Scheduling 기준
+## Scheduling 기준
 
 - CPU 사용률(CPU Utilization) : 시스템 시간 중 CPU가 작업을 처리하는 시간의 비율
 - 처리량(Throughput) : CPU가 단위 시간 당 처리하는 프로세스의 개수
@@ -42,7 +42,7 @@
 
 → 시스템 용도를 고려하여 설계하자!
 
-### Scheduling Algorithms
+## Scheduling Algorithms
 
 1. **FCFS(First-Come, First-Served) Scheduling**
 
@@ -86,16 +86,12 @@
 
 5. **Multilevel Queue Scheduling**
 
-   ![스크린샷 2022-11-16 23.07.34.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3e169fd4-99fd-47dd-a484-9d5ac6f08fdc/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-11-16_23.07.34.png)
-
    - **Ready Queue를 여러개로 분리**하여 각각에 대해 다른 스케줄링 알고리즘 사용
    - Foreground Queue : Interactive 동작. Round Robin 기법 사용하여 대기 시간을 줄인다.
    - Background Queue : CPU 연산 작업 수행. FCFS 사용(종료 보장)
    - Priority, Time slice 등을 사용해 각 큐에 CPU를 어떻게 할당할 건지 결정해야한다.
-
+   
 6. **Multilevel Feedback Queue Scheduling**
-
-   ![스크린샷 2022-11-16 23.10.36.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93371b81-facd-452c-b800-79734f714343/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-11-16_23.10.36.png)
 
    - Multilevel Queue에서 프로세스들이 Queue 간 이동할 수 있도록 하는 스케줄링 기법
      - Q0에서 8ms 실행한다
@@ -104,7 +100,7 @@
    - Aging 기법의 한 방법
    - 고려 요소 : 큐 개수, 스케줄링 기법, 언제 큐 옮길까?, 옮길 방법 등
 
-### Multiple Processor Scheduling
+## Multiple Processor Scheduling
 
 - 비대칭 멀티프로세싱(Asymmetric multiprocessing)
   - 하나의 CPU가 스케줄링과 시스템 자료 구조를 관리하고, 다른 CPU는 사용자 코드만 수행.
@@ -119,3 +115,9 @@
 - Load Balancing
   - CPU 마다 Ready Queue를 둘 경우 → 일부 CPU에 프로세스가 집중될 수 있다.
   - CPU 가 하나의 Ready Queue를 공유할 경우 → 사용 가능한 CPU에 차례대로 Process 배정한다.
+
+
+
+## 참고 자료
+
+숭실대 3학년 1학기 운영체제 전공 수업 

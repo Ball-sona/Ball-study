@@ -1,8 +1,6 @@
 # Process
 
-### 프로그램이 만들어지는 과정
-
-![스크린샷 2022-10-15 03.34.56.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/87547b75-ca25-4181-a0b7-9d054edb7800/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-15_03.34.56.png)
+## 프로그램이 만들어지는 과정
 
 - Compiler
 
@@ -37,9 +35,8 @@
     3. `_start` 함수는 라이브러리 및 스레드 환경을 초기화하기 위해  `_libc_start_main` 함수 호출
     4. 라이브러리 초기화 후 프로그램의 `main` 함수 호출
 
-  ![스크린샷 2022-10-15 03.47.50.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe8a4d4b-ee6e-448a-b1fb-a03516bca3cb/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-10-15_03.47.50.png)
 
-### Process Concept
+## Process Concept
 
 - Abstraction
 
@@ -52,13 +49,9 @@
 
   - bss : 초기화되어있지 않은 전역 변수들이 저장된 곳
 
-    ![IMG_C38B873298B4-1.jpeg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e4599b9e-dde3-4f0c-bb44-e20aef17b020/IMG_C38B873298B4-1.jpeg)
-
 - 디스크에 저장된 **프로그램으로부터 변환**되어 메모리 로딩
 
-### Process State
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ef7ca14a-3dd1-4f15-8c9a-957cd57c406a/Untitled.png)
+## Process State
 
 - `new` : 방금 생성됨 (program 정적인 상태로)
 - `running` : instruction 수행중
@@ -67,7 +60,7 @@
 - `terminated` : 실행 완료
 - 커널에 Ready Queue, Waiting Queue, Running Queue 를 두고 프로세스 상태에 따라 관리한다.
 
-### Process Control
+## Process Control
 
 - Process Control Block(PCB)
   - 운영체제가 프로세스를 관리하기 위한 각 프로세스마다 갖는 data structure
@@ -89,7 +82,7 @@
 - exec
   - replace the memory with new program
 
-### Process Creation
+## Process Creation
 
 - Parent process → Child Process
 
@@ -113,17 +106,23 @@
   else if (pid == 0) { // Child Process }
   ```
 
-### Process Termination
+## Process Termination
 
 - `exit` 시스템 콜을 사용하여 프로세스를 종료한다.
 - `wait` 시스템 콜을 사용하여 부모 프로세스는 자식 프로세스의 종료 상태를 받을 수 있다.
 - 프로세스가 비정상 종료시 `SIGABRT` 시그널을 부모 프로세스에 전달하여 에러 메세지를 알려준다.
 - Core dump : 어떻게 실행하다가 비정상 종료되었는지에 대한 정보?
 
-### Cooperating Processes
+## Cooperating Processes
 
 - 기본적으로 프로세스들은 서로 영향을 주고 받을 수 없다. 독립적 실행.
 - 프로세스 간 협력 이점 : 정보 공유. 계산 속도 향상. 모듈화. 안정성
 - 협력 방법
   - Network/Pipe 로 통신
   - Shared Memory 를 사용
+
+
+
+## 참고 자료
+
+숭실대 3학년 1학기 운영체제 전공 수업 

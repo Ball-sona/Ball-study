@@ -1,12 +1,12 @@
 # Synchronization
 
-### Race Condition
+## Race Condition
 
 - 독립적으로 실행되는 프로세스들이 서로 협력하기 위해 Shared Memory 를 통해 데이터를 공유한다.
 - 이러한 공유 데이터에 대해 여러 프로세스가 동시에 접근 및 변경을 시도하는 상황을 Race Condition(경쟁 상황) 이라고 한다.
 - 데이터의 일관성을 유지하기 위해 프로세스 간 동기화(순차적으로 수행)이 필요하다.
 
-### Critical Section
+## Critical Section
 
 - 여러 프로세스들이 공유하는 데이터에 접근하는 **Code 영역** (ex. 입출금 영역)
 - 한번에 하나의 프로세스만이 Critical Section에 접근해야한다.
@@ -15,7 +15,7 @@
   - Progress : CS에 진입해있는 프로세스가 없다면 즉각적으로 진입이 바로 가능해야한다. → 결정은 무한히 연기되서는 안된다.
   - Bounded Waiting : 프로세스가 CS에 진입할때까지 대기하는 시간에는 제한이 있어야한다.
 
-### Critical Section 접근 알고리즘
+## Critical Section 접근 알고리즘
 
 - Shared Variables (turn)
 
@@ -90,7 +90,7 @@
     - 3개 이상의 프로세스에 적용하기에는 확장하기 어렵다
     - 이 알고리즘이 항상 옳게 동작할거라고 증명하기가 어렵다 → NP문제
 
-### Synchronization Instruction
+## Synchronization Instruction
 
 - Critical Section에 들어가면서 Interrupt 를 불가능하게 막아보자.
 
@@ -110,7 +110,7 @@
   - Mutual Exclusion은 만족. Bounded Waiting은 User program에서 해결해야한다
   - 이마저도 완벽히 처리하는 것을 기대하기 어려움
 
-### Semaphores
+## Semaphores
 
 - 세마포어 : 2개의 Atomic Instruction 을 가지는 정수 변수
   - `P()` or `Wait()` : CS 들어갈때 수행
@@ -124,7 +124,7 @@
     - Binary Semaphore 이용하여 구현
     - 어떻게 구현되는지 더 이해하고 설명 . P25
 
-### Semaphores 구현
+## Semaphores 구현
 
 - Busy Waiting
 
@@ -163,13 +163,13 @@
 - 잘못 사용해버리면 (ex. P→CS→P or V→CS→P) 이에 대한 대책이 없음
 - High-level 언어에서 동기화 제공하는 방법이 필요해졌다
 
-### Deadlock
+## Deadlock
 
 - 두개 이상의 프로세스들이 다들 대기만 끝없이 하고 있는 상황
 
 <img width="280" alt="스크린샷 2022-12-05 21 53 42" src="https://user-images.githubusercontent.com/67703882/205642009-9dcfc1f2-bc11-48f9-bb1d-28a34386359b.png">
 
-### Monitor
+## Monitor
 
 - High-level 언어에서의 동기화 방법
 - 한 순간에 하나의 프로세스만 Monitor 에서 활동하도록 보장하는 것
@@ -181,7 +181,7 @@
 
 동기화의 고전적인 문제 3가지를 알아보자. 
 
-### Bounded-Buffer Problem
+## Bounded-Buffer Problem
 
 <img width="329" alt="스크린샷 2022-12-05 21 54 28" src="https://user-images.githubusercontent.com/67703882/205642176-919a624b-235f-4444-b472-36028813419b.png">
 
@@ -226,7 +226,7 @@
   } while(1) 
   ```
 
-### Readers and Writers Problem
+## Readers and Writers Problem
 
 <img width="432" alt="스크린샷 2022-12-05 21 54 48" src="https://user-images.githubusercontent.com/67703882/205642257-f2aaef19-4023-43fb-80be-a3525cb1c8c0.png">여러 Reader 와 Writer 가 하나의 공유 데이터를 읽거나 쓰기 위해 접근
 
@@ -267,4 +267,8 @@
   - ???
   - 여러 Reader 들이 계속 진입하면 readcount 가 0까지 떨어지지 않아서 Writer 들의 작업이 밀려날 수 있다
 
-### Dining Philosophers Problem
+## Dining Philosophers Problem
+
+## 참고 자료
+
+숭실대 3학년 1학기 운영체제 전공 수업 
