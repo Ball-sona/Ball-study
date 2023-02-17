@@ -1,13 +1,13 @@
-## Computer Network 개론
+# Computer Network 개론
 
-#### Computer Network 용어
+## Computer Network 용어
 
 - Host 는 애플리케이션 동작시켜. → 컴퓨터
 - Router 는 정보 전달.
 - Packet 은 bytes의 단위. 목적지 host 주소 등 정보 담겨있음.
 - Protocol 은 패킷 사이즈나 구조 등에 관한 규약
 
-#### Host 간 패킷 전송 과정
+## Host 간 패킷 전송 과정
 
 - 네트워크 계층
 
@@ -55,7 +55,7 @@
   3. Router가 Network 계층에서 IP 주소 확인해서 목적지 호스트에 전달
   4. Host 는 Transport 계층에서 Port 주소 확인해서 Application 에 Message 전달
 
-#### Computer Network 에서의 주소
+## Computer Network 에서의 주소
 
 - I**P주소**
 
@@ -90,7 +90,7 @@
     - 1개의 ip 주소 + 1개의 MAC 주소
 - Subnet = Host 간 network ID가 동일한 그룹
 
-### IP/TCP/UDP/HTTP
+## IP/TCP/UDP/HTTP
 
 - IP(Internet Protocol)
   - datagram service  → packets. IP 주소
@@ -107,7 +107,7 @@
   - Request Message
   - Response Message
 
-#### 인터넷 동작 설명 사례
+## 인터넷 동작 설명 사례
 
 1. 구글 검색을 해요
 2. 브라우저는 Cache에서 DNS 조회를 한적 있는지 확인해요
@@ -116,7 +116,7 @@
 5. TCP 연결에 성공하면 웹서버에 HTTP 요청을 보내고 응답을 받아요
 6. 브라우저는 응답에 기반해서 HTML 페이지를 보여줘요
 
-#### DHCP.ARP.DNS Protocol
+## DHCP.ARP.DNS Protocol
 
 - DHCP(Dynamic Host Configuration Protocol)
   - 노트북이 새로운 subnet과 연결 → subnet 안에 있는 DHCP 서버에 접속 하면..
@@ -127,7 +127,7 @@
 - DNS(Domain Network System)
   - [www.google.com](http://www.google.com) 의 IP주소를 알려줘!
 
-#### TCP/UDP Protocol
+## TCP/UDP Protocol
 
 - TCP
   - 3-way handshaking 연결 → data transfer 여러번 → 4-way handshaking 연결 해지.

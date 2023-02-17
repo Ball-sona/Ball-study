@@ -1,6 +1,6 @@
-## HTTP Cookie & Session
+# HTTP Cookie & Session
 
-### Cookie와 Session 을 사용하는 이유
+## Cookie와 Session 을 사용하는 이유
 
 쿠키와 세션을 왜 사용하는지 알기 위해서는 HTTP 프로토콜의 특징을 알아야한다. HTTP 프로토콜은 connectionless 하고 stateless 한 특징을 가진다. 
 
@@ -9,7 +9,7 @@
 
 이러한 특징으로 인해 서버 리소스 낭비가 줄어들어 더 많은 요청을 처리할 수 있는 성능을 확보한다는 장점도 있지만, 클라이언트 측면에서 상태 유지를 위해 통신할때마다 특정 절차를 거쳐야한다는 단점이 존재한다. 이를 보완하기 위한 방법인 쿠키와 세션을 알아보자. 
 
-### Cookie 
+## Cookie 
 
 <img src="https://user-images.githubusercontent.com/67703882/201508437-7de7fd8e-e08c-41d6-bbb0-b1db5b513cdd.png" alt="image" style="zoom:67%;" />
 
@@ -85,7 +85,7 @@ Path 속성을 명시하면 해당 도메인의 특정 경로로만 쿠키의 �
 
 
 
-### Session
+## Session
 
 <img src="https://user-images.githubusercontent.com/67703882/201508448-22e8d059-69b0-4fb3-94f8-3a4853c650ac.png" alt="image" style="zoom:67%;" />
 
@@ -113,7 +113,7 @@ Path 속성을 명시하면 해당 도메인의 특정 경로로만 쿠키의 �
 
   
 
-#### 참고
+## 참고 자료
 
 https://interconnection.tistory.com/74
 
