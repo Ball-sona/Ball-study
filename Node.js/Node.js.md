@@ -1,4 +1,4 @@
-# Node.js 
+# Node.js 란?
 
 Node.js 란 크롬 V8 자바스크립트 엔진으로 빌드된 자바스크립트 런타임이다. Node.js는 이벤트 기반, 논블로킹 I/O 모델을 사용해 가볍고 효율적이다. Node.js 의 패키지 생태계인 npm은 세계에서 가장 큰 오픈 소스 라이브러리 생태계이기도 하다. 
 
@@ -82,22 +82,11 @@ xhr.send();
 console.log(document.querySelector('div').dataset); 
 ```
 
-
-
-## REPL
-
-자바스크립트는 스크립트 언어로 미리 컴파일을 하지 않아도 즉석에서 코드를 실행할 수 있다.
-
-따라서 노드도 브라우저 콘솔과 비슷한 기능을 제공하는데, 입력한 코드를 읽고, 해석하고, 결과물을 반환하고 종류하기까지를 반복한다고 해서 이를 **REPL(Read Eval Print Loop)** 이라고 부른다.
-
-
-
-### 동기와 비동기, 블로킹과 논블로킹
+#### 동기와 비동기, 블로킹과 논블로킹
 
 - 동기-비동기 : 함수가 바로 return 되는지 여부
 - 블로킹-논블로킹 : 백그라운드 작업 완료 여부
 
 노드에서는 동기-블로킹, 비동기-논블로킹 방식이 대부분이다. 
 
-<img src="https://blog.kakaocdn.net/dn/baIYNP/btq8gaAA1Og/R3tZR49TrbjKIXSw5qKih0/img.png" alt="img" style="zoom:40%;" /> 
-
+ ??
