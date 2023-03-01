@@ -4,18 +4,18 @@ Express는 좀 더 편리하게 서버를 제작할 수 있도록 편의 기능�
 
 ## Express-generator
 
-Express-generator 패키지는 프레임워크에 필요한 package.json을 만들어주고 기본 폴더 구조까지 잡아주는 패키지이다. 
+Express-generator 패키지는 프레임워크에 필요한 package.json을 만들어주고 기본 폴더 구조까지 잡아주는 패키지(boiler template)이다. 
 
 해당 패키지를 전역 설치 후, 새로운 익스프레스 프로젝트를 생성해보자.
 
-```v
+```bash
 express [project-name] --view=pug	
 ```
 
 자동으로 생성된 프로젝트의 폴더 구조를 간단하게 살펴보면 다음과 같다.
 
 - `bin/www` : 서버를 실행한는 스크립트
-- `pulbic` : 외부(클라이언트)에서 접근 가능한 파일들 (ex. images, javascript, css files)
+- `public` : 외부(클라이언트)에서 접근 가능한 파일들 (ex. images, javascript, css files)
 - `routes` : 주소별 라우터들을 모아둔 곳
 - `views` : 템플릿 파일들을 모아둔 곳 
 
@@ -70,7 +70,7 @@ app.use(logger('dev'));
 ```js
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false})); // false면 querystring 모듈, true면 qs모듈을 사용해서 쿼리스트링을 해석한다. 
+app.use(bodyParser.urlencoded({extended:false})); // extended가 false면 querystring 모듈, true면 qs모듈을 사용해서 쿼리스트링을 해석한다. 
 ```
 
 express@4.16.0 부터는 body-parser의 일부 기능이 익스프레스에 내장되어 있기 때문에 body-parser를 따로 설치하지 않고도 `express.json()` 처럼 사용할 수 있다. 
