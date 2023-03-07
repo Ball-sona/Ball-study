@@ -1,4 +1,8 @@
-# Queue
+# Stack and Queue
+
+## Stack
+
+## Queue
 
 - FIFO(First in First out) 원칙 하에 운용되는 자료구조
 
