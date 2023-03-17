@@ -1,8 +1,6 @@
-## Dynamic Routes
+# Dynamic Routes
 
-
-
-#### Catch All Routes
+### Catch All Routes
 
 - Catch All Routes
   - `pages/search/[...keyword].js` 는  /search/a, /search/a/b 까지 모두 작동 가능. 
@@ -12,9 +10,7 @@
 
 https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes
 
-
-
-#### Caveats
+### Caveats
 
 아래 3개의 파일이 동시에 있을 때.. 
 

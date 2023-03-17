@@ -1,10 +1,10 @@
 # Node 내장 기능
 
+노드가 기본적으로 제공하는 객체와 모듈 사용법을 알아보자. 
+
 ## REPL
 
-자바스크립트는 스크립트 언어로 미리 컴파일을 하지 않아도 즉석에서 코드를 실행할 수 있다.
-
-따라서 노드도 브라우저 콘솔과 비슷한 기능을 제공하는데, 입력한 코드를 읽고, 해석하고, 결과물을 반환하고 종류하기까지를 반복한다고 해서 이를 **REPL(Read Eval Print Loop)** 이라고 부른다.
+자바스크립트는 스크립트 언어로 미리 컴파일을 하지 않아도 즉석에서 코드를 실행할 수 있다. 따라서 노드도 브라우저 콘솔과 비슷한 기능을 제공하는데, 입력한 코드를 읽고, 해석하고, 결과물을 반환하고 종류하기까지의 과정을 반복한다고 해서 이를 **REPL(Read Eval Print Loop)** 이라고 부른다.
 
 ## Node 내장 객체
 
@@ -27,11 +27,15 @@
 
 ### _ _dirname, _ _filename
 
-현재 파일의 경로나 파일명 제공
+현재 파일의 경로나 파일명을 제공한다.
 
-### module, exports 
+### module, exports, require
 
-모듈을 만들때 사용 
+자바스크립트에서 모듈을 만들때 사용한다. 
+
+- `exports` 는 `module.exports` 를 참조한다.
+- `require` 은 모듈을 불러오는 함수이다. 
+- 한번 require한 파일은 `require.cache` 에 저장되고, `require.main` 은 노드 실행시 첫 모듈을 가리킨다. 
 
 ### process
 
@@ -81,7 +85,9 @@
   url.format(myURL);
   ```
 
-  `url.parse()` 를 통해 주소를 분해하면 WHATWG의 username, password 속성 대신 auth가 있고, serarchParams 대신 query가 있다. `url.format` 함수를 사용하면 분해되어 있는 url 객체를 다시 원래 상태로 조립할 수 있다. 
+  `url.parse()` 를 통해 주소를 분해하면 WHATWG의 username, password 속성 대신 auth가 있고, serarchParams 대신 query가 있다.
+
+  `url.format` 함수를 사용하면 분해되어 있는 url 객체를 다시 원래 상태로 조립할 수 있다. 
 
 - searchParams 
 
@@ -98,7 +104,7 @@
 
 ### querystring
 
-- **기존 노드의 url 방식을 사용**할 때 search 부분을 사용하기 쉽게 객체로 만드는 모듈
+**기존 노드의 url 방식을 사용**할 때 search 부분을 사용하기 쉽게 객체로 만드는 모듈
 
 ```js
 const url = require('url');
@@ -110,7 +116,7 @@ const strQuery = querystring.stringify(query);  // 분해된 query 객체를 문
 
 ### crypto
 
-- 다양한 방식의 암호화를 도와주는 모듈
+다양한 방식의 암호화를 도와주는 모듈
 
 - 해시 기법을 이용한 단방향 암호화 알고리즘 (복호화 불가)
 
@@ -130,16 +136,76 @@ const strQuery = querystring.stringify(query);  // 분해된 query 객체를 문
   result2 += decipher.final('utf8');
   ```
 
-#### util
+### util
 
-- 각종 편의 기능을 모아둔 모듈
-- util.deprecate
-- util.promisify
+각종 편의 기능을 모아둔 모듈이다. 
+
+- util.deprecate : 함수가 deprecated 되었음을 알린다.	
+
+  ```js
+  const dontUseMe = util.deprecate((x,y)=> {
+  	console.log(x+y);
+  }, 'dontUseMe 함수는 deprecated 되었으니 더이상 사용하지 마세요.');
+  ```
+- util.promisify : 콜백 패턴을 프로미스 패턴으로 바꾼다.
+
+  ```js
+  const randomBytesPromise = util.promisify(crypto.randomBytes);
+  
+  randomBytesPromise(64)
+  .then(~)
+  .catch(~)
+  ```
+
+### worker_threads
+
+노드에서 멀티 스레드 방식으로 작업할 수 있도록 도와주는 모듈이다.
+
+```js
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+if(isMainThread){ // 메인 스레드(부모 스레드)일 때
+  const worker = new Worker(__filename);
+  worker.on('message', mes => console.log('from worker', mes));
+  worker.on('exit', () => console.log('worker exit'));
+  worker.postMessage('ping'); // 워커 스레드에게 데이터 전달
+} else {  // 우리가 생성한 워커 스레드(자식 스레드)일 떄
+  parentPort.on('message', (value) => {
+    console.log('from parent', value); // 부모 스레드로부터 받은 데이터
+    parentPort.postMessage('pong');
+    parentPort.close();
+  })
+}
+```
+
+### child_process
+
+노드에서 다른 프로그램을 실행하고 싶거나 명령어를 수행하고 싶을 때 사용하는 모듈이다. 
+
+현재 노드 프로세스 외에 새로운 프로세스(child process)를 띄워서 다른 언어의 코드를 실행하고 결괏값을 받을 수 있다. 
+
+```js
+const spawn = require('child_process').spawn;
+const process = spawn('python', ['test.py']);
+
+process.stdout.on('data', (data) => {
+console.log(data.toString());
+});
+process.stderr.on('data', (data) => {
+console.error(data.toString());
+});
+```
+
+### 기타 모듈들 
+
+assert. dns. net. string_decoder. tls. tty. dgram. v8. vm 등
+
+## 파일 시스템 접근하기
 
 ### fs
 
-- 파일 시스템에 접근하는 모듈
-- 파일 및 폴더를 생성하고 삭제하고, 읽거나 쓸 수 있다. 
+파일 시스템에 접근하는 모듈이다. 파일 및 폴더를 생성하고 삭제하고, 읽거나 쓸 수 있다. 
+
 - fs.readFile
 - fs.writeFile
 - fs.readFileSync, fs.writeFileSync

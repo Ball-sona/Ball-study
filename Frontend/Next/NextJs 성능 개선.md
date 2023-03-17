@@ -1,4 +1,4 @@
-## 성능 관련
+# 성능 관련
 
 ### TTFB(Time to First Byte) : 서버 응답 시간 
 

@@ -1,4 +1,4 @@
-## Next.js 의 pre-rendering
+# Next.js 의 pre-rendering
 
 페이지가 로드될 때 함께 데이터 패칭되어야할 때. 
 

@@ -2,19 +2,51 @@
 
 zero-runtime stylesheets in Typescript
 
-### Install
+## Install
 
 ```shell
 npm install @vanilla-extract/css
 ```
 
-### Bundler Integration
+## Bundler Integration
 
 vanilla-extracts를 사용하여 CSS를 다루기 위해서는 번들러를 설치 및 세팅해야한다. 이를 통해 우리는 스타일 코드를 다른 종속성과 동일하게 처리하여 필요한 항목만 가져오고 묶을 수 있다. 
 
 Vite, Esbuild, Webpack, Next, Parcel, Rollup, Gatsby 중 하나를 선택하여 설치한다. 
 
-### 특징 
+이 중 `Wepback` 플러그인을 사용하는 방법을 알아보자.
+
+```
+npm i -D @vanilla-extract/webpack-plugin
+```
+
+```js
+// webpack.config.js
+
+const { VanillaExtractPlugin } = require("@vanilla-extract/webpack-plugin");
+
+module.exports = {
+  webpack: {
+    plugins: {
+      add: [new VanillaExtractPlugin()],
+    },
+  },
+};
+```
+
+#### CRA + vanilla-extract
+
+CRA를 통해 리액트 앱을 세팅하게 되면 웹팩 커스터마이징을 따로 할 수 없기 때문에 vanilla-extract를 사용하기 어렵다.
+
+따라서 `npm run eject` 를 하거나 웹팩 설정을 위한 `@craco/craco` 나 `react-app-rewired` 등 툴을 설치해서 사용해주면 된다.
+
+**craco 사용하기** 
+
+- `npm i -D @craco/craco@alpha`
+- package.json 에서 `react-scripts` -> `craco` 변경
+- `craco.config.js` 에서 웹팩 관련 설정을 해주면 된다. 
+
+## 특징 
 
 - Type-safe static CSS
 
@@ -31,7 +63,7 @@ Vite, Esbuild, Webpack, Next, Parcel, Rollup, Gatsby 중 하나를 선택하여 
 - Built for extension
 - 파일 형식 `*.css.ts`
 
-### How to use
+## How to use
 
 - Styling
 
