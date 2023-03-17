@@ -1,10 +1,8 @@
-## Function Basic
+# Function Basic
 
-[Function Declaration vs Function Expression](#Function Declaration(함수 선언문) vs Function Expression(함수 표현식) )
+Javascript Function 에 대한 기초적인 지식
 
-[Arrow function](#Arrow function)
-
-### Function Declaration(함수 선언문) vs Function Expression(함수 표현식)
+## Function Declaration(함수 선언문) vs Function Expression(함수 표현식)
 
 - function declaration(함수 선언문)
 
@@ -31,7 +29,7 @@ const sum = function(a,b) {
 
 https://javascript.info/function-expressions
 
-### Arrow function(화살표 함수)
+## Arrow function(화살표 함수)
 
 함수 표현식 보다 더 간결하게 함수를 생성하는 방법.
 
@@ -39,7 +37,7 @@ https://javascript.info/function-expressions
 const sum = (a+b) => a+b;
 ```
 
-### Rest parameters(나머지 매개변수) and spread syntax(전개 구문)
+## Rest parameters(나머지 매개변수) and spread syntax(전개 구문)
 
 Rest parameters 와 Spread syntax는 `...` 를 통해 사용되어진다. 둘의 작동 방식은?
 
