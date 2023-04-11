@@ -144,6 +144,25 @@ db.HashTag.belongsToMany(db.Post, {through: 'PostHashTag'});
 
 <img src="https://user-images.githubusercontent.com/67703882/221236920-fa6dc749-da1a-4d5b-972f-d4bf60b5690f.png" alt="image" style="zoom:50%;" />
 
+같은 테이블 간 N:M 관계도 있을 수 있다. 팔로잉 기능이 대표적인 N:M 관계이다. 이는 아래와 같이 관계를 정의할 수 있다. 
+
+```
+db.User.belongsToMany(db.User,{
+	foreignKey: 'followingId',
+	as: 'Followers',
+	through: 'Follow'
+})
+db.User.belongsToMany(db.User,{
+	foreignKey: 'followerId',
+	as: 'Followings',
+	through: 'Follow'
+})
+```
+
+같은 테이블 간 N:M 관계에서는 `as` 옵션을 반드시 넣어야 한다. 둘 모두 User 모델이므로 이를 구분하기 위함이다. 
+
+이때 주의할 점은 `as` 는 `foreignKey` 와 반대되는 모델을 가리켜야 한다. 
+
 ### N:M 관계에서 데이터 조회하기 
 
 게시물 테이블과 해시태그 테이블이 N:M 관계를 맺고 있을 때, '#노드' 라는 해시태그를 가진 게시물을 조회하는 과정을 생각해보자.
