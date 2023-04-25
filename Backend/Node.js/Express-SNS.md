@@ -116,7 +116,7 @@ COOKIE_SECRET=express-sns-sona
 
 ## Front Settings
 
-Vite + React-ts 로 빠르게 세팅하고, 템플릿을 간단하게 만들어준다. <img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-03-01 02.58.28.png" alt="스크린샷 2023-03-01 02.58.28" style="zoom:50%;" />
+Vite + React-ts 로 빠르게 세팅하고, 템플릿을 간단하게 만들어주자. <img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-03-01 02.58.28.png" alt="스크린샷 2023-03-01 02.58.28" style="zoom:50%;" />
 
 
 
@@ -126,7 +126,7 @@ MySQL + Sequelize
 
 ### Models
 
-User, Post, Hashtag에 대한 모델들을 만들어준다. 이때 소셜 로그인을 사용할 것이므로, User 모델에 `provider` 와 `snsId` 를 추가한다. `provider` 가 `local` 이면 일반 로그인이고, `kakao` 이면 카카오로 로그인했음을 의미한다. 
+User, Post, Hashtag 에 대한 모델들을 만들어준다. 이때 소셜 로그인을 사용할 것이므로, User 모델에 `provider` 와 `snsId` 를 추가한다. `provider` 가 `local` 이면 일반 로그인이고, `kakao` 이면 카카오로 로그인했음을 의미한다. 
 
 ### Relationships
 

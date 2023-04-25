@@ -1,6 +1,6 @@
 # Everything you need to know about the 'passport-local' Passport JS Strategy
 
-https://levelup.gitconnected.com/everything-you-need-to-know-about-the-passport-local-passport-js-strategy-633bbab6195 번역한 글이다.
+[https://www.npmjs.com/package/express-session](https://levelup.gitconnected.com/everything-you-need-to-know-about-the-passport-local-passport-js-strategy-633bbab6195) 블로그 글 번역
 
 ## Authentication Choices
 
@@ -18,7 +18,7 @@ https://levelup.gitconnected.com/everything-you-need-to-know-about-the-passport-
 
 세션 기반 인증은 이 중 가장 오래된 인증 방법이지만 아직 쓸만하고 실제로 쓰이고 있다. 이는 `passport-local`  전략의 근간이다. 이 인증 방법은 '서버 사이드' 방식인데, Express 애플리케이션과 데이터베이스가 우리 애플리케이션에 방문하는 유저들의 현재 인증 상태를 유지하기 위해 함께 돌아간다. 
 
-세션 기반 인증의 기본 원리를 이해하려면, 우리는 4가지의 기본 개념을 이해해야한다.
+세션 기반 인증의 기본 원리를 이해하려면, 우리는 4가지의 기본 개념을 이해해야 한다.
 
 - 기본 HTTP 헤더 프로토콜
 - 쿠키이란 무엇인지
@@ -66,7 +66,7 @@ Request Headers
 
 - '구글 서버야. 나한테 HTML이나 텍스트 데이터를 보내줘. 나 지금 다른 것들은 못 읽는 상태야!'
 - '구글 서버야. 나한테 영어만 보내줘.'
-- '구글 서버야 요청이 끝난 후에도 내 연결 끊지 말아줘.'
+- '구글 서버야. 요청이 끝난 후에도 내 연결 끊지 말아줘.'
 
 등등 같이 말이다.
 

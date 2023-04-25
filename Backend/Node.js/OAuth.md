@@ -50,9 +50,13 @@ Access Token이 만료되었을 경우 Refresh Token을 다시 발급받아야 �
 
 ![image](https://user-images.githubusercontent.com/67703882/233766484-4bfcf7f9-4484-4c08-8f98-579af46a1821.png)
 
-## 프론트 위주의 카카오 로그인 구현
+## React-Node 카카오 로그인 구현
 
 <img width="826" alt="스크린샷 2023-04-22 18 25 17" src="https://user-images.githubusercontent.com/67703882/233775579-1cbc250e-3194-4962-9b50-322173bc55fc.png">
+
+
+
+
 
 ## 참고 문서
 
