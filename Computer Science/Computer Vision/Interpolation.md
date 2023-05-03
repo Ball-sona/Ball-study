@@ -1,0 +1,63 @@
+# Interpolation
+
+보간법이란 알려진 값을 가진 두 점 사이 어느 지점의 값이 얼마인지 추정하는 기법이다.  우리가 어떤 값 a, b와 f(a), f(b)의 값을 알고 있을 때, a와 b 사이에 위치한 x에 대하여 f(x) 값이 무엇일지 추정하는 것이다. 
+
+보간법에는 다양한 접근법들이 존재한다. 
+
+## linear interpolation(선형 보간법)
+
+<img src="https://user-images.githubusercontent.com/67703882/235603370-faac17ca-e9a2-441b-a68a-1da7fc668b74.png" alt="image" style="zoom:67%;" />
+
+선형 보간법은 여러 접근법 중 가장 간단하다. 값을 알고 있는 두 점 사이에 직선을 그리고, 그 선을 이용해 f(x)값을 추정한다. 
+
+## bilinear interpolation(양선형 보간법)
+
+<img width="453" alt="스크린샷 2023-05-02 16 16 59" src="https://user-images.githubusercontent.com/67703882/235603461-b7656f88-ed26-4e34-bad3-9db6313a4910.png">
+
+양선형 보간법은 선형 보간법을 2차원으로 확장시킨 기법이다. 총 3개의 선형 보간 함수로 구성된다. 
+
+값을 알고 있는 4개의 인접한 점들과 그에 따른 면적을 가중치로 하여 값을 구한다. 
+
+## Higher Order interpolation(고등 차수 보간법)
+
+Higher Order Interpolation은 3차 이상의 보간 함수를 사용하는 방식을 말한다. 대표적인 방법으로 2가지가 있다.
+
+- Cubic Convolution Interpolation(3차원 회선 보간법)
+
+- B-Spline 보간법
+
+## Cubic Convolution interpolation(삼차 보간법)
+
+<img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-03 12.37.10.png" alt="스크린샷 2023-05-03 12.37.10" style="zoom:50%;" />
+
+## B-Spline Interpolation
+
+B-Spline(Basic Spline) Interpolation은 곡선이나 표면을 부드럽게 표현하기 위해 사용되는 보간 기법 중 하나이다. 
+
+<img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-03 12.38.35.png" alt="스크린샷 2023-05-03 12.38.35" style="zoom:50%;" />
+
+## 보간법은 어떻게 활용될까
+
+특정 이미지를 N배 만큼 확대하는 경우, 새로 만들어지는 이미지에는 원 이미지의 값을 그대로 받지 못하는 픽셀들이 존재하게 될 것이다. 이러한 픽셀들은 어떠한 방식으로 계산하여 어떤 값으로 채울 수 있을까?
+
+### 이웃 화소 보간법
+
+비어있는 픽셀 값을 가장 가까운 유효한 영상 좌표로 반올림하여 결정할 수 있다. 이 방식은 단순하고 빠르지만, blockiness 이 발생(톱니 모양이 발생)할 수 있다.
+
+### 양선형 보간법
+
+ 여기서 양선형 보간법을 이용하면 앞 방식보다 계산 시간은 오래 소요되지만, 더 완만한 영상을 생성할 수 있다. 
+
+<img width="537" alt="스크린샷 2023-05-02 16 15 29" src="https://user-images.githubusercontent.com/67703882/235603219-b7fa6d27-c38a-4822-91d1-7973eb9c5e6c.png" style="zoom:67%;" >
+
+
+
+## 참고 자료
+
+- 숭실대학교 소프트웨어학부 4-1 [컴퓨터비전] 전공 수업 
+
+- [선형 보간법과 삼차 보간법](https://bskyvision.com/789)
+
+  
+
+https://thebeautifulfuture.tistory.com/entry/Bspline

@@ -1,5 +1,7 @@
 # Computer Vision
 
+컴퓨터 비전 정리
+
 ## Otsu's segmentation algorithm
 
 Otsu's segmentation algorithm 는 이미지 처리에 사용되는 기법 중 하나로, 이미지의 히스토그램을 이용해서 이미지를 두 개의 클래스로 가장 잘 분할하는 intensity 값이 얼마인지 찾는 작업이다. 
@@ -17,6 +19,47 @@ Otsu's segmentation algorithm 는 이미지 처리에 사용되는 기법 중 �
 우리는 해당 값들 중 특정 값을 역치값으로 정한 후, 그 값을 기준으로 이 이미지를 두개의 클래스(C0, C1)로 분할할 것이다. 
 
 <img width="1337" alt="스크린샷 2023-05-01 23 56 59" src="https://user-images.githubusercontent.com/67703882/235472124-8d01cedf-e1d1-407e-a9cb-585939a8bb9c.png">
+
+이를 구현한 c 코드는 다음과 같다.
+
+```
+int find_otsu_threshold(const Mat& img) {
+    int best_threshold;
+    double max_variance = 0;
+    long int histogram[256] = 0;
+
+    for(int i=0;i<img.rows;i++) {
+        for(let j=0;j<img.cols;i++){
+            histogram[img[i][j]]++;
+        }
+    }
+
+    double w0 = 0, m0 = 0; // w = weight, m = mean
+    double w1 = 0, m1 = 0;
+    double variance;
+
+    // Compute m1
+    for(int i=0; i<255; i++) {
+        m1 += i*histogram[i];
+        m1 /= img.rows * img.cols;
+    }
+
+    // find T
+    for(int t=1;t<254;t++){
+        double change = (double)histogram[t] / img.rows / img.cols;
+        w0 += change;
+        w1 -= change;
+        m0 += t*change;
+        m1 -= t*change;
+        variance = w0*w1*(m0/w0 - m1/w1)*(m0/w0 - m1/w1);
+        if(variance > max_variance) {
+            max_variance = variance;
+            best_threshold = t;
+        }   
+    }
+    return best_threshold;
+}
+```
 
 ## Mophological filtering  
 
@@ -62,15 +105,47 @@ Otsu's segmentation algorithm 는 이미지 처리에 사용되는 기법 중 �
 
 그레디언트 연산은 팽창 연산을 적용한 이미지에서 침식 연산을 적용한 이미지를 빼서 경계 픽셀만 추출하는 연산이다.
 
-### Top Hat
+### 연산 예시
 
-탑햇 연산은 원본에서 열림 연산 적용 결과를 빼서 값이 크게 튀는 밝은 영역을 강조하는 연산이다.
+다음은 erosion, dilation, opening, closing 연산에 대한 예시이다.
 
-### Black Hat
+![스크린샷 2023-05-03 00 26 40](https://user-images.githubusercontent.com/67703882/235712378-8084b3f9-e65f-47e4-a49f-359cd89656b8.png)
 
-블랙햇 연산은 닫힘 연산 적용 결과에서 원본을 빼서 어두운 부분을 강조하는 연산이다.
+### Boundary Extraction 
 
+위에서 알아본 연산들을 통해 특정 이미지의 경계를 추출하는 방법을 알아보자. 경계 추출 수식은 다음과 같다.
 
+![스크린샷 2023-05-03 00 29 44](https://user-images.githubusercontent.com/67703882/235713176-3d5d6dc1-7bc0-46b9-b915-6f5cd2efc0d2.png)
+
+위 수식에서 A는 원본 이미지이고, B는 구조화 요소(structuring element) 이다. 먼저 B를 이용하여 A에 대한 침식(erosion) 연산을 진행한다. 이후 원본 이미지에서 침식 연산 결과를 제외시켜주면 이미지의 경계값만 남게 된다.
+
+### Gray-Scale Morphology
+
+명암값을 가진 이미지에 대한 Morphology 연산들은 다음과 같을 수 있다. (1차원 이미지 한정)
+
+- Gray-scale dilation of f by b
+
+  <img src="https://user-images.githubusercontent.com/67703882/235724214-1619e456-229e-495d-b942-3e97e2606a4c.png" alt="스크린샷 2023-05-03 01 14 19" style="zoom:67%;" />
+
+  b의 값들이 양수라면 연산 결과 이미지는 전체적으로 밝아질 것이다. 어두운 노이즈들은 제거되거나 감소된다.
+
+- Gray-scale erosion of f by b
+
+  <img src="https://user-images.githubusercontent.com/67703882/235724263-06fa7cec-c3f3-45b9-b6fc-e8e7d5af76f1.png" alt="스크린샷 2023-05-03 01 14 38" style="zoom:80%;" />
+
+  b의 값들이 양수라면 연산 결과 이미지는 전체적으로 어두워질 것이다. 밝은 노이즈들은 제거되거나 감소된다.
+
+- Morphological Smoothing : `Closing` -> `Opening`
+
+  밝은 노이즈와 어두운 노이즈를 동시에 제거하거나 얇게 만들어 영상을 smooth하게 만든다.
+
+- Morphological Gradient : `Delation - Erosion`
+
+  입력 이미지에서 sharp한 부분만 강조한다. 
+
+- Top-hat transformation : `원본 - Opening`
+
+  shading의 존재를 부각시킨다.?
 
 ## Boundary Tracing(경계 추적)
 
@@ -86,7 +161,18 @@ Otsu's segmentation algorithm 는 이미지 처리에 사용되는 기법 중 �
 
 연결 영역 레이블링 알고리즘을 설명하면 다음과 같다. 이미지 픽셀들을 총 2번 탐색할 건데, 첫번째 탐색 때는 mask를 이용하여 이웃하는지 판별하여 레이블을 생성하고, label collisions 된 것은 Equivalence table을 만든다. 두번째 탐색때는 Equivalence table을 이용해 label collisions를 해결하고 최종 결과를 만들어낸다. 
 
-## LCS(Local Contour Sequence)
+## Connected Component Labeling(CCL)
+
+Connected Component Labeling(Region Labeling) 에 대해 알아보자.
+
+- 연결 영역 레이블이란, 좌표들 중 연결되어 있는 지역에 동일한 라벨을 할당하며, 결과적으로 binary image를 symbolic image로 변환하는 기법이다.
+- 연결 영역에 라벨링을 하는 것은 패턴 분석 및 인지, 컴퓨터 및 로봇 비전, 머신러닝 등에 있어서 가장 기초적인 연산이다. 이는 거의 모든 이미지 기반 애플리케이션(지문 인식, 얼굴 인식 등) 에 요구된다고 할 수 있다.
+
+- 4가지 접근 방식
+  1. Recursively labeling method(Grass-fire)
+  2. Contour-tracing-based method(boundary tracing)
+  3. Raster-scan-based method(two-scan)
+  4. Run-based method(Label-equivalence-resolving)
 
 LCS는 영상의 지역적인 윤곽 또는 경계 정보를 나타내는 순서열을 의미한다. LCS는 영상의 픽셀 강도 변화를 나타내며, 영상 내 객체의 형태나 경계를 파악하는 데 사용된다.
 
