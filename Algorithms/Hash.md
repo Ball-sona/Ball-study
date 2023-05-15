@@ -1,5 +1,7 @@
 # Hash
 
+해쉬에 대해 알아보자.
+
 ## Hash Table
 
 - Hash table 이란 연관배열 구조(associative array)를 이용하여 키에 결과값을 저장하는 자료구조

@@ -13,10 +13,3 @@ Connected Component Labeling(Region Labeling) 에 대해 알아보자.
   3. Raster-scan-based method(two-scan)
   4. Run-based method(Label-equivalence-resolving)
 
-## Recursively labeling method(Grass-fire Algorithm)
-
-## Contour tracing based method
-
-## Raster scan based method
-
-## Label equivalence resolving
