@@ -1,6 +1,6 @@
 # Everything you need to know about the 'passport-local' Passport JS Strategy
 
-[https://www.npmjs.com/package/express-session](https://levelup.gitconnected.com/everything-you-need-to-know-about-the-passport-local-passport-js-strategy-633bbab6195) 블로그 글 번역
+[https://www.npmjs.com/package/express-session](https://levelup.gitconnected.com/everything-you-need-to-know-about-the-passport-local-passport-js-strategy-633bbab6195)  블로그 글 번역
 
 ## Authentication Choices
 
@@ -82,108 +82,4 @@ Response Headers
 ```
 
 이러한 응답 헤더들은 `Set-Cookie` 를 제외하면 꽤 직관적이다. `Set-Cookie` 헤더는 우리가 세션 기반 인증을 배우기 위해 어떤 것인지 알아야한다. 
-
-### 쿠키
-
-~~
-
-### 세션
-
-~~
-
-### 세션과 쿠키의 상호작용
-
-Node + Express + MongoDB 를 사용하여 기본 앱을 만들어보면서 세션과 쿠키가 어떻게 상호작용하는지 알아보자.
-
-먼저 필요한 패키지들을 설치해준다.
-
-```
-npm init -y
-npm install --save express mongoose dotenv connect-mongo express-session passport passport-local
-```
-
-루트 디렉토리에 `app.js` 를 생성해주고 다음과 같이 입력한다.
-
-```js
-const express = require('express');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')('session');
-
-/**
- *  Express 미들웨어 및 dotenv 관련
- */
-
-// dotenv 작동을 위해 .config() 실행
-require('dotenv').config();
-var app = express();
-
-// JSON과 x-www-form-urlencoded로 온 데이터를 Express가 파싱할 수 있도록 다음 미들웨어를 추가해준다.
-// `bodyParser`와 비슷한데, 대부분의 앱에서 여기에 bodyParser를 추가하는 것을 보았을 것이다.
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-/**
- * 데이터베이스 관련
- */
-
-// DB_STRING=mongodb://<user>:<password>@localhost:27017/database_name
-const connection = mongoose.createConnection(process.env.DB_STRING);
-
-// 사용자 정보를 저장할 스키마 생성, salt는 사용자가 생성될 때, 1~12사이 랜덤하게 집어넣는다.
-const UserSchema = new mongoose.Schema({
-    username: String,
-    hash: String,
-    salt: String,
-});
-
-// 우리가 앱에서 사용할 모델을 정의
-mongoose.model('User', UserSchema);
-
-/**
- * 세션 관련
- */
-
-// MongoStore는 세션 데이터를 저장하기 위해 사용된다.
-// 이전에 mongoose.createConnection의 결과를 담아뒀던 connection 상수를 이용
-const sessionStore = new MongoStore({mongooseConnection: connection, collection: 'sessions'})
-
-// https://www.npmjs.com/package/express-session 에서 옵션 확인 가능
-// secret: 세션을 인증하기 위해 사용하는 랜덤한 문자열, 실무에서는 엄청 긴 랜덤생성 문자열을 씀
-// resave: 이걸 true로 설정하면, 세션이 아무것도 바뀌지 않더라도 저장함. 이걸 세팅안해도 앱은 돌지만, 터미널에서 경고 메세지가 송출됨
-// saveUnintialized: resave와 비슷함. true로 세팅될 경우, 세션이 초기화되지 않은 경우에도 세션이 강제로 저장됨.
-app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: sessionStore
-}));
-
-/**
- * 라우팅 관련
- */
-
-// /login에 방문할 시에 "로그인 페이지"를 표출
-app.get('/login', (req, res, next) => {
-    res.send('<h1>로그인 페이지</h1>')
-});
-
-app.post('/login', (req, res, next) => {
-
-});
-
-// /register에 방문할 시에 "회원가입 페이지"를 표출
-app.get('/register', (res, req, next) => {
-    res.send('<h1>회원가입 페이지</h1>')
-})
-app.post('/register', (req, res, next) => {
-
-});
-
-/**
- * 서버 실행 부분
- */
-
-app.listen(parseInt(process.env.PORT));
-```
 
