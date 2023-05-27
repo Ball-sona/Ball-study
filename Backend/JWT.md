@@ -119,6 +119,36 @@ JWT 기반 인증에 대해 알아보기 전에 기존의 클라이언트 인증
 
     
 
+## Node.js에서 JWT 토큰 다루기
+
+jsonwebtoken 설치하기
+
+```
+yarn add -D jsonwebtoken
+```
+
+`jwt.sign()` 를 이용해 JWT 토큰을 생성하자. 먼저 함수 인자를 살펴보면 다음과 같다.
+
+```javascript
+jwt.sign(payload, secretOrPrivateKey, [options, callback]);
+```
+
+
+
+```
+import jwt from 'jsonwebtoken'
+
+jwt.sign()
+```
+
+
+
+Private clain에 key가 test, value가 test인 데이터를 입력하였고
+
+Signature 자리엔 secretKey라는 데이터를 입력하였다.
+
+Public Claim 자리엔 subject(토큰제목)와 expiresIn(만료시간), issuer(발급자) 데이터를 입력하였다.
+
 ## Access Token, Refresh Token
 
 - Access Token
