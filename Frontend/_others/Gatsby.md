@@ -1,26 +1,39 @@
 # Gatsby
 
-Gatsby란 React 기반 정적 사이트 생성 프레임워크이다. 
+Gatsby란 React 기반 Static Site 생성 프레임워크이다.  JAM Stack 활용
 
-## Jamstack 이란?
+## Static Site?
 
-> Jamstack 이란 웹 경험 계층을 데이터와 비즈니스 로직과 분리하여, 유연성, 확장성,성능 및 유지 관리성을 향상시키는 아키텍처 접근 방식이다.
->
-> 이는 웹 경험에 영향을 미치는 비즈니스 로직의 필요성을 제거하고, API를 통해 custom한 로직과 써드파티 서비스가 사용될 때 웹용 구성가능한 아키텍처를 가능하게 한다?
+웹 사이트를 만드는 방식에 대해 이야기를 해보라 하면 CSR, SSR가 먼저 언급이 될 것 같다. CSR은 클라이언트 단에서 페이지를 렌더링하여 사용자에게 보여주는 방식이고, SSR은 서버 단에서 페이지를 렌더링하여 사용자에게 그 결과물을 전달해주는 방식이다. 
 
-JAM 은 `Javascript` , `API`, `Markup` 의 앞글자를 하나씩 따온 용어로, Javascript와 Markup을 통해 정적 페이지를 생성하고 필요시에 API를 통해 데이터를 호출하는 아키텍처를 의미한다. 
+우리가 흔히 말하는 CSR, SSR 방식으로 만드는 웹 사이트는 '동적(Dynamic) 웹 사이트'라고 분류할 수 있다. 
 
-- 전통적인 SSR : 서버에 페이지를 요청하면 HTML를 만들어 클라이언트에 전송해준다.
-- SPA : 처음 요청받은 페이지만 SSR로 제공하고, 나머지는 CSR로 페이지를 생성한다.
-- Jam Stack : 각 페이지를 HTML로 pre-render하여 이를 캐싱 후 CDN에서 제공한다. 
+## How Gatsby works
 
-이러한 JamStack Site를 만드는 프레임워크에는 Next, Hugo, Gatsby, Jekyll, Nuxt 등이 있다. 
+Gatsby는 총 3개의 단계로 동작한다. 
 
-<img width="441" alt="스크린샷 2023-05-12 12 34 16" src="https://github.com/ballsona/Study/assets/67703882/27afb1b6-c21d-4f22-a555-1da29d0a8b6a">
+### 1. Collecting Data Sources
 
-## Gatsby 시작하기
+Gatsby에서는 데이터를 불러오는 공간을 Data Sources 라고 부른다. 이는 WordPress 같은 CMS나 Database, CSV 등이 될 수 있다. 
+
+### 2. Building
+
+Data Source에서 데이터를 불러오는 과정이다. Gatsby에서는 기본적으로 GraphQL을 통해 데이터를 불러온다. (플러그인을 사용하면 RESTful API도 사용 가능하다.)
+
+이렇게 불러온 데이터를 이용해 웹 페이지를 생성한다. 코드는 React-based라 리액트 컴포넌트 처럼 제작하면 된다. 
+
+### 3. Deploying
+
+정적 웹 사이트로 배포하는 과정이다. 
+
+
 
 ## 참고자료
 
-- https://jamstack.org/
 - https://www.gatsbyjs.com/
+- https://mnxmnz.github.io/gatsby/what-is-gatsby/
+
+https://blog.banksalad.com/tech/build-a-website-with-gatsby/
+
+
+
