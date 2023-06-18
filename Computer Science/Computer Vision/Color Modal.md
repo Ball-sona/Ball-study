@@ -1,0 +1,69 @@
+# Color Modal
+
+Skin Color 인식하기
+
+## Color를 어떻게 표현할까
+
+- RGB
+
+  - 입방체
+  - 구성 요소들 사이의 상관관계가 크다.
+  - 흰색은 다 찍어가면서 검정색이 나오면 안찍는 방식?
+
+- CMY
+
+  - Cyan, Magenta, Yellow
+  - RGB와 보상?관계 (CMY = 1 - RGB)
+  - RGB랑 반대. 흰색을 안찍으면서 검정색이 나오면 CMY를 다 찍는 방식
+
+- CMYK
+
+  - CMY + K(Black)
+  - CMY로 검정을 찍으려면 3개색을 진하게 다 써야하니까, 이를 방지하기 위해 검정색 잉크만 따로 추가. 질이 더 좋고 저렴한 비용
+
+- HIS
+
+  - Hue, Saturation, Intesity
+
+  - RGB → HIS
+
+    ![스크린샷 2023-05-16 15.24.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2020106e-827b-45b3-95f3-64baef989586/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-16_15.24.33.png)
+
+  - HIS → RGB
+
+    - R = 3Ir, C = 3Ig, B = 3Ib
+
+- YCbCr
+
+  - mpeg, jpeg이 많이 쓰는 모델 ( ↔ 카메라는 rgb)
+  - Y는 휘도, Cb와 Cr은 각각 푸른 정도, 붉은 정도
+  - 크기 줄이기 위해 Y는 8비트, Cb,Cr은 4비트
+
+
+
+## Skin Color
+
+- YCbCr이 가장 좋다. 이미지 인식하는데 용이하다.
+
+![스크린샷 2023-05-16 15.34.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/088e19f3-5769-40cb-9455-f7a4b594da4f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-16_15.34.40.png)
+
+- 빨간색 영역이 skin color인데, 생각보다 울퉁불퉁해.. 대충 영역 자르면 되지 않나?
+
+- 다른 모델로 표현해보면?
+
+  - rgY : Y값을 255로 나눔. 더이상해
+  - CIE xyY
+  - HSV
+  - 다른 모델이랑 비교해보니, YCbCr이 걍 낫겠구나 싶음.
+
+- 울퉁불퉁한 영역을 어떻게 변환할까 고민 → 타원? 직사각형? → Elliptical Model
+
+  ![스크린샷 2023-05-16 15.47.08.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d379b599-4c79-43e0-a794-040a2fd7169f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-16_15.47.08.png)
+
+  직사각형으로 자르고. 이를 projection 해서 타원의 장축/단축 구해. Cx,Cy는 타원의 중심값이 되고 타원의 방정식 설정.
+
+- 결과는?
+
+  ![스크린샷 2023-05-16 15.51.47.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a70385d9-5bd5-489d-b2ed-d6d70de17b04/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-16_15.51.47.png)
+
+  
