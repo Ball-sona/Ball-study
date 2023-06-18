@@ -58,6 +58,5 @@ B-Spline(Basic Spline) Interpolation은 곡선이나 표면을 부드럽게 표�
 
 - [선형 보간법과 삼차 보간법](https://bskyvision.com/789)
 
-  
 
-https://thebeautifulfuture.tistory.com/entry/Bspline
+- https://thebeautifulfuture.tistory.com/entry/Bspline
