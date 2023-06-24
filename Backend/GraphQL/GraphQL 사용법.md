@@ -4,10 +4,27 @@ GraphQL 기반으로 API를 만들어보자.
 
 ## Type
 
-- Scarlar Type
-  - 내장되어 있는 Type
-  - String, Int, Boolean, **ID** 
+### Scalar Type
 
+- GraphQL 내장되어 있는 type으로, 기본 자료형
+- `String` , `Int` , `Float` . `Boolean` , `ID`
+- `ID` 는 id값임을 명시적으로 표현하기 위해 사용되는 type으로 내부적으로는 `String` 과 동일하다. 
+
+### Object Type
+
+- 여러가지 scalar type을 갖는 필드들을 하나의 객체 형태로 묶은 타입
+- typescript의 인터페이스와 문법이 유사 `{key:Type}`
+
+```
+type Query {
+	allTweets: [Tweet] # Tweet으로 구성된 배열
+}
+
+type Tweet {
+	id: ID
+	text: String
+}
+```
 
 ## Query and Mutation
 
@@ -19,6 +36,8 @@ GraphQL 기반으로 API를 만들어보자.
   }
   ```
 
+  - `query` 는 생략 가능 
+
 - Mutation
 
   ```
@@ -27,16 +46,24 @@ GraphQL 기반으로 API를 만들어보자.
   }
   ```
 
+  - `mutation` 은 반드시 붙여줘야 한다. 
+
 ## Non nullable Field
 
+기본적으로 GraphQL은 필드값으로 `null` 값을 허용한다. 
+
+따라서 만약 특정 필드값에 `null`을 허용해주고 싶지 않다면 스칼라 타입 뒤에 `!` 을 붙이면 된다. 
+
 ```
-type Query {
-	tweet(id:ID) : Tweet
+type Example {
+  case1: String!
+  case2: [String!]
+  case3: [String]!
+  case4: [String!]!
 }
 ```
 
-위처럼 작성하면 자동으로 nullable이 된다. 
-
-그래서 `ID!` 로 작성하면 id값을 반드시 null이 아닌 값으로 전달해야 한다.
-
-> typescript에서 require하지 않은 값에 ?를 붙여주는 개념과 딱 반대인 것 같다. 근데 이렇게 되면 느낌표 남발일 것 같은데 .. 굳이 ? 
+- case1은 반드시 `String` 값을 가져야함.
+- case2는 `String` 값으로 구성된 배열이거나 `null` 일 수 있음.
+- case3은 `String` 혹은 `null` 값으로 구성된 배열이어야함.
+- case4는 반드시 `String` 으로 구성된 배열이어야함.
