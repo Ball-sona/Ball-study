@@ -54,12 +54,37 @@ Access Token이 만료되었을 경우 Refresh Token을 다시 발급받아야 �
 
 <img width="826" alt="스크린샷 2023-04-22 18 25 17" src="https://user-images.githubusercontent.com/67703882/233775579-1cbc250e-3194-4962-9b50-322173bc55fc.png">
 
+0. 카카오 개발자 페이지에서 설정해준 redirect_url
+1. 클라이언트에서 플랫폼 로그인 url 
 
+![스크린샷 2023-05-26 17.00.29](/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-26 17.00.29.png)
 
+1. 클라이언트에서 카카오 redirect URL로 연결한다.
+2. 카카오 로그인 페이지로 연결되고 유저가 로그인에 성공하면 카카오가 '인가코드'를 준다.
+3. 클라이언트는 받은 인가코드를 서버에 전달한다.
+4. 서버는 이 인가코드와 프론트 redirect URL을 카카오에 보낸다.
+5. 카카오는 이 둘이 유효한 값인지 확인하고 검증이 완료되면 서버에 토큰을 전달한다.
+6. 서버는 이 토큰을 유저 정보로 활용해 우리 서비스 만의 전용 토큰(JWT)로 발행한다.
+7. 서버는 발행한 토큰을 클라이언트에 전달한다.
+8. 클라이언트는 이 토큰을 확인하고 로그인을 완료한다.
 
+![img](https://blog.kakaocdn.net/dn/0Ep68/btrKwcXfeQj/P0wKZdlINOO7m00vost99K/img.png)
 
 ## 참고 문서
 
 https://opentutorials.org/course/3405/22004
 
 [express로 카카오 소셜 로그인 기능을 적용하기!](https://velog.io/@gbwlxhd97/express%EB%A1%9C-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5%EC%9D%84-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
+
+https://2dowon.github.io/docs/react/social_login/
+
+
+
+
+
+2. 
+
+#### 참고
+
+<img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-27 13.06.51.png" alt="스크린샷 2023-05-27 13.06.51" style="zoom: 50%;" /> 
+
