@@ -1,6 +1,8 @@
 # Next Settings
 
-Next 프로젝트를 빠르게 세팅해보자.
+Next 프로젝트를 빠르게 세팅해보자. 
+
+https://nextjs.org/docs/pages/building-your-application/configuring
 
 ## Getting Started
 
@@ -35,43 +37,111 @@ package.json
 }
 ```
 
-## Eslint
-
-typescript
+## Install Typescript Parser
 
 ```
- yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
+yarn add -D @typescript-eslint/parser
 ```
 
-recommended rule-sets from next
+## Install Lint Libraries
+
+### eslint and prettier
 
 ```
- yarn add -D eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-next
+yarn add -D eslint prettier
 ```
 
-airbnb
+### typescript
 
 ```
-yarn add -D eslint-config-airbnb
+yarn add -D @typescript-eslint/eslint-plugin
 ```
 
-etc
+### next
 
 ```
-yarn add -D eslint-plugin-jsx-a11y eslint-plugin-import 
+yarn add -D @next/eslint-plugin-next
 ```
 
-prettier
+### airbnb
 
 ```
-yarn add -D eslint-config-prettier
+yarn add -D eslint-config-airbnb eslint-config-airbnb-typescript
+```
+
+```
+yarn add -D eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-next
+```
+
+> `eslint-config-airbnb` 사용하려면 위 라이브러리들을 설치해야한다. 아래는 peerDependencies 확인하는 명령어 
+>
+> ```bash
+> npm info "eslint-config-airbnb@latest" peerDependencies
+> ```
+
+### prettier
+
+```
+yarn add -D eslint-config-prettier eslint-plugin-prettier
+```
+
+> `eslint-config-prettier` 은 eslint와 prettier의 충돌나는 부분을 eslint에서 비활성화해준다.
+
+## Eslint 
+
+```json
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true },
+    "project": ["tsconfig.json"]
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@next/next/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "@typescript-eslint", "eslint-plugin-prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-no-bind": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "@typescript-eslint/naming-convention": ["warn"],
+    "import/order": ["warn"],
+    "react/require-default-props": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  }
+}
 ```
 
 ## Prettier
 
-```
+```json
 {
-  "singleQuote": true,
+  "singleQuote": true, 
   "trailingComma": "all",
   "tabWidth": 2,
   "semi": true,
@@ -84,6 +154,10 @@ yarn add -D eslint-config-prettier
 }
 ```
 
+- ESLint는 설정한 룰에 따라 문법 오류를 체크하고 오류가 난 부분에 밑줄을 그어 알려주는 역할
+
+- Prettier은 단순히 코딩 스타일만 체크해, 파일 저장할 때마다 자동으로 정리해주는 역할 (포멧터)
+
 ## Emotion
 
 ```
@@ -91,7 +165,7 @@ yarn add @emotion/react @emotion/styled
 ```
 
 - `@emotion/react` : 리액트 환경에서 emotion을 사용하고자 할 때 설치를 권장하는 패키지. css props , 서버 사이드 렌더링, theme를 지원
-- `@emotion/styled` : `styled.div` 형식의 문법을 사용하여 컴포넌트를 생성하고자 할 때 설치하는 패키지.
+- `@emotion/styled` : `styled.div` 형식의 문법을 사용하여 컴포넌트를 생성하고자 할 때 설치하는 패키지
 
 ## SVG 
 
@@ -115,5 +189,18 @@ module.exports = {
     return config;
   },
 };
+```
+
+## Absolute Path
+
+tsconfig.json
+
+```json
+{
+  ...,
+	"paths": {
+    "@/*": ["./src/*"]
+  }
+}
 ```
 
