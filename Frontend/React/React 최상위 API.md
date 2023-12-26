@@ -1,1 +1,0 @@
-https://ko.reactjs.org/docs/react-component.html
