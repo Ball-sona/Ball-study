@@ -4,18 +4,16 @@
 
 ## 코어 자바스크립트
 
-- [반복문 정리]()
 - [메서드 정리](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md)
 
 ### 자바스크립트 기본
 
 - [자료형](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Data%20Types.md)
-- [변수와 상수]()
+- [변수와 상수](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Variables.md)
 - [연산자](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Operators.md)
 - [함수](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Functions.md)
+- [반복문]()
 - [기타](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Others.md)
-
-### 코드 품질
 
 ### 객체: 기본
 
