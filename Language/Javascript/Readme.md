@@ -8,14 +8,21 @@
 
 ### 자바스크립트 기본
 
-- [자료형](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Data%20Types.md)
-- [변수와 상수](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Variables.md)
-- [연산자](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Operators.md)
-- [함수](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Functions.md)
-- [반복문]()
-- [기타](https://github.com/ballsona/Study/blob/main/Language/Javascript/0.Core%20Javascript/Others.md)
+- [자료형](/Language/Javascript/0.Core%20Javascript/Data%20Types.md)
+- [변수와 상수](/Language/Javascript/0.Core%20Javascript/Variables.md)
+- [연산자](/Language/Javascript/0.Core%20Javascript/Operators.md)
+- [함수](/Language/Javascript/0.Core%20Javascript/Functions.md)
+- [반복문](/Language/Javascript/0.Core%20Javascript/Iterators.md)
+- [기타](/Language/Javascript/0.Core%20Javascript/Others.md)
 
 ### 객체: 기본
+
+- [객체](/Language/Javascript/0.Core%20Javascript/Objects.md)
+- [참조에 의한 객체 복사](/Language/Javascript/0.Core%20Javascript/Object%20Reference%20and%20Copy.md)
+- [가비지 컬렉션](/Language/Javascript/0.Core%20Javascript/Garbage%20Collections.md)
+- [this](/Language/Javascript/0.Core%20Javascript/This.md)
+- [심볼](/Language/Javascript/0.Core%20Javascript/Symbols.md)
+- [객체를 원시형으로 변환](/Language/Javascript/0.Core%20Javascript/Object%20to%20Primitive.md)
 
 ### 자료구조와 자료형
 
