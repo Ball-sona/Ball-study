@@ -88,15 +88,8 @@ function createUser(name, age) {
 
 ## 객체 순회
 
-`for..in` 반복문을 사용하여 객체의 모든 키를 순회할 수 있다.
-
-```js
-const user = { name: 'sona', age: 26 };
-
-for (let key in user) {
-  console.log(user[key]);
-}
-```
+- `for..in` 반복문을 사용하여 객체의 모든 키를 순회할 수 있다.
+- `Object.keys(obj)`, `Object.values(obj)`, `Object.entries(obj)` 는 각각 객체의 키, 값, [키,값] 쌍을 담은 **배열**을 반환한다. 해당 메서드와 함께 `for..of` 반복문을 사용할 수 있다.
 
 ## 객체 정렬
 
@@ -146,3 +139,20 @@ user2.isAdmin?.(); // isAdmin 정의 안되어있는데도 에러 안남
 ```
 
 마찬가지로 `?.[]` 를 사용하면 객체 존재 여부과 확실치 않은 경우에도 안전하게 프로퍼티를 읽을 수 있다.
+
+## 구조 분해 할당 
+
+구조 분해 할당(destructing assignment)을 통해 객체나 배열을 변수로 분해해 ㅇㄴ결할 수 있다.
+
+```js
+// 객체 
+const obj = {name:"sona", age:26};
+const {name, age} = obj;
+console.log(name); // "sona"
+
+// 배열 
+const arr = ["sona",26];
+const [name, age] = arr;
+console.log(age); // 26
+```
+

@@ -4,8 +4,6 @@
 
 ## 코어 자바스크립트
 
-- [메서드 정리](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md)
-
 ### 자바스크립트 기본
 
 - [자료형](/Language/Javascript/0.Core%20Javascript/Data%20Types.md)
@@ -21,10 +19,16 @@
 - [참조에 의한 객체 복사](/Language/Javascript/0.Core%20Javascript/Object%20Reference%20and%20Copy.md)
 - [가비지 컬렉션](/Language/Javascript/0.Core%20Javascript/Garbage%20Collections.md)
 - [this](/Language/Javascript/0.Core%20Javascript/This.md)
-- [심볼](/Language/Javascript/0.Core%20Javascript/Symbols.md)
+- [Symbol](/Language/Javascript/0.Core%20Javascript/Symbols.md)
 - [객체를 원시형으로 변환](/Language/Javascript/0.Core%20Javascript/Object%20to%20Primitive.md)
 
 ### 자료구조와 자료형
+
+- [자료형 : Advanced](/Language/Javascript/0.Core%20Javascript/Data%20Types%20Advanced.md)
+- [자료구조](/Language/Javascript/0.Core%20Javascript/Data%20Structures.md)
+- [WeakMap 와 WeakSet](/Language/Javascript/0.Core%20Javascript/WeakMap%20and%20WeakSet.md)
+- Date 객체
+- JSON
 
 ### 함수 심화학습
 
