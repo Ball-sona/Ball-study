@@ -43,7 +43,7 @@
 
 ### 관련 메서드
 
-- [Number Methods]()
+- [Number Methods](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md#number-methods)
 - [수학 연산 메서드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 ## 문자열
@@ -70,4 +70,4 @@ console.log('😂'.length); // 2
 
 ### 관련 메서드
 
-- [String Methods]()
+- [String Methods](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md#string-methods)

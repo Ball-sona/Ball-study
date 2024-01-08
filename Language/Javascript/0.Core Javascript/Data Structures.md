@@ -1,4 +1,4 @@
-# Data Structures
+# 자료구조
 
 배열, Map, Set 자료구조에 대해 알아본다. 이들의 근본은 모두 [객체]()임을 명심하자.
 
@@ -79,7 +79,7 @@ console.log(soliders[0].name); // u1
 
 ### 관련 메서드
 
-- [배열 메서드]()
+- [배열 메서드](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md#array-methods)
 
 ## Iterable Object
 
@@ -161,7 +161,7 @@ const obj = Object.fromEntries(entries); // {name:'sona', age:26};
 
 ### 관련 메서드
 
-- [Map Methods]()
+- [Map Methods](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md#map-methods)
 
 ## Set
 
@@ -179,7 +179,7 @@ const obj = Object.fromEntries(entries); // {name:'sona', age:26};
 
 ### 관련 메서드
 
-- [Set Methods]()
+- [Set Methods](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md#set-methods)
 
 ## WeakMap / WeakSet
 
