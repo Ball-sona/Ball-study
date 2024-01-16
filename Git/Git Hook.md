@@ -1,12 +1,12 @@
 # Git Hook and Husky
 
-Git 내에서 어떤 이벤트가 발생했을 때 자동으로 특정 스크립트를 실행하도록 할 수 있다.
+Git 내에서 어떤 이벤트가 발생했을 때 자동으로 특정 스크립트를 실행하도록 하는 기능을 hook 이라고 한다.
 
-이러한 훅을 클라이언트 훅과 서버 훅으로 나눌 수 있는데, 클라이언트 훅은 commit 이나 merge 할 때 실행되고 서버 훅은 push 할 때 서버에서 실행된다.
+이러한 훅을 로컬 훅(클라이언트 훅)과 리모트 훅(서버 훅)으로 나눌 수 있는데, 로컬 훅은 commit 이나 merge 할 때 실행되고, 리모트 훅은 push 할 때 서버에서 실행된다.
 
 <img src="https://user-images.githubusercontent.com/67703882/213880119-c34e9450-f2ce-47bf-a364-034dfc2d15ab.png" alt="image" style="zoom:67%;" />
 
-## 클라이언트 훅 
+## Local Hooks (Client-side hooks)
 
 - pre-commit
   - 실행 시점: 커밋 시 가장 먼저 호출되는 훅으로 커밋 메세지 작성하기 전
@@ -54,9 +54,7 @@ Git 내에서 어떤 이벤트가 발생했을 때 자동으로 특정 스크립
   - 용도
     - 푸쉬하기 전에 커밋이 유효한지 확인할 때
 
-
-
-## 서버 훅
+## Remote Hooks (Server-side hooks)
 
 서버 훅은 모두 Push 전후에 실행된다. Push 전에 실행되는 훅이 0이 아닌 값을 반환하면 해당 Push는 거절되고 클라이언트는 에러 메세지를 출력한다.
 
@@ -76,84 +74,4 @@ Git 내에서 어떤 이벤트가 발생했을 때 자동으로 특정 스크립
     - 메일링 리스트에 메일을 보내거나,  CI 서버나 ticket-tracking 시스템 정보를 수정할 수 있다.
     - 커밋 메세지 파싱도 가능
   - 해당 스크립트가 완전히 종료될때까지 클라이언트와 연결이 유지되고 푸쉬를 중단하지 않기 때문에, 시간이 오래걸리는 스크립트인 경우 조심해야한다.
-
-
-
-## Husky
-
-기본적으로 훅은 `.git/hooks` 디렉토리에 저장하여 사용하지만, 이렇게 되면 git repository에서 원격으로 저장 및 관리를 할 수 없기 때문에 이를 여러 사람들 간에 공유할 수가 없다. 따라서 Node.js 환경에서 git hook을 편리하기 사용할 수 있도록 만들어주는 도구가  바로 husky 라는 라이브러리이다. 
-
-### Start
-
-- Install
-
-  ```shell
-  yarn add husky --save-dev
-  yarn husky install
-  ```
-
-- package.json
-
-  ```json
-  {"scripts":
-  	{  "prepare": "husky install" }
-  }
-  ```
-
-- husky 폴더 내에`pre-commit` 라는 훅을 생성 후 아래 스크립트를 작성한다.
-
-  ```
-  #! /bin/sh 
-  . "$(dirname "$0")/_/husky.sh"
-  
-  npx lint-staged
-  ```
-
-- package.json 에 다음과 같은 내용을 추가해준다.
-
-  ```
-    "lint-staged": {
-      "*.{ts,tsx}": "eslint --cache --fix"
-    }
-  ```
-
-### With lint-staged
-
-git hook을 활용하면 커밋 전 lint 를 실행하여 코드를 검사할 수 있다. 하지만 모든 파일을 대상으로 검사하려면 굉장히 오랜 시간이 소요될 것이다. 이때 lint-staged 라는 라이브러리를 사용하면 스테이징된 파일만 대상으로 검사를 진행할 수 있다.
-
-### With CommitLint
-
-커밋 메세지 검사할 수 있는 라이브러리
-
-- Install 
-
-  ```shell
-  yarn add @commitlint/cli @commitlint/config-conventional -D
-  ```
-
-- 패키지를 설치하지 않고 사용하고 싶다면 `npx --no-install` 옵션을 사용해주면 된다.
-
-- commitlint.config.js 에 추가한다. 
-
-  ```
-  module.exports = {
-    extends: ['@commitlint/config-conventional'],
-  };
-  ```
-
-- husky 폴더 내에`commit-msg` 라는 훅을 생성 후 아래 스크립트를 작성한다.
-
-  ```
-  #! /bin/sh 
-  . "$(dirname "$0")/_/husky.sh"
-  
-  npx commitlint --edit $1
-  ```
-
-- <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>
-
-  - 형식 : `type(scope?): message`
-
-  - 기본적으로 허용되는 type : build, ci, chore, docs, feat, fix, perf, refactor, revert, style, test
-  - 규칙 수정하고 싶다면 `commitlint.config.js` 를 수정하면 된다. 
 
