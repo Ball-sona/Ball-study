@@ -4,12 +4,30 @@
 
 ## 객체 생성하기
 
-1. 객체 생성자 `new Object()` 사용하기
+1. 내장 객체 생성자 `new Object()` 사용하기
 2. 객체 리터럴 `{}` 사용하기
+3. 생성자 함수 사용하기
 
-## property
+### 생성자 함수
 
-- 객체 `{}` 안에는 'key:value' 쌍으로 구성된 **프로퍼티**가 들어간다.
+```js
+function User(name) {
+  // this = {};
+  this.name = name;
+  // return this;
+}
+const user1 = new User('sona');
+console.log(user1.name); // sona
+```
+
+- 위처럼 생성자 함수를 실행하면 빈 객체를 this에 할당 후. 함수 본문을 모두 실행하고, this를 반환한다.
+- 함수 내부에서 `new.target` 프로퍼티를 사용하면 함수가 `new` 와 함께 호출되었는지 알 수 있다.
+- 생성자 함수는 자동으로 `this` 를 반환하기 때문에 `return`문이 거의 필요 없다. 만약 객체를 return 하도록 했다면 `this` 대신 해당 객체를 반환해주고, 이외의 원시형을 return 하도록 했다면 해당 `return` 문은 무시된다.
+- 생성자 함수에 인수가 없다면 괄호 생략이 가능하다.
+
+## 프로퍼티
+
+- 객체 `{}` 안에는 'key:value' 쌍으로 구성된 **프로퍼티(property)**가 들어간다.
 
 - `delete` 연산자를 통해 프로퍼티를 삭제할 수 있다.
 
@@ -98,23 +116,6 @@ function createUser(name, age) {
 
 > 정수 프로퍼티란, 변형 없이 정수에서 왔다 갔다 할 수 있는 문자열을 의미한다. 즉 "26"처럼 정수로 변환하거나 정수로 변환한 정수를 다시 문자열로 변환해도 값이 변하지 않아야 한다. ("+26" 이나 "2.6"은 해당 안됨)
 
-## 생성자 함수
-
-```js
-function User(name) {
-  // this = {};
-  this.name = name;
-  // return this;
-}
-const user1 = new User('sona');
-console.log(user1.name); // sona
-```
-
-- 위처럼 생성자 함수를 실행하면 빈 객체를 this에 할당 후. 함수 본문을 모두 실행하고, this를 반환한다.
-- 함수 내부에서 `new.target` 프로퍼티를 사용하면 함수가 `new` 와 함께 호출되었는지 알 수 있다.
-- 생성자 함수는 자동으로 `this` 를 반환하기 때문에 `return`문이 거의 필요 없다. 만약 객체를 return 하도록 했다면 `this` 대신 해당 객체를 반환해주고, 이외의 원시형을 return 하도록 했다면 해당 `return` 문은 무시된다.
-- 생성자 함수에 인수가 없다면 괄호 생략이 가능하다.
-
 ## Optional Chaining
 
 옵셔널 체이닝 `?.` 은 앞의 평가 대상이 `undefined` 나 `null` 이라면, 평가를 멈추고 `undefined` 를 반환한다.
@@ -140,19 +141,18 @@ user2.isAdmin?.(); // isAdmin 정의 안되어있는데도 에러 안남
 
 마찬가지로 `?.[]` 를 사용하면 객체 존재 여부과 확실치 않은 경우에도 안전하게 프로퍼티를 읽을 수 있다.
 
-## 구조 분해 할당 
+## 구조 분해 할당
 
 구조 분해 할당(destructing assignment)을 통해 객체나 배열을 변수로 분해해 ㅇㄴ결할 수 있다.
 
 ```js
-// 객체 
-const obj = {name:"sona", age:26};
-const {name, age} = obj;
+// 객체
+const obj = { name: 'sona', age: 26 };
+const { name, age } = obj;
 console.log(name); // "sona"
 
-// 배열 
-const arr = ["sona",26];
+// 배열
+const arr = ['sona', 26];
 const [name, age] = arr;
 console.log(age); // 26
 ```
-

@@ -9,7 +9,7 @@
 - 오직 해당 메서드를 처리하기 위해서 **원시 래퍼 객체(object wrapper)** 덕에 가능하다.
 - 래퍼 객체는 메서드를 처리한 이후에 바로 사라진다. 엔진은 이 과정을 최적화하여 원시값의 메서드를 최대한 가볍게 호출할 수 있도록 한다.
 
-자세한 동작 과정은 [원시값 래퍼 객체]() 를 참고하자.
+자세한 동작 과정은 [원시값 래퍼 객체](/Language/Javascript/0.Core%20Javascript/Data%20Types%20Advanced.md) 를 참고하자.
 
 ### string vs String
 

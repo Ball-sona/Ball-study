@@ -37,16 +37,21 @@
 - [렉시컬 스코프와 클로저](/Language/Javascript/0.Core%20Javascript/Lexical%20Scope%20and%20Closure.md)
 - [객체로서의 함수와 NFE](/Language/Javascript/0.Core%20Javascript/Function%20Object%20and%20NFE.md)
 - [setTimeout and setInterval](/Language/Javascript/0.Core%20Javascript/SetTimeout%20and%20SetInterval.md)
-- [데코레이터](/Language/Javascript/0.Core%20Javascript/Decorators.md)
+- [Decorator](/Language/Javascript/0.Core%20Javascript/Decorators.md)
 - this 바인딩
 - 화살표 함수
 
 ### 객체 프로퍼티 설정
 
-- [프로퍼티 설명자](/Language/Javascript/0.Core%20Javascript/Property%20Descriptors.md)
-- [프로퍼티 getter and setter]()
+- [프로퍼티 설명자](/Language/Javascript/0.Core%20Javascript/Property%20Flags%20and%20Descriptors.md)
+- [프로퍼티 getter and setter](/Language/Javascript/0.Core%20Javascript/Property%20Getter%20and%20Setter.md)
 
 ### 프로토타입과 프로토타입 상속
+
+- [프로토타입 상속](/Language/Javascript/0.Core%20Javascript/Prototypal%20Inheritance.md)
+- [함수의 프로토타입](/Language/Javascript/0.Core%20Javascript/Function's%20Prototype.md)
+- [내장 프로토타입](/Language/Javascript/0.Core%20Javascript/Native%20Prototype.md)
+- [프로토타입 관련 메서드](/Language/Javascript/0.Core%20Javascript/Prototype%20Methods.md)
 
 ### 클래스
 
