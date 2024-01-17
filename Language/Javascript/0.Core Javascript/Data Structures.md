@@ -1,6 +1,63 @@
 # 자료구조
 
-배열, Map, Set 자료구조에 대해 알아본다. 이들의 근본은 모두 [객체]()임을 명심하자.
+자바스크립트 기본 자료구조인, **배열, Map, Set** 에 대해 알아보자. 먼저 이들은 모두 '이터러블 객체' 라는 공통점을 가진다.
+
+## Iterable Object
+
+이터러블(iterable) 객체는 <u>배열을 일반화한, 반복 가능한 객체</u>이다. 대표적인 내장 이터러블에는 **배열과 문자열**이 있다.
+
+### 동작 원리
+
+이터러블 객체를 직접 생성해보면 다음과 같다.
+
+```js
+const range = {
+  from: 1,
+  to: 5,
+  [Symbol.iterator]() {
+    this.current = this.from;
+    return this;
+  },
+  next() {
+    return this.current <= this.to
+      ? { done: false, value: this.current++ }
+      : { done: true };
+  },
+};
+for (let num of range) {
+  console.log(num);
+}
+```
+
+위 `for..of` 이 호출되면 다음과 같은 프로세스가 진행된다. 참고로 순회 대상에 `Symbol.iterator` 가 없으면 에러가 발생한다.
+
+1. `for..of` 호출 시, `range[Symbol.iterator]()` 가 호출된다.
+2. `range[Symbol.iterator]()` 는 `range` 자체(this)를 반환하는데, 이때 객체에는 `next()` 메서드가 반드시 구현되어 있어야 한다.
+3. 이후 `range.next()` 가 반복마다 호출된다.
+
+### Iterable vs Array-like Object
+
+- **이터러블 객체(Iterable Object)**
+  - `Symbol.iterator` 메서드와 `next` 메서드가 구현된 객체이다.
+  - 요소를 순회하거나 반복 작업을 수행하는데 특화되어 있다. `for..of` 나 `forEach` 를 사용할 수 있다.
+  - ex. 문자열, 배열, Map, Set, Generator 등
+- **유사 배열 객체(Array-like Object)**
+
+  - 인덱스와 `length` 프로퍼티를 가지고 있어 <u>배열처럼 보이는 객체</u>이다.
+
+    ```js
+    const arrayLikeObect = {
+      0: 'h',
+      1: 'i',
+      length: 2,
+    };
+    ```
+
+  - 진짜 말그대로 배열처럼 '보이기만' 하는 객체로, 실제로 배열 메서드를 사용하거나 순회할 수 없고, 배열 프로토타입을 직접 상속받지도 않는다.
+  - ex. 문자열, 함수의 `arguments` 객체, `NodeList` , `HTMLCollection` 등
+
+- <u>이터러블 객체이면서 유사 배열 객체</u>일 수 있다. 대표적인 예가 문자열이다.
+- `Array.from()` 을 사용하면 이터러블 객체나 유사 배열 객체를 찐 배열로 변환해준다.
 
 ## Array
 
@@ -80,46 +137,6 @@ console.log(soliders[0].name); // u1
 ### 관련 메서드
 
 - [배열 메서드](https://github.com/ballsona/Study/blob/main/Language/Javascript/%EB%A9%94%EC%84%9C%EB%93%9C%20%EC%A0%95%EB%A6%AC.md#array-methods)
-
-## Iterable Object
-
-이터러블(iterable) 객체는 배열을 일반화한, 반복 가능한 객체이다. 대표적인 내장 이터러블에는 **배열과 문자열**이 있다.
-
-### 동작 원리
-
-이터러블 객체를 직접 생성해보면 다음과 같다.
-
-```js
-const range = {
-  from: 1,
-  to: 5,
-  [Symbol.iterator]() {
-    this.current = this.from;
-    return this;
-  },
-  next() {
-    return this.current <= this.to
-      ? { done: false, value: this.current++ }
-      : { done: true };
-  },
-};
-for (let num of range) {
-  console.log(num);
-}
-```
-
-위 `for..of` 이 호출되면 다음과 같은 프로세스가 진행된다. 참고로 순회 대상에 `Symbol.iterator` 가 없으면 에러가 발생한다.
-
-1. `for..of` 호출 시, `range[Symbol.iterator]()` 가 호출된다.
-2. `range[Symbol.iterator]()` 는 `range` 자체를 반환하는데, 이때 객체는 `next()` 메서드를 반드시 가지고 있어야 한다.
-3. 이후 `range.next()` 가 반복마다 호출된다.
-
-### Iterable vs Array-like
-
-- 이터러블은 `Symbol.iterator` 메서드가 구현된 객체이다.
-- 유사 배열은 인덱스와 `length` 프로퍼티가 있어 배열처럼 보이는 객체이다.
-- 문자열은 이터러블이면서 유사배열 객체이다. 위 예시의 `range` 객체는 이터러블이지만 유사배열 객체는 아니다.
-- `Array.from()` 을 사용하면 이터러블이나 유사 배열을 찐 배열로 만들어준다.
 
 ## Map
 
