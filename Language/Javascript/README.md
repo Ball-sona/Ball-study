@@ -55,7 +55,15 @@
 
 ### 클래스
 
+- [클래스](/Language/Javascript/0.Core%20Javascript/Class.md)
+- [클래스 상속](/Language/Javascript/0.Core%20Javascript/Class%20Inheritance.md)
+- [Static, Private, Protected](/Language/Javascript/0.Core%20Javascript/Static,%20Private,%20Protected.md)
+- [내장 클래스 확장](/Language/Javascript/0.Core%20Javascript/Extending%20Built-in%20Classes.md)
+
 ### 에러 핸들링
+
+- [에러 핸들링](/Language/Javascript/0.Core%20Javascript/Error%20Handling.md)
+- [커스텀 에러 및 에러 확장](/Language/Javascript/0.Core%20Javascript/Custom%20Errors.md)
 
 ### 프로미스와 async/await
 
