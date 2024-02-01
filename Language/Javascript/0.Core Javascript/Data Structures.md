@@ -15,11 +15,13 @@ const range = {
   from: 1,
   to: 5,
   [Symbol.iterator]() {
-    this.current = this.from;
-    return this;
-  },
+    // 이터레이터 객체 반환
+    return {
+      current: this.from,
+      last: this.to,
+
   next() {
-    return this.current <= this.to
+    return this.current <= this.last
       ? { done: false, value: this.current++ }
       : { done: true };
   },
@@ -32,8 +34,11 @@ for (let num of range) {
 위 `for..of` 이 호출되면 다음과 같은 프로세스가 진행된다. 참고로 순회 대상에 `Symbol.iterator` 가 없으면 에러가 발생한다.
 
 1. `for..of` 호출 시, `range[Symbol.iterator]()` 가 호출된다.
-2. `range[Symbol.iterator]()` 는 `range` 자체(this)를 반환하는데, 이때 객체에는 `next()` 메서드가 반드시 구현되어 있어야 한다.
-3. 이후 `range.next()` 가 반복마다 호출된다.
+2. `range[Symbol.iterator]()` 는 `next` 메서드가 구현되어있는 이터레이터 객체를 반환하게 되고, 이후 `for..of` 는 이 이터레이터 객체를 대상으로 동작하게 된다.
+3. `for..of` 는 다음 값이 필요할 때마다 `next` 메서드를 호출한다.
+4. `next()` 가 반환한 객체의 `done` 값이 `true` 라면 순회가 종료된다.
+
+> `Symbol.iterator` 메서드가 구현된 객체를 '이터러블 객체'라 부르고, `{done: boolean, value: any}` 객체를 반환하는 `next` 메서드가 구현되어 있는 객체를 '이터레이터'라고 한다. 만약 위 range 객체에 직접 next 메서드를 구현했다면, range는 이터러블이자 이터레이터일 수 있다.
 
 ### Iterable vs Array-like Object
 
