@@ -1,4 +1,11 @@
-# Hooks
+# Other Hooks
+
+- useImperativeHandle
+- useLayoutEffect
+- useDebugValue
+- useId
+- useSyncExternalStore
+- useInsertionEffect
 
 ## useImperativeHandle
 
@@ -70,9 +77,12 @@ const id = useId();
 
 ## useSyncExternalStore
 
-- 상태 관리 라이브러리를 위한 훅
+- 리액트 18버전부터 '동시성 렌더링'을 지원하면서 하나의 state를 사용하는 컴포넌트들이 서로 다른 값을 가지고 렌더링하게 되는 'tearing' 현상이 발생할 수 있게 되었다.
+- `useTransition` 이나 `useDeferredValue` 를 사용하는 경우에는 리액트가 내부적으로 이러한 문제를 처리하고 있지만, 외부 데이터 소스나 리액트 클로저 범위 밖에 있는 값들은 tearing 현상이 발생할 수 있다.
+- 따라서 리액트 18버전에서 동작하는 상태 관리 라이브러리는 `useSyncExternalStore`를 통해 외부 상태 변경을 추적하고 있어야 한다. 
 
 ## useInsertionEffect
 
 - css-in-js 라이브러리를 위한 훅 
-- 실행 순서: useInsertionEffect -> useLayoutEffect -> useEffect
+- `useInsertionEffect` 는 DOM이 실제로 변경되기 전에 동기적으로 실행되어, 훅 내부에서 스타일을 삽입하는 코드를 집어넣음으로써 브라우저가 레이아웃을 계산하기 전에 실행될 수 있게끔 한다.
+  - `useInsertionEffect` -> `useLayoutEffect` -> `useEffect`
