@@ -1,6 +1,4 @@
-# 기타 리액트 훅
-
-자주 사용되지는 않지만 리액트에서 제공하는 훅들을 알아보자.
+# Hooks
 
 ## useImperativeHandle
 
@@ -44,6 +42,8 @@ useLayoutEffect는 '모든 DOM의 변경' 이후에 콜백 함수를 '동기적�
 - `useLayoutEffect`의 함수가 동기적으로 수행된다는 건, 콜백 함수가 실행 종료될 때까지 기다렸다가 브라우저 화면을 그린다는 것을 의미한다. 즉, `useLayoutEffect`의 실행 동안 리액트 컴포넌트가 잠시 일시 중지하므로, 오래 걸리는 작업을 포함해서는 안된다.
 - DOM 요소를 기반으로 스크롤 위치를 제어하는 등 작업
 
+<img width="542" alt="스크린샷 2023-02-04 17 26 08" src="https://user-images.githubusercontent.com/67703882/216757250-a131701a-0be5-4a2c-bce4-369af63977f9.png" style="zoom:80%;" >
+
 ## useDebugValue
 
 - 개발하는 과정에서 디버깅하고 싶은 정보가 있는 경우
@@ -56,3 +56,23 @@ function useDate() {
 	return date;
 }
 ```
+
+## useId
+
+useId는 컴포넌트별로 '고유한 값'을 생성하는 훅이다.
+
+- 컴포넌트 내부에서 고유한 값을 가지기 위해 `Math.random()` 등을 사용하면, 해당 컴포넌트가 서버 사이드 렌더링될 경우 서버와 클라이언트가 각자 다른 값을 가지게 되어 하이드레이션 에러가 발생한다.
+- 따라서  서버 사이드와 클라이언트의 불일치를 피하면서 컴포넌트 내부에 고유한 값을 가지고 싶다면 `useId` 훅을 사용하면 된다.
+
+```jsx
+const id = useId();
+```
+
+## useSyncExternalStore
+
+- 상태 관리 라이브러리를 위한 훅
+
+## useInsertionEffect
+
+- css-in-js 라이브러리를 위한 훅 
+- 실행 순서: useInsertionEffect -> useLayoutEffect -> useEffect

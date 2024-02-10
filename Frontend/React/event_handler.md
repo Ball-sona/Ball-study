@@ -15,7 +15,7 @@ const Button = () => {
 
 실제로 루트 노드에 연결되어있는 이벤트 핸들러들을 출력해보면 다음과 같다.
 
-<img src="https://github.com/ballsona/Study/assets/67703882/2e3558d7-42c4-48c9-8ab1-397b66c85099" />
+<img src="https://github.com/ballsona/Study/assets/67703882/2e3558d7-42c4-48c9-8ab1-397b66c85099?raw=true" />
 
 ## Synthetic Event
 
