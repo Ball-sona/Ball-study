@@ -1,8 +1,6 @@
 # 자바스크립트
 
-자바스크립트 총 정리
-
-## 코어 자바스크립트
+## 1. Core Javascript
 
 ### 자바스크립트 기본
 
@@ -11,7 +9,6 @@
 - [연산자](/Language/Javascript/0.Core%20Javascript/Operators.md)
 - [함수](/Language/Javascript/0.Core%20Javascript/Functions.md)
 - [반복문](/Language/Javascript/0.Core%20Javascript/Iterators.md)
-- [기타](/Language/Javascript/0.Core%20Javascript/Others.md)
 
 ### 객체: 기본
 
@@ -74,20 +71,38 @@
 
 ### 제네레이터와 비동기 이터레이션
 
+- [제네레이터](/Language/Javascript/0.Core%20Javascript/Generator.md)
+
 ### 모듈
+
+- [모듈](/Language/Javascript/0.Core%20Javascript/Modules.md)
 
 ### 기타
 
-## 브라우저: 문서, 이벤트, 인터페이스
+- [Proxy, Reflect]()
+- [Curring]()
 
-- 문서
-- 이벤트 기초
-- UI 이벤트
-- 폼과 폼 조작
-- 문서와 리소스 로딩
-- 기타
+## 2. Browser: Document, Events, Interfaces
 
-## 추가 주제
+### 문서
+
+- [브라우저 문서](/Language/Javascript/1.Browser/Document.md)
+- [DOM 조작](/Language/Javascript/1.Browser/DOM.md)
+- [사이즈, 스크롤, 좌표](/Language/Javascript/1.Browser/Size,Scroll,Coordinates.md)
+
+### 이벤트 기초
+
+### UI 이벤트
+
+### 폼과 폼 조작
+
+### 문서와 리소스 로딩
+
+- [defer, async 스크립트](/Language/Javascript/1.Browser/Defer,Async.md)
+
+### 기타
+
+## 3. Additional
 
 - 프레임과 윈도우
 - 이진 데이터와 파일
