@@ -1,0 +1,51 @@
+# 특정 필드로 데이터 묶기
+
+## Aggregate
+
+```sql
+# null 포함
+SELECT COUNT(*) FROM users;
+# 특정 레코드의 개수만 세는 경우엔 null 제거
+SELECT COUNT(id) FROM users;
+# 레코드 중복 제거하고 개수 세기
+SELECT COUNT(DISTINCT name) FROM users;
+# 최대, 최소, 합
+SELECT MAX(age) FROM users;
+SELECT MIN(age) FROM users;
+SELECT SUM(age) FROM users;
+# uppercase, lowercase
+SELECT UCASE(first_name), LCASE(last_name) FROM users;
+```
+
+## Group By
+
+```sql
+SELECT age, COUNT(age) FROM users GROUP BY age;
+SELECT age, COUNT(age) FROM users WHERE age > 20 GROUP BY age;
+# age가 중복된 열만 추출
+SELECT age, COUNT(age) FROM users GROUP BY age HAVING count(age) >=2;
+```
+
+## With
+
+```sql
+WITH 
+NOT_AVAILABLE_ID AS (
+    SELECT DISTINCT(CAR_ID) FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+    WHERE START_DATE <= "2022-11-30" AND END_DATE >= "2022-11-01"
+), 
+MONTH_PLAN AS (
+    SELECT CAR_TYPE, DISCOUNT_RATE FROM CAR_RENTAL_COMPANY_DISCOUNT_PLAN
+    WHERE DURATION_TYPE = "30일 이상"
+)
+
+SELECT 
+CAR_ID, CAR_TYPE, FLOOR(DAILY_FEE*(1- DISCOUNT_RATE/100)*30) AS FEE
+FROM CAR_RENTAL_COMPANY_CAR
+JOIN MONTH_PLAN USING(CAR_TYPE)
+WHERE CAR_TYPE IN ("세단","SUV") 
+    AND CAR_ID NOT IN (SELECT * FROM NOT_AVAILABLE_ID)
+HAVING FEE >= 500000 AND FEE < 2000000
+ORDER BY FEE DESC, CAR_TYPE ASC, CAR_ID DESC;
+```
+
