@@ -39,7 +39,7 @@ HTML DOM에서 이벤트가 발생하면 크게 3가지 단계로 이벤트 흐�
 
 ## 버블링 중단하기 
 
-만약 특정 이벤트가 상위 요소로 전파되는 것을 막고 싶다면, 즉 버블링을 중단하기 위해서는 해당요소에 `event.stopPropagation` 을 사용하면 된다.
+만약 <u>특정 이벤트가 상위 요소로 전파되는 것을 막고 싶다</u>면, 즉 버블링을 중단하기 위해서는 해당요소에 `event.stopPropagation` 을 사용하면 된다.
 
 ```html
 <form onclick="console.log('form')">
@@ -49,7 +49,7 @@ HTML DOM에서 이벤트가 발생하면 크게 3가지 단계로 이벤트 흐�
 </form>
 ```
 
-위 예시 코드에서 p 태그를 클릭하면 form이 console에 찍히지 않는다. 클릭 이벤트가 버블링을 중단시켰으므로 form의 클릭 이벤트가 실행되지 않기 때문이다. 
+위 예시 코드에서 p 태그를 클릭하면 'form'이 console에 찍히지 않는다. 클릭 이벤트의 버블링이 p태그에서 중단되었으므로 form의 클릭 이벤트가 실행되지 않기 때문이다. 
 
 만약 모든 이벤트의 버블링을 멈추고 싶다면 `event.stopImmediatePropagation()` 를 사용하면 된다. 
 
@@ -74,7 +74,7 @@ element.addEventListener(event, handler, [options])
 
 이벤트를 캡처링 단계에서 동작하기 위해 `{capture:true}` 로 지정해주면 되지만, options 값 자체를 `true` 로 할당해주어도 동일하다. 
 
-<br />
+### Example
 
 위 내용을 토대로 간단한 코드를 테스트해보자.
 
@@ -115,31 +115,13 @@ C.addEventListener("click", function (e) {
 
 B의 버블링 이벤트 등록 단계에서 stopPropagation을 사용했기 때문에 A 까지 버블링이 안되는 것을 볼 수 있다. 
 
-## 이벤트 위임 (event delegation)
-
-이벤트 위임은 캡처링과 버블링 과정을 이용하는 것으로, 여러 엘리먼트마다 각각의 이벤트 핸들러를 할당하지 않고, 공통되는 부모에 이벤트 핸들러를 할당하여 이벤트를 관리하는 방식이다.
-
-```html
-<div id='menu'>
-  <button>버튼 1</button>
-  <button>버튼 2</button>
-  <button>버튼 3</button>
-</div>
-```
-
-위 코드에서 총 3개의 버튼에 같은 클릭 이벤트를 할당해야한다고 가정해보자. 
-
-모든 버튼에 대해 이벤트 리스너를 등록하면 매우 비효율적일 것이다. (버튼 개수가 많아진다면 더 비효율적이다.. ) 따라서 이벤트 위임 방식을 이용해 `<div id='menu'>` 에 이벤트를 등록하면 이러한 문제를 해결할 수 있다. 
-
 ## 요약
 
 1. 이벤트가 발생하면 브라우저는 DOM 트리를 따라 이벤트가 발생된 요소(= `event.target` ) 까지 내려간다.
 2. 이벤트는 트리를 따라 내려가면서 `addEventListener(...,true)` 로 할당한 핸들러를 동작시킨다. (캡처링 단계)
 3. 이후 타깃 요소에 설정된 핸들러가 호출되고, `event.target` 부터 시작해서 최상위 노드까지 이벤트가 전달되면서 `addEventListener(...,false)` 로 할당된 핸들러를 동작시킨다. (버블링 단계)
 
-
-
-#### 참고
+## 참고
 
 https://www.youtube.com/watch?v=7gKtNC3b_S8
 

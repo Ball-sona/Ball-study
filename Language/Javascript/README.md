@@ -1,6 +1,6 @@
 # 자바스크립트
 
-## 1. Core Javascript
+## 0. Core Javascript
 
 ### 자바스크립트 기본
 
@@ -82,7 +82,7 @@
 - [Proxy, Reflect]()
 - [Curring]()
 
-## 2. Browser: Document, Events, Interfaces
+## 1. Browser: Document, Events, Interfaces
 
 ### 문서
 
@@ -91,6 +91,10 @@
 - [사이즈, 스크롤, 좌표](/Language/Javascript/1.Browser/Size,Scroll,Coordinates.md)
 
 ### 이벤트 기초
+
+- [브라우저 이벤트](/Language/Javascript/1.Browser/Broswer_Event.md)
+- [버블링과 캡처링](/Language/Javascript/1.Browser/Bubbling_and_Capturing.md)
+- [이벤트 위임](/Language/Javascript/1.Browser/Event_Delegation.md)
 
 ### UI 이벤트
 
@@ -102,7 +106,7 @@
 
 ### 기타
 
-## 3. Additional
+## 2. Additional
 
 - 프레임과 윈도우
 - 이진 데이터와 파일
