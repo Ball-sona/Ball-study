@@ -1,7 +1,5 @@
 # CSS
 
-> 알지만 헷갈리는 CSS 속성들.. 구글링 그만! 🥱
-
 ## mouse accordinate
 
 <img src="https://user-images.githubusercontent.com/67703882/213360144-c715de77-aa62-4925-8dda-bba038c0cbb9.png" alt="image" style="zoom: 50%;" />
