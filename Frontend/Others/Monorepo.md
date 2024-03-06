@@ -52,7 +52,7 @@
 - 일관된 개발자 경험, 프로젝트들에 걸친 원자적 커밋, 서로 의존하는 저장소들의 리팩토링 비용 감소
 - 소스 변경 시 모든 프로젝트를 다시 빌드/테스트 하는 것이 아니라, 변경 사항의 영향을 받는 프로젝트만 다시 빌드/테스트 한다. (범위 최소화)
 
-> +github의 [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) 같은 기능을 통해 폴더 기반으로 소유권을 구성하여, 관련 없는 팀에서 함부로 코드를 변경할 수 없도록 막을 수 있다. 
+> github의 [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) 같은 기능을 통해 폴더 기반으로 소유권을 구성하여, 관련 없는 팀에서 함부로 코드를 변경할 수 없도록 막을 수 있다. 
 
 ### 모노레포 단점
 
@@ -72,7 +72,6 @@
 
 - 유사한 DevOps로 구성된 프로젝트의 집합 
 
-  
 
 ## 모노레포 도구
 
@@ -89,8 +88,6 @@
 - Turborepo
 
 - Rush
-
-
 
 ## 참고자료
 
