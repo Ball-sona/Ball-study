@@ -96,9 +96,9 @@
 - [버블링과 캡처링](/Language/Javascript/1.Browser/Bubbling_and_Capturing.md)
 - [이벤트 위임](/Language/Javascript/1.Browser/Event_Delegation.md)
 
-### UI 이벤트
-
 ### 폼과 폼 조작
+
+- [폼](/Language/Javascript/1.Browser/Form.md)
 
 ### 문서와 리소스 로딩
 
