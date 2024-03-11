@@ -1,8 +1,8 @@
 # yarn workspaces
 
-패키지 매니저의 yarn이 지원하는 workspaces를 사용하여 모노레포를 구축할 수 있다. 
+yarn workspaces를 사용하여 모노레포를 구축해보자.
 
-## monorepo 구조 
+## monorepo 구조
 
 - workspace-root
   - workspace-a
@@ -31,7 +31,7 @@ workspace-a/workspace-b의 package.json
 {
   "name": "workspace-a",
   "script": {
-  	"dev": "vite",
+    "dev": "vite"
   }
 }
 ```
@@ -46,9 +46,13 @@ root 프로젝트의 `script` 에 `workspaceA`, `workspaceB`를 지정해주었�
 
 ## dependencies
 
-- 각 프로젝트들이 사용할 패키지들이 `dependecies`에 명시되어 있으면, `yarn` 실행 시 해당 패키지들이 한번에 설치된다.
-- 이때 패키지들은 모두 상위 `node_modules`에 중복 제거되어 설치된다.
-- 만약 각 프로젝트들이 공통으로 사용하는 패키지(ex. typescript)가 있다면 이들은 루트 package.json `dependencies` 에 명시하는 것이 좋다.
+루트에서 `yarn` 명령어 실행 시 루트를 비롯한 각 프로젝트들의 `dependencies`에 명시되어 있는 패키지들이 설치된다.
+
+- `workspace-root` 가 16 버전의 `react` 패키지를 의존성으로 두고 있다면, 루트 `node_modules`에 `react` 가 설치된다.
+- 만약 `workspace-a`가 동일한 버전의 패키지를 의존성으로 두고 있다면, 마찬가지로 루트 `node_modules` 에만 `react` 가 설치된다.
+- 만약 `workspace-a`가 18 버전의 `react` 패키지를 의존성으로 두고 있다면, 루트에는 16버전이, `workspace-a` 내 `node_modules`에는 18 버전의 `react` 가 각각 설치된다.
+
+모든 프로젝트들이 공통으로 사용하는 패키지(ex. typescript, eslint)를 설치할때는 `yarn add <package> -W` 를 사용한다. 이들은 루트 package.json의 `dependencies`에 명시된다.
 
 ## tsconfig.json
 
@@ -56,23 +60,20 @@ root 프로젝트의 `script` 에 `workspaceA`, `workspaceB`를 지정해주었�
 
 - 루트 tsconfig.json의 `references` 에 개별 tsconfig.json 가 설정되어 있는 레포 경로를 지정해줘야 한다.
 
-  ```
+  ```json
   {
   	"compilerOptions": {...},
     "references": [
-      { "path": "./workspace-a"},
+      { "path": "./workspace-a"}, // override
     ]
   }
   ```
 
 - 개별 tsconfig.json에서는 `extends` 속성에 루트 tsconfig.json 파일 경로를 지정해줘야 한다.
 
-  ```
+  ```json
   {
   	"extends": "../tsconfig.json",
   	"compilerOptions": {...},
-  }  
+  }
   ```
-
-  
-
