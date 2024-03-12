@@ -16,6 +16,8 @@ ON users.id = posts.user_id # 겹치지 않는 행은 제외된다.
 ORDER BY posts.title;
 ```
 
+> INNER 생략 가능 
+
 ### Left Join (합집합)
 
 ```sql

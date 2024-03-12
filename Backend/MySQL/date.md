@@ -22,6 +22,14 @@ DATE_FORMAT(date, format)
   - %T: `hh:mm:SS`
   - %r: `hh:mm:ss AM,PM`
 
+## Year, Month, Day
+
+```sql
+Year(date)
+Month(date)
+Day(date)
+```
+
 ## 기간 계산 
 
 ### DATEDIFF

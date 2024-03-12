@@ -126,5 +126,3 @@ FROM animal_ins
 ORDER BY datetime ASC
 LIMIT 10,5; # 9번째 레코드부터 5개만 조회
 ```
-
-## 
