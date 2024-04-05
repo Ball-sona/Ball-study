@@ -103,13 +103,18 @@
 ### 문서와 리소스 로딩
 
 - [defer, async 스크립트](/Language/Javascript/1.Browser/Defer,Async.md)
+- [리소스 로딩](/Language/Javascript/1.Browser/Resource_Loading.md)
 
 ### 기타
 
 ## 2. Additional
 
-- 프레임과 윈도우
-- 이진 데이터와 파일
+### 프레임과 윈도우
+
+### 이진 데이터와 파일
+
+- [이진 데이터]()
+
 - 네트워크 요청
 - 브라우저에 이벤트 저장하기
 - 에니메이션
