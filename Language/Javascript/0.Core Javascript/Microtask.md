@@ -41,7 +41,7 @@ Promise.resolve(() => console.log(2));
 - Microtask queue: `Promise` , `async/await` , `process.nextTick` , `Object.observe` , `MutationObserver` 처리
 - AnimationFrames: `requestAnimationFrame` 등 브라우저 렌더링과 관련된 task를 넘겨 받는 queue
 - Macrotask queue: `setTimeout`, `setInterval` , `setImmediate` 처리
-- 이벤트 루프가 처리하는 우선 순위: Microtask queue < AnimationFrames < Macrotask queue
+- 이벤트 루프가 처리하는 우선 순위: Microtask queue > AnimationFrames > Macrotask queue
 
 ## unhandledrejection
 
