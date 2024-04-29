@@ -1,5 +1,3 @@
-# Frontend
-
 ## 0. Basic
 
 - HTML/CSS
@@ -14,7 +12,7 @@
 - [Vue.js]()
 - Solid/Svelte
 
-## 2. Library & Tools'''
+## 2. Library & Tools
 
 ### State Management
 
@@ -22,24 +20,18 @@
 - [Jotai]()
 - [React-query]()
 
-### CSS Styling
+### Styling
 
 - Styled-component
 - Emotion
 - Vanilla-js
 - Tailwind-css
 
-### HTTP Client
+### Others
 
 - [Axios](/Frontend/Library/Axios)
-
-### Animation
-
-- [Framer-motion]()
-
-### ETC
-
 - [React-hook-form]()
+- Framer-motion
 
 ## 3. Bundler & Package Manager
 
