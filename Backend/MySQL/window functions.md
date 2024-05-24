@@ -98,6 +98,22 @@ SELECT USER_ID,
 FROM USERS
 ```
 
+### RATIO_TO_REPORT
+
+파티션 별 합계에서 차지하는 비율
+
+``` sql
+SELECT RATIO_TO_REPORT(SCORE) OVER(PARTITION BY DEPT) FROM USER;
+```
+
+### CUME_DIST
+
+해당 파티션에서의 누적 백분율. 0~1
+
+```sql
+SELECT CUM_DIST() OVER(ORDER BY SCORE) FROM USER;
+```
+
 ## Value
 
 ### FIRST_VALUE
