@@ -13,7 +13,7 @@
 ## render()
 
 - 컴포넌트가 렌더링할 UI를 정의하는 메서드
-- side effect가 없어야 한다. 즉, 함수 내부에서 `setState` 등을 호출해서는 안된다.
+- Side effect가 없어야 한다. 즉, 함수 내부에서 `setState` 등을 호출해서는 안된다.
 
 ## componentDidMount()
 
