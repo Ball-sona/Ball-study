@@ -35,13 +35,11 @@ yarn dlx husky-init --yarn2 && yarn
 
 위 명령어 실행하면 설치부터 설정까지 자동으로 해준다.
 
-## Create a hook
+## Hook + Lint-staged
 
-매 커밋 전, linters(eslint or prettier) 를 실행하여 코드를 검사하는 훅을 작성해보자.
-
-### 0. With lint-staged
-
-이때 모든 파일을 대상으로 코드를 검사하려면 굉장히 오랜 시간이 소요되고 매우 비효율적이다. 이때 [lint-staged](https://github.com/lint-staged/lint-staged) 라는 라이브러리를 사용하면 **스테이징된 파일만 대상으로 검사를 진행**할 수 있다.
+- Husky hook을 사용해서 매 커밋 전 린트 툴을 돌려 코드 내 오류, 버그, 포멧팅 등을 검사할 수 있다.
+- 이때 모든 파일을 대상으로 코드를 검사해버리면 시간이 오래걸리고 매우 비효율적이다.
+- 이때 [lint-staged](https://github.com/lint-staged/lint-staged)라는 라이브러리를 사용하면 **스테이징된, 즉 내가 현재 변경한 코드만 대상으로 검사를 진행**할 수 있다.
 
 ### 1. 파일 생성
 
@@ -64,15 +62,16 @@ package.json 에 다음과 같은 내용을 추가해준다.
 
 ```js
 "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix"
+    "*.{ts,tsx,js,jsx}": "eslint --cache --fix"
   }
 ```
 
-타입스크립트로 작성된 파일만을 대상으로 `eslint` 을 통해 린트 검사를 수행한다. 이때 린트 검사 결과를 캐싱하여 재검사 속도를 높이고, `--fix` 를 통해 가능한 많은 **린트 오류를 자동으로 수정할 수 있도록 설정**한다.
+- TS, JS로 작성된 파일만을 대상으로 `eslint` 린트 검사를 수행한다.
+- 이때 린트 검사 결과를 캐싱하여 재검사 속도를 높이고, `--fix`를 통해 가능한 많은 **린트 오류를 자동으로 수정할 수 있도록 설정**한다.
 
-## With CommitLint
+## Hook + CommitLint
 
-이번엔 [CommitLint](https://commitlint.js.org/#/) 라는 라이브러리와 함께 husky hook을 작성해보자.
+이번엔 [CommitLint](https://commitlint.js.org/#/)라는 라이브러리와 함께 husky hook을 작성해보자.
 
 ### 0. CommitLint
 
@@ -90,7 +89,7 @@ yarn add @commitlint/cli @commitlint/config-conventional -g
 
 ```js
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
+  extends: ["@commitlint/config-conventional"],
 };
 ```
 
