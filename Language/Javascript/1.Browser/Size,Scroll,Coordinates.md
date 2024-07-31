@@ -49,7 +49,7 @@ const 문서_전체_높이 = Math.max(
   document.body.offsetHeight,
   document.documentElement.offsetHeight,
   document.body.clientHeight,
-  document.documentElement.clientHeight,
+  document.documentElement.clientHeight
 );
 // 위 값들이 다를 수 있는 이유는 그다지 논리적이지 않다고 함..
 ```

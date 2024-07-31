@@ -4,9 +4,9 @@ Fetch, cache and update data in your React and React Native applications all wit
 
 ## 왜 사용할까?
 
-Redux 같은 기존 상태관리 라이브러리들은 클라이언트 상태 관리에는 적합하지만, 비동기나 서버 상태 작업에는 적합하지 않았다. 따라서 기존 상태관리 라이브러리를 사용해서 서버 데이터를 관리하게 되면, store에 클라이언트 데이터와 서버 데이터가 공존하게 되어 관리가 어려워진다는 문제가 있었다. 
+Redux 같은 기존 상태관리 라이브러리들은 클라이언트 상태 관리에는 적합하지만, 비동기나 서버 상태 작업에는 적합하지 않았다. 따라서 기존 상태관리 라이브러리를 사용해서 서버 데이터를 관리하게 되면, store에 클라이언트 데이터와 서버 데이터가 공존하게 되어 관리가 어려워진다는 문제가 있었다.
 
-react-query를 사용하면 서버와 클라이언트의 데이터를 분리할 수 있고, 캐싱, 값 업데이트, 에러 핸들링 등 비동기 과정을 더욱 편하게 다룰 수 있다. 
+react-query를 사용하면 서버와 클라이언트의 데이터를 분리할 수 있고, 캐싱, 값 업데이트, 에러 핸들링 등 비동기 과정을 더욱 편하게 다룰 수 있다.
 
 ### react-query 장점
 
@@ -18,7 +18,7 @@ react-query를 사용하면 서버와 클라이언트의 데이터를 분리할 
 - 비동기 과정을 선언적으로 관리 가능
 - react hook 과 사용하는 구조가 비슷하다.
 
-## install 
+## install
 
 ```bash
 yarn add react-query
@@ -31,7 +31,7 @@ import {
 	useQuery,
 }
 
-// Create a Client 
+// Create a Client
 const queryClient = new QueryClient();
 
 function App(){
@@ -43,7 +43,7 @@ function App(){
 }
 
 function Todos(){
-  // Access the client 
+  // Access the client
   const queryClient = useQueryClient();
   // Query
   const query = useQuery('todos',getTodos);
@@ -51,7 +51,7 @@ function Todos(){
   const mutation = useMutation(postTodo, {
     onSuccess: () => {
       // invalidate and refetch
-      queryClient.invalidateQueries('todos'); 
+      queryClient.invalidateQueries('todos');
     }
   })
   return (
@@ -64,29 +64,33 @@ function Todos(){
 }
 ```
 
-### useQuery 
+### useQuery
 
 ```js
 useQuery(queryKey, queryFn?, options?);
 ```
 
 - 데이터를 get 하기 위한 API (<-> post, update는 `useMutation` 사용)
-- 첫번째 파라미터로 unique key가 들어간다. unique key는 문자열이나 배열을 받는데, 만약 값이 배열이라면 첫번째 값은 다른 컴포넌트에서 부를 문자열 값이 들어가고, 두번째 값은 query 함수 내부에 파라미터로 전달될 값이 된다. 
-- 두번째 파라미터로 비동기 함수(API 호출 함수)가 들어간다. 반환 값은 API의 성공 및 실패 여부, API return 값을 포함한 객체가 된다. 
+- 첫번째 파라미터로 unique key가 들어간다. unique key는 문자열이나 배열을 받는데, 만약 값이 배열이라면 첫번째 값은 다른 컴포넌트에서 부를 문자열 값이 들어가고, 두번째 값은 query 함수 내부에 파라미터로 전달될 값이 된다.
+- 두번째 파라미터로 비동기 함수(API 호출 함수)가 들어간다. 반환 값은 API의 성공 및 실패 여부, API return 값을 포함한 객체가 된다.
 
 - `useQuery` 는 비동기적으로 동작한다. 즉 하나의 컴포넌트 내에 여러개의 `useQuery` 가 있다면 동시에 실행이 된다. 옵션에 `enabled` 를 사용하면 `useQuery` 를 동기적으로 실행 가능하다. (여러개의 비동기 query가 있다면 `useQueries` 를 사용하자)
 
 ```ts
-const {isLoading, isError, data, error} = useQuery('todo', getTodos, {
+const { isLoading, isError, data, error } = useQuery('todo', getTodos, {
   enabled: [value], // value값이 true가 되면 useQuery를 실행 -> 동기적
-	refetchOnWindowFocus: false, // 사용자가 윈도우를 다른 곳으로 갔다가 다시 화면으로 돌아오면 해당 함수를 재실행할 지에 대한 여부.
+  refetchOnWindowFocus: false, // 사용자가 윈도우를 다른 곳으로 갔다가 다시 화면으로 돌아오면 해당 함수를 재실행할 지에 대한 여부.
   retry: 0, // 실패시 재호출 몇번 할지
-  onSuccess : (data) => { console.log(data) }, // 성공시 호출
-	onError : (error) => { console.log(error) }, // api 호출 실패시 
-})
+  onSuccess: (data) => {
+    console.log(data);
+  }, // 성공시 호출
+  onError: (error) => {
+    console.log(error);
+  }, // api 호출 실패시
+});
 ```
 
-isLoading, isSuccess, isError 가 아닌 `status` 를 사용하면 한번에 처리가 가능하다. 
+isLoading, isSuccess, isError 가 아닌 `status` 를 사용하면 한번에 처리가 가능하다.
 
 ### useQueries
 
@@ -99,11 +103,11 @@ const result = useQueries([
   {
     queryKey: ['getTodos', token],
     queryFn: () => api.getTodos(token),
-  }
-])
+  },
+]);
 ```
 
-Promise.all 처럼 useQuery를 묶을 수 있다. 
+Promise.all 처럼 useQuery를 묶을 수 있다.
 
 ### QueryCache
 
@@ -132,16 +136,14 @@ const loginMutation = useMutation(loginAsync, {
 	onSuccess: (data,variables, context) => {
      // update 후에 get 함수를 간단히 재실행 가능하다.
     // loginAsync가 성공하면 todos로 맵핑된 useQuery api 함수를 실행
-    queryClient.invalidateQueries('todos'); 
+    queryClient.invalidateQueries('todos');
     // data가 todo로 맵핑된 get 함수에 전달
     queryClient.setQueryData(["todo",{id:5}],data);
   }
-  // 
+  //
 	onSettled: () => {...},
 })
 ```
-
-
 
 ## 참고 자료
 

@@ -12,4 +12,4 @@ https://ui.toast.com/posts/ko_20171016
 >
 > - transform, opacitiy는 안일어나.
 >   - 어떻게?
-> - 프레임 줄이기 
+> - 프레임 줄이기

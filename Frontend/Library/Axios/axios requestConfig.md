@@ -6,8 +6,8 @@
 
 ### method
 
-- 요청 메서드 
-- `get` | '`GET`' 둘 다 가능 
+- 요청 메서드
+- `get` | '`GET`' 둘 다 가능
 
 ### baseURL
 
@@ -17,7 +17,7 @@
 ### transformRequest
 
 - 서버에 API 요청 보내기 직전, 데이터 변경하는 함수 (혹은 함수들 담은 배열)
-- `PUT`, `POST`, `PATCH` , `DELETE` 메서드에만 가능 
+- `PUT`, `POST`, `PATCH` , `DELETE` 메서드에만 가능
 
 ```js
   transformRequest: [function (data, headers) {
@@ -52,8 +52,8 @@
 
 ### data
 
-- `PUT`, `POST`, `PATCH` , `DELETE` 메서드 사용할 경우 전송할 데이터 
-- (transformRequest 설정되지 않은 경우) 문자열, 일반 객체, `ArrayBuffer` , `ArrayBufferView` , `URLSearchParams` 가능 
+- `PUT`, `POST`, `PATCH` , `DELETE` 메서드 사용할 경우 전송할 데이터
+- (transformRequest 설정되지 않은 경우) 문자열, 일반 객체, `ArrayBuffer` , `ArrayBufferView` , `URLSearchParams` 가능
   - 브라우저는 `FormData` , `File` , `Blob` 도 가능
   - Node.js는 `Stream` , `Buffer` 도 가능
 
@@ -80,28 +80,28 @@ CORS 요청, 즉 '다른 도메인'에 요청 보낼 때 쿠키나 인증 헤더
 ```ts
 // https://github.com/axios/axios/tree/v1.x/lib/adapters
 adapter: function myAdapter(config) {
-  // request transformers, inteceptors 실행 이후 
-  // config 내 응답 정보 사용 가능 
-  
-  return new Promise(function(resolve, reject) {
+  // request transformers, inteceptors 실행 이후
+  // config 내 응답 정보 사용 가능
+
+  return new Promise(function (resolve, reject) {
     const response = {
       data: responseData,
       status: request.status,
       statusText: request.statusText,
       headers: responseHeaders,
       config: config,
-      request: request
+      request: request,
     };
     settle(resolve, reject, response);
-    
-		// response transformers, inteceptors 실행 
+
+    // response transformers, inteceptors 실행
   });
 }
 ```
 
 ### auth
 
-- HTTP Basic Authentication 사용되며, Credentials 제공 
+- HTTP Basic Authentication 사용되며, Credentials 제공
 - `auth` 사용 시 `headers`로 설정한 `Authorization`를 덮어쓴다
 
 ```tsx
@@ -118,12 +118,12 @@ auth: {
 
 ### responseEncoding
 
-- Node.js 전용 
+- Node.js 전용
 - 응답 디코딩에 사용할 '인코딩' 방식. 단, 응답 타입이 `stream` 인 경우 제외
 
 ### xsrfCookieName, xsrfHeaderName
 
-- csrf 토큰에 대한 값으로 사용할 쿠키 이름, 이를 운반하는 HTTP 헤더 이름 
+- csrf 토큰에 대한 값으로 사용할 쿠키 이름, 이를 운반하는 HTTP 헤더 이름
 
 ```ts
 xsrfCookieName: 'XSRF-TOKEN', // 기본 값
@@ -132,7 +132,7 @@ xsrfHeaderName: 'X-XSRF-TOKEN', // 기본 값 -> ? 자동으로 xsrf 토큰이 �
 
 ### onUploadProgress, onDownloadProgress
 
-- 업로드 및 다운로드 `Progress` 이벤트 처리 
+- 업로드 및 다운로드 `Progress` 이벤트 처리
 
 ### maxContentLength
 
@@ -146,7 +146,7 @@ xsrfHeaderName: 'X-XSRF-TOKEN', // 기본 값 -> ? 자동으로 xsrf 토큰이 �
 
 ```ts
 validateStatus: function (status) {
-  return status < 500;  // HTTP 상태 코드 500 미만인 경우에만 응답 처리 
+  return status < 500;  // HTTP 상태 코드 500 미만인 경우에만 응답 처리
 },
 ```
 
@@ -172,6 +172,5 @@ proxy: {
 ```ts
 cancelToken: new CancelToken(function (cancel) {
   // ...
-})
+});
 ```
-

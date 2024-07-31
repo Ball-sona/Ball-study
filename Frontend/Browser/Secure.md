@@ -9,5 +9,4 @@
 ## XSS(Cross Site Scripting)
 
 - 웹 페이지에 악성 스크립트 주입하는 공격
-- LocalStorage는 XSS 공격에 취약 
-
+- LocalStorage는 XSS 공격에 취약

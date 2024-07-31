@@ -8,7 +8,7 @@ GraphQL 기반으로 API를 만들어보자.
 
 - GraphQL 내장되어 있는 type으로, 기본 자료형
 - `String` , `Int` , `Float` . `Boolean` , `ID`
-- `ID` 는 id값임을 명시적으로 표현하기 위해 사용되는 type으로 내부적으로는 `String` 과 동일하다. 
+- `ID` 는 id값임을 명시적으로 표현하기 위해 사용되는 type으로 내부적으로는 `String` 과 동일하다.
 
 ### Object Type
 
@@ -32,27 +32,27 @@ type Tweet {
 
   ```
   query {
-  
+
   }
   ```
 
-  - `query` 는 생략 가능 
+  - `query` 는 생략 가능
 
 - Mutation
 
   ```
   mutation {
-  
+
   }
   ```
 
-  - `mutation` 은 반드시 붙여줘야 한다. 
+  - `mutation` 은 반드시 붙여줘야 한다.
 
 ## Non nullable Field
 
-기본적으로 GraphQL은 필드값으로 `null` 값을 허용한다. 
+기본적으로 GraphQL은 필드값으로 `null` 값을 허용한다.
 
-따라서 만약 특정 필드값에 `null`을 허용해주고 싶지 않다면 스칼라 타입 뒤에 `!` 을 붙이면 된다. 
+따라서 만약 특정 필드값에 `null`을 허용해주고 싶지 않다면 스칼라 타입 뒤에 `!` 을 붙이면 된다.
 
 ```
 type Example {
@@ -69,4 +69,3 @@ type Example {
 - case4는 반드시 `String` 으로 구성된 배열이어야함.
 
 ## Cache
-

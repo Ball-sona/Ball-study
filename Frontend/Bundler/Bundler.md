@@ -1,6 +1,6 @@
 # 빌드 툴
 
-컴파일 및 번들링 
+컴파일 및 번들링
 
 ## webpack
 
@@ -9,24 +9,24 @@
 ```js
 // webpack.config.js
 module.exports = {
-	entry,
-	output,
-	module: {
-		rules: [
-			// loader...
-		],
-		plugins: [],
-	}
-}
+  entry,
+  output,
+  module: {
+    rules: [
+      // loader...
+    ],
+    plugins: [],
+  },
+};
 ```
 
 ### HMR
 
-- HMR(Hot Module Replacement) 통해 소스코드 변화를 감지해서 브라우저에 바로 반영 -> 신속하게 개발 
+- HMR(Hot Module Replacement) 통해 소스코드 변화를 감지해서 브라우저에 바로 반영 -> 신속하게 개발
 
 ### Code Splitting
 
-- 파일들을 여러 번들 파일로 분리한 후. 병렬로 스크립트 로드하여 페이지 로딩 속도 개선 
+- 파일들을 여러 번들 파일로 분리한 후. 병렬로 스크립트 로드하여 페이지 로딩 속도 개선
 - 페이지 로드 초기에 필요 없는 코드는 분리하여 lazy loading -> 초기 로딩속도 개선
 
 ## rollup
@@ -36,15 +36,15 @@ module.exports = {
 ```js
 // rollup.config.js
 export default {
-	input,
-	output,
-	plugins: [],
-}
+  input,
+  output,
+  plugins: [],
+};
 ```
 
 ### vs webpack
 
-- webpack은 내부적으로 commonjs 를 사용하지만, rollup은 typescript(es6)를 사용한다. 
+- webpack은 내부적으로 commonjs 를 사용하지만, rollup은 typescript(es6)를 사용한다.
 - 따라서 rollup은 ES6 모듈 형태로 빌드할 수 있다. (webpack은 원래 commons 형태로만 번들링 가능했찌만 v5부터 es6 번들도 지원한다)
 - webpack은 모듈들을 함수로 감싸서 평가하는 방식. rollup은 모듈을 호이스팅하여 한번에 평가하는 방식 -> 따라서 rollup이 조금 더 빠르다.
 - 사용되지 않는 코드를 제거하여 번들 크기를 줄이는 tree shaking은 기본적으로 es6 코드에서 더 제대로 동작하기 때문에. Rollup 이 더 가벼운 번들을 생성 가능
@@ -75,7 +75,7 @@ export default {
 
 ## SWC
 
-## 
+##
 
 ## 참고
 

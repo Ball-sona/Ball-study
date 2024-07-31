@@ -21,21 +21,21 @@
 
   - Transport
 
-     (L4)
+    (L4)
 
     - 프로세스 간 데이터 전송 (TCP.UDP)
     - 전송 데이터 = TCP면 segment UDP면 datagram
 
   - Network
 
-     (L3)
+    (L3)
 
     - 목적지까지 datagram 라우팅 (IP. routing protocol)
     - 전송 데이터 = packet
 
   - Link
 
-     (L2)
+    (L2)
 
     - 근접 네트워크끼리 데이터 전달 (Ethernet. Wifi. PPP)
     - 전송 데이터 = Frame (Message + Hi + Hn + Ht)
@@ -93,7 +93,7 @@
 ## IP/TCP/UDP/HTTP
 
 - IP(Internet Protocol)
-  - datagram service  → packets. IP 주소
+  - datagram service → packets. IP 주소
   - best-effort → 보내긴 할건데 도착 보장 안해.
 - TCP(Transmission Control Protocol)
   - Reliable byte-stream channel. Flow control. bidirectional
@@ -123,7 +123,7 @@
   - new IP 주소 + subnet 안에 있는 첫번째 Router IP 주소 + DNS 서버 이름/IP주소 알려줘!
 - ARP(Address Resolution Protocol)
   - 첫번째 Router MAC 주소 알려줘
-  - 모든 라우터들에게 broadcast  → 응답한 라우터의 MAC주소 사용
+  - 모든 라우터들에게 broadcast → 응답한 라우터의 MAC주소 사용
 - DNS(Domain Network System)
   - [www.google.com](http://www.google.com) 의 IP주소를 알려줘!
 
@@ -144,4 +144,3 @@
   - 발신측 전송 속도 조절 그런거 못함
   - 신뢰성 없지만 간단하고 빨라 → 실시간 화상 통신. DNS..
   - HTTP/SIP(실시간)
-

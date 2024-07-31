@@ -41,11 +41,11 @@
 - Linear Search(선형 탐색)
   - 전체 관계를 처음부터 끝까지 모두 스캔
   - 한번의 탐색 이후 block 개수만큼 transfer
-  - cost = 탐색 시간 + 전체 데이터 블록 전송 시간 = br * tT + tS
+  - cost = 탐색 시간 + 전체 데이터 블록 전송 시간 = br \* tT + tS
   - 환경에 영향 받지 않지만. 시간이 많이 소요된다
 - Primary Index + Equality on Key (Exact match)
   - **B+ 트리** 탐색 이후 리프 노드에서 데이터 노드 탐색
-  - cost = 트리 Root 노드에서 데이터 노드까지 탐색 시간 x 데이터 탐색 및 전송 시간 = (height + 1) * (tT + tS)
+  - cost = 트리 Root 노드에서 데이터 노드까지 탐색 시간 x 데이터 탐색 및 전송 시간 = (height + 1) \* (tT + tS)
 - Primary Index + Equality on nonkey (비교 연산)
   - consecutive blocks
     - 조건을 만족하는 레코드에 대한 포인터를 리프 노드에서 탐색하여 데이터 페이지 검색
@@ -72,14 +72,14 @@
 
   - M = memory size. N = run 개수 일때 merge
 
-    - M > N : 메모리에 run 일부분이 동시에 적재 가능하다. 각 run에서 블록 단위로 메모리에 적재하고, 메모리에 적재된 블록을 대상으로 병합하는 연산을 수행. 최종 정렬 데이터를 하나의 output 블록에 할당.   그니까 하나의 run에 들어가는 데이터가 많아진다는 뜻인가?
+    - M > N : 메모리에 run 일부분이 동시에 적재 가능하다. 각 run에서 블록 단위로 메모리에 적재하고, 메모리에 적재된 블록을 대상으로 병합하는 연산을 수행. 최종 정렬 데이터를 하나의 output 블록에 할당. 그니까 하나의 run에 들어가는 데이터가 많아진다는 뜻인가?
     - M ≤ N : 각 pass 마다 **(M-1)개씩** run으로 묶고 정렬 후 merge.
 
   - Cost
 
     - Block transfer
 
-      - 초기 run 생성할때 모든 블럭을 읽고 쓰니까 2*b(r)
+      - 초기 run 생성할때 모든 블럭을 읽고 쓰니까 2\*b(r)
 
       - 병합을 위한 pass 횟수 = [log(M-1)(b(r)/M)]
 
@@ -87,16 +87,16 @@
 
         b(r)
 
-        ( [log(M-1)(b(r)/M)]+1 ) - b(r) = 
+        ( [log(M-1)(b(r)/M)]+1 ) - b(r) =
 
-        b(r)*( [log(M-1)(b(r)/M)]+1 )
+        b(r)\*( [log(M-1)(b(r)/M)]+1 )
 
         - 마지막 pass의 write는 측정하지 않는다.
 
     - Seek
 
-      - 초기 run 생성할때 메모리 크기만큼 데이터 읽고 쓰니까 2*[b(r)/M]
-      - 병합 단계에서 buffer 단위로 탐색. 각 패스마다 2*[b(r)/b(b)] 탐색
+      - 초기 run 생성할때 메모리 크기만큼 데이터 읽고 쓰니까 2\*[b(r)/M]
+      - 병합 단계에서 buffer 단위로 탐색. 각 패스마다 2\*[b(r)/b(b)] 탐색
       - total = **2\*[b(r)/M] + [b(r)/b(b)]\*( 2\*[log(M-1)(b(r)/M)] -1 )**
 
     - 예시….
@@ -108,7 +108,7 @@
 - Nested-Loop Join
 
   - 각 튜플의 모든 조합에 대해 조건을 비교하는 방법
-  - worst case = n(r) * b(s) + b(r) transfer + n(r) + b(r) seek
+  - worst case = n(r) \* b(s) + b(r) transfer + n(r) + b(r) seek
   - best case = br + bs transfer + 2 seek
     - 메인 메모리에 모두 올라갈 수 있는 경우
 
@@ -131,7 +131,7 @@
 
     = 외부 테이블 블럭 개수만큼 디스크 연산 + 내부 테이블 개수만큼 색인 검색
 
-    = b(r) * (t(T) + t(S)) + n(r) * c
+    = b(r) _ (t(T) + t(S)) + n(r) _ c
 
   - 적은 테이블을 outer table 로 두는 것이 유리하다. (잘못하면 block-nested 보다 느릴수도)
 
@@ -152,7 +152,7 @@
   - 조인 테이블을 해쉬 함수를 사용하여 다수개의 분할(partition)으로 분해하고 동등한 해쉬 값을 가지는 partition 간에 조인 연산 수행
   - 각 분할 간의 조인은 해쉬 함수 사용하는 indexed nested-loop join 사용
   - 2개의 relation 분리
-    - **build input의 모든 partition**을  메모리에 적재하고 메모리 내에서 해쉬 색인을 구성.
+    - **build input의 모든 partition**을 메모리에 적재하고 메모리 내에서 해쉬 색인을 구성.
     - probe input 의 partition에서 튜플을 읽어 메모리에서 해쉬 색인 사용하여 조인 조건 검사 후 결과 터플 형성
   - b(r) + b(s) transfer
   - build input relation 의 partition 개수인 n은 [b(s)/M] 와 동일하면 이론적으로 가능하지만 데이터 분포의 불확실성 고려하여 값 설정

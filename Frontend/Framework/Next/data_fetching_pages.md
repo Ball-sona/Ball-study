@@ -61,9 +61,10 @@ export const getStaticPaths = (async () => {
 
 ### fallback
 
-- 만약 미리 빌드해야 할 페이지가 너무 많은 경우. paths에 미리 빌드해 둘 몇개의 페이지만 리스트로 반환하고, 나머지 페이지는 
+- 만약 미리 빌드해야 할 페이지가 너무 많은 경우. paths에 미리 빌드해 둘 몇개의 페이지만 리스트로 반환하고, 나머지 페이지는
+
   - `fallback:true` : 사용자가 미리 빌드하지 않은 페이지에 접근할 경우, 빌드되기 전까지는 fallback 컴포넌트를 보여주다가 빌드 완료되면 해당 페이지를 보여준다.
-  - `fallback:"blocking"` : 별도의 로딩 처리를 하지 않고, 단순히 빌드가 완료될때까지 사용자를 기다리게 한다. 
+  - `fallback:"blocking"` : 별도의 로딩 처리를 하지 않고, 단순히 빌드가 완료될때까지 사용자를 기다리게 한다.
 
 - fallback 옵션?
 - 미리 만들어두면 성능 떨어진다고? 먼말인질 모르겠네...
@@ -96,7 +97,8 @@ export const getServerSideProps = (async () => {
 ```
 
 - `getServerSideProps` 는 JSON 객체를 반환.
-  - JSON.stringify로 직렬화할 수 없는 Date 객체 등은 props에 담을 수 없다. 
+
+  - JSON.stringify로 직렬화할 수 없는 Date 객체 등은 props에 담을 수 없다.
 
 - props 속성은 클라이언트 사이드에서 페이지가 정확히 hydrate 될 수 있도록 해?
 - 만약 함수 내에서 에러 발생하면 `pages/500.js` 보여준다. 에러 페이지로 리다이렉트
@@ -131,10 +133,8 @@ export async function getServerSideProps({ req, res }) {
 
 ## getInitialProps
 
-- 서버와 클라이언트 모두에서 실행 가능한 메서드 
+- 서버와 클라이언트 모두에서 실행 가능한 메서드
 - 사용이 제한되어있는 페이지애만 사용하도록 권장
-
-
 
 ## SSR vs CSR
 

@@ -14,17 +14,17 @@ Morphology Filtering은 영상에서 객체의 형태를 변경하거나 객체 
 
 ## Dilation(팽창)
 
-팽창 연산은 침식과 반대로 물체의 주변을 확장하는 연산이다. 
+팽창 연산은 침식과 반대로 물체의 주변을 확장하는 연산이다.
 
 ![image](https://user-images.githubusercontent.com/67703882/235477007-7c81d42e-2cf3-48ab-8f19-a41e88fe033b.png)
 
-침식 연산와 달리, 팽창 연산에서는 입력 영상에서 1로 채워진 영역과 완전히 겹치지 않으면 1로 변경한다. 
+침식 연산와 달리, 팽창 연산에서는 입력 영상에서 1로 채워진 영역과 완전히 겹치지 않으면 1로 변경한다.
 
 > Erosion 연산은 작은 값은 크게, 큰 값은 작게하여 전체적으로 평평하게 만드는 연산이라면, Dilation 연산은 큰 값은 더 크게, 작은 값은 더 작게 하여 픽셀 값 간의 차이를 극대화시키는 연산이라고 할 수 있다.
 
 ## Opening(열림)
 
-열림 연산은 **침식 연산 후 팽창 연산을 적용하는 것**을 말한다. 
+열림 연산은 **침식 연산 후 팽창 연산을 적용하는 것**을 말한다.
 
 ![image](https://user-images.githubusercontent.com/67703882/235480065-403f5b8f-b885-4c21-8718-8fdf8cf8c751.png)
 
@@ -46,7 +46,7 @@ Morphology Filtering은 영상에서 객체의 형태를 변경하거나 객체 
 
 ![스크린샷 2023-05-03 00 26 40](https://user-images.githubusercontent.com/67703882/235712378-8084b3f9-e65f-47e4-a49f-359cd89656b8.png)
 
-## Boundary Extraction 
+## Boundary Extraction
 
 위에서 알아본 연산들을 통해 특정 이미지의 경계를 추출하는 방법을 알아보자. 경계 추출 수식은 다음과 같다.
 
@@ -76,7 +76,7 @@ Morphology Filtering은 영상에서 객체의 형태를 변경하거나 객체 
 
 - Morphological Gradient : `Delation - Erosion`
 
-  입력 이미지에서 sharp한 부분만 강조한다. 
+  입력 이미지에서 sharp한 부분만 강조한다.
 
 - Top-hat transformation : `원본 - Opening`
 
@@ -88,4 +88,4 @@ Morphology Filtering은 영상에서 객체의 형태를 변경하거나 객체 
 
 - [Morphology 연산](https://swkdn.tistory.com/entry/7-Morphology-%EC%97%B0%EC%82%B0)
 
-- [OpenCV - 19. 모폴로지(Morphology) 연산 (침식, 팽창, 열림, 닫힘, 그레디언트, 탑햇, 블랙햇)](https://bkshin.tistory.com/entry/OpenCV-19-%EB%AA%A8%ED%8F%B4%EB%A1%9C%EC%A7%80Morphology-%EC%97%B0%EC%82%B0-%EC%B9%A8%EC%8B%9D-%ED%8C%BD%EC%B0%BD-%EC%97%B4%EB%A6%BC-%EB%8B%AB%ED%9E%98-%EA%B7%B8%EB%A0%88%EB%94%94%EC%96%B8%ED%8A%B8-%ED%83%91%ED%96%87-%EB%B8%94%EB%9E%99%ED%96%87#:~:text=%EC%B9%A8%EC%8B%9D%20%EC%97%B0%EC%82%B0%20%ED%9B%84%20%ED%8C%BD%EC%B0%BD%20%EC%97%B0%EC%82%B0,(closing)%20%EC%97%B0%EC%82%B0%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%ED%95%A9%EB%8B%88%EB%8B%A4.)
+- [OpenCV - 19. 모폴로지(Morphology) 연산 (침식, 팽창, 열림, 닫힘, 그레디언트, 탑햇, 블랙햇)](<https://bkshin.tistory.com/entry/OpenCV-19-%EB%AA%A8%ED%8F%B4%EB%A1%9C%EC%A7%80Morphology-%EC%97%B0%EC%82%B0-%EC%B9%A8%EC%8B%9D-%ED%8C%BD%EC%B0%BD-%EC%97%B4%EB%A6%BC-%EB%8B%AB%ED%9E%98-%EA%B7%B8%EB%A0%88%EB%94%94%EC%96%B8%ED%8A%B8-%ED%83%91%ED%96%87-%EB%B8%94%EB%9E%99%ED%96%87#:~:text=%EC%B9%A8%EC%8B%9D%20%EC%97%B0%EC%82%B0%20%ED%9B%84%20%ED%8C%BD%EC%B0%BD%20%EC%97%B0%EC%82%B0,(closing)%20%EC%97%B0%EC%82%B0%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%ED%95%A9%EB%8B%88%EB%8B%A4.>)

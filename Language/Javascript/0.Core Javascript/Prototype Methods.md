@@ -15,10 +15,7 @@ const dog = Object.create(animal, {
 ### 객체 복사
 
 ```js
-const cloneObj = Object.create(
-  Object.getPrototypeOf(obj),
-  Object.getOwnPropertyDescriptors(obj),
-);
+const cloneObj = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
 ```
 
 객체의 데이터 프로퍼티부터 접근자 프로퍼티까지 완벽하게 복제하여 객체 사본을 만들 수 있다.

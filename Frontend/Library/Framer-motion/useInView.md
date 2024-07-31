@@ -1,6 +1,6 @@
 # useInView
 
-특정 요소가 뷰포트 내에 위치하고 있는지 여부를 알 수 있는 훅 
+특정 요소가 뷰포트 내에 위치하고 있는지 여부를 알 수 있는 훅
 
 ```tsx
 const Section = () => {
@@ -8,10 +8,10 @@ const Section = () => {
   const isInView = useInView(ref, { margin: '0px 0px -60px 0px', once: true });
 
   return (
-		<div ref={ref}>
-    	<div class={`title ${isInView ? 'active-title': ''}`}>Title1</div>
-      <div class={`title ${isInView ? 'active-title': ''}`}>Title2</div>
-      <div class={`title ${isInView ? 'active-title': ''}`}>Title3</div>
+    <div ref={ref}>
+      <div class={`title ${isInView ? 'active-title' : ''}`}>Title1</div>
+      <div class={`title ${isInView ? 'active-title' : ''}`}>Title2</div>
+      <div class={`title ${isInView ? 'active-title' : ''}`}>Title3</div>
     </div>
   );
 };
@@ -19,8 +19,8 @@ const Section = () => {
 
 ```css
 .title {
-  opacity:0;
-   transform: translateY(30px);
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .active-title {

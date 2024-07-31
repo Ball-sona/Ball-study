@@ -54,16 +54,16 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
   ```sql
   Create method ageOnDate(onDate date)
   	returns interval year
-  	for CustomerType 
+  	for CustomerType
   begin
   	return onDate - self.dateOfBirth;
-  
+
   Select name.lastname, ageOnDate(current_date) from customer;
-  
+
   Create method giveRaise(percent integer) for Employee
   begin
   	set self.salary = self.salary * percent/100
-  end 
+  end
   ```
 
 - Intermediate type 없이 테이블 생성
@@ -80,11 +80,11 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
   ```sql
   Create function Publisher(n varchar(20), b varchar(20))
   	returns Publisher
-  	begin 
-  		set pubName = n; 
+  	begin
+  		set pubName = n;
   		set pubBranch = b;
   	end
-  
+
   new Publisher('SSU','Seoul');
   ```
 
@@ -109,8 +109,8 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
 
   ```sql
   Create table people of Person;
-  Create table students of Student under people; 
-  Create table teachers of Teacher under people; 
+  Create table students of Student under people;
+  Create table teachers of Teacher under people;
   // subtable에 있는 튜플은 supertable에 있는 튜플이라고 여겨?
   ```
 
@@ -134,16 +134,16 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
   Select title
   from books
   where 'DB' in (unnest(keywordSet));
-  
+
   // array의 각 요소에 접근하는 경우
   Select authorArray[1], authorArray[2]
   from books
   where title = 'Database 1';
-  
+
   // title, author-name 을 쌍으로? 찾는 경우
   Select B.title, A.author
   from books as B, unnest(B.authorArray) as A(author);
-  
+
   // ordering with ordinality
   Select B.title, A.author, A.position
   from books as B, unnest(B.authorArray) with ordinality as A(author, position);
@@ -172,7 +172,7 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
   	name varchar(20),
   	head ref(Person) scope people // Person:type people:table
   );
-  
+
   Create table departments of Department;
   Create table departments of Department(head with options scope people);
   ```
@@ -182,11 +182,11 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
   ```sql
   // 시스템이 생성
   Create table people of Person
-  ref is personID system generated; 
-  // 사용자가 생성 (키값 사용 가능) 
-  Create table person of Person 
+  ref is personID system generated;
+  // 사용자가 생성 (키값 사용 가능)
+  Create table person of Person
   ref is personID user generated;
-  
+
   people(personID, name, address); // personID = ref(p)
   ```
 
@@ -221,7 +221,7 @@ complex types 내 어떤 기능이 있는지 알아보자. SQL3 기반으로함.
   	contact_date DATE
   );
   Insert into contacts values(person_typ(65,'Lee','naver.com','010'),'24 jun 2022');
-  
+
   Create Table person_obj_table of person_typ;
   Insert into person_obj_table values(person_typ(...));
   ```

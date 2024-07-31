@@ -4,25 +4,27 @@ Css-in-Js 라이브러리
 
 ## @emotion/css
 
-- 프레임워크에 구애받지 않고 Emotion을 사용하고 싶을 때 
-- SSR을 위해서는 추가적인 설정 필요 
+- 프레임워크에 구애받지 않고 Emotion을 사용하고 싶을 때
+- SSR을 위해서는 추가적인 설정 필요
 
 ```jsx
 /** Object Styles **/
-<div css={{ backgroundColor: 'hotpink'}}>
-  This has a hotpink background.
-</div>
+<div css={{ backgroundColor: 'hotpink' }}>This has a hotpink background.</div>;
 
 /** String Styles **/
-import {css} from '@emotion/css';
-<div css={css` background-color: hotpink`}>
+import { css } from '@emotion/css';
+<div
+  css={css`
+    background-color: hotpink;
+  `}
+>
   This has a hotpink background.
-</div>
+</div>;
 ```
 
 ## @emotion/react
 
-- 리액트 프레임워크를 사용할 때 사용 
+- 리액트 프레임워크를 사용할 때 사용
 - `css` props 지원. but `@emotion/css` 와는 내부적으로 다르게 동작함
 - 별도 설정 없이 SSR 지원 및 Theme 기능 제공
 
@@ -36,4 +38,3 @@ import {css} from '@emotion/css';
 ## @emotion/eslint-plugin
 
 - ESlint Rules for `@emotion/css`, `@emotion/react` and `@emotion/styled`
-

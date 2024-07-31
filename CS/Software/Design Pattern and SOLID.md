@@ -3,22 +3,22 @@
 ## 디자인 패턴이란?
 
 - <b>디자인 패턴(Design Pattern)</b>이란 과거의 소프트웨어 개발 과정에서 발견된 설계의 노하우를 축적하여 그 방법에 이름을 붙여 이후에 재사용하기 좋은 형태로 특정 규약을 만들어서 정리한 것을 의미한다.
-- 소스나 기계 코드로 바로 전환될 수 있는 완성된 디자인은 아니며, 특정 상황에 맞게 사용되거나 특정 문제를 해결하는데 쓰이는 서술이나 템플릿이다. 
+- 소스나 기계 코드로 바로 전환될 수 있는 완성된 디자인은 아니며, 특정 상황에 맞게 사용되거나 특정 문제를 해결하는데 쓰이는 서술이나 템플릿이다.
 - 디자인 패턴은 프로그래머가 어플리케이션이나 시스템을 디자인할 때 공통된 문제를 해결하는데에 쓰이는 형식화 된 좋은 관행(best practice)이다.
 
 우리는 디자인 패턴을 정의함으로서 성공적인 소프트웨어 아키텍처와 디자인의 재사용성을 추구할 수 있다.
 
-## 디자인 패턴의 분류 
+## 디자인 패턴의 분류
 
-디자인 패턴을 다룬 책 중 가장 유명한 책인 <a href="https://www.google.com/search?q=Design+Patterns:+Elements+of+Reusable+Object-Oriented+Software&rlz=1C5CHFA_enKR987KR987&sxsrf=AJOqlzWjjMERzVkUo7fVGUnlzv-sQPpC1w:1674380559574&source=lnms&tbm=bks&sa=X&ved=2ahUKEwiFnOPT8dr8AhWKpVYBHbCfBmoQ_AUoAnoECAIQBA&biw=671&bih=690&dpr=2">[Design Patterns: Elements of Reusable Object-Oriented Software]</a> 에서 4명의 저자('GoF') 가 총 23개의 패턴을 소개하고 있다. 
+디자인 패턴을 다룬 책 중 가장 유명한 책인 <a href="https://www.google.com/search?q=Design+Patterns:+Elements+of+Reusable+Object-Oriented+Software&rlz=1C5CHFA_enKR987KR987&sxsrf=AJOqlzWjjMERzVkUo7fVGUnlzv-sQPpC1w:1674380559574&source=lnms&tbm=bks&sa=X&ved=2ahUKEwiFnOPT8dr8AhWKpVYBHbCfBmoQ_AUoAnoECAIQBA&biw=671&bih=690&dpr=2">[Design Patterns: Elements of Reusable Object-Oriented Software]</a> 에서 4명의 저자('GoF') 가 총 23개의 패턴을 소개하고 있다.
 
-GoF 디자인 패턴은 크게 '생성 패턴(Creation Patterns)', '구조 패턴(Structural Patterns)', '행동 패턴(Behavior Pattern)' 3가지 종류로 구분된다. 
+GoF 디자인 패턴은 크게 '생성 패턴(Creation Patterns)', '구조 패턴(Structural Patterns)', '행동 패턴(Behavior Pattern)' 3가지 종류로 구분된다.
 
 <img width="493" alt="스크린샷 2023-01-22 18 30 07" src="https://user-images.githubusercontent.com/67703882/213908975-7eaf0a48-44b8-4fe4-94b6-46849e4352b5.png" >
 
 - 생성 패턴
   - 객체의 생성에 관련된 패턴
-  - 객체의 생성과 조합을 캡슐화하여 특정 상황에서 객체를 생성하는데 있어 더욱 더 유연성을 제공한다. 
+  - 객체의 생성과 조합을 캡슐화하여 특정 상황에서 객체를 생성하는데 있어 더욱 더 유연성을 제공한다.
   - 싱글톤 패턴, 추상 팩토리 패턴, 빌더 패턴, 팩토리 메서드 패턴 등이 속한다.
 - 구조 패턴
   - 클래스나 객체를 조합해 더 큰 구조를 만드는 패턴
@@ -37,19 +37,20 @@ SOLID 원칙이란 객체지향 설계에서 지켜줘야 할 5개의 원칙(SRP
 
 ### 1. SRP(Single Responsibility Principle) : 단일 책임 원칙
 
-- 객체는 단 하나의 책임만 가져야 한다는 원칙 
+- 객체는 단 하나의 책임만 가져야 한다는 원칙
 - SRP에 따른 설계를 통해 응집도는 높게, 결합도는 낮은 시스템을 설계할 수 있다.
+
   - 응집도 : 한 프로그램의 구성 요소들이 얼마나 뭉쳐 있는지를 의미
   - 결합도 : 프로그램 구성 요소들 사이가 얼마나 의존적인지를 의미
 
-- 예를 들면, `calculator()` 라는 함수가 사칙연산을 모두 담당하는 것보다 덧셈, 뺄셈, 곱셈, 나눗셈이 각각의 함수로 정의되어 있어야 유지 보수가 쉽다. 또 계산기에 알람 기능을 추가 한다고 해서 `alarm()` 함수를 `Calculator` 의 기능으로 추가하는 것은 SRP에 위배된다. 
+- 예를 들면, `calculator()` 라는 함수가 사칙연산을 모두 담당하는 것보다 덧셈, 뺄셈, 곱셈, 나눗셈이 각각의 함수로 정의되어 있어야 유지 보수가 쉽다. 또 계산기에 알람 기능을 추가 한다고 해서 `alarm()` 함수를 `Calculator` 의 기능으로 추가하는 것은 SRP에 위배된다.
 
   <img width="274" alt="스크린샷 2023-01-22 19 06 02" src="https://user-images.githubusercontent.com/67703882/213910263-a618f98f-a368-40a1-92f4-9880ae71389e.png">
 
 ### 2. OCP(Open-Closed Princple) : 개방-폐쇄 원칙
 
 - 기존의 코드를 변경하지 않으면서(closed) 기능을 추가할 수 있도록(open) 설계가 되어야 한다는 원칙
-- 확장에 대해서는 개방적이고 ,수정에 대해서는 폐쇄적이어야 한다는 의미를 갖는다. 
+- 확장에 대해서는 개방적이고 ,수정에 대해서는 폐쇄적이어야 한다는 의미를 갖는다.
 - 이를 만족하기 위해 <b>캡슐화</b>를 통해 여러 객체에서 사용하는 같은 기능을 <b>인터페이스</b>에 정의하는 방법이 있다.
 - 아래 그림에서 `Animal` 인터페이스를 구현한 각 클래스들은 `crying()` 함수를 각 클래스에 맞게 재정의한다. 이렇게 캡슐화를 하면 동물이 추가되었을 때 `crying()` 함수를 호출하는 부분은 수정하지 않으면서 쉽게 확장할 수 있다.
 
@@ -57,24 +58,23 @@ SOLID 원칙이란 객체지향 설계에서 지켜줘야 할 5개의 원칙(SRP
 
 ### 3. LSP(Liskov Substitution Principle) : 리스코프 치환 원칙
 
-- 자식 클래스는 최소한 자신의 부모 클래스에서 가능한 행위는 수행할 수 있어야 한다는 원칙 
-- 즉, 자식 클래스는 언제나 부모 클래스의 역할을 대체할 수 있어야 한다는 것을 의미하며, 부모 클래스와 자식 클래스의 행위가 일관됨을 의미한다. 
-- 예를 들어 `Car` 이라는 부모 클래스가 있고, 이를 상속하는 `HyundaiCar` , `KiaCar` 이라는 하위 클래스가 있다고 할때, 하위 클래스들은 코드 상에서 `Car` 로 다루어질 수 있어야 한다. 즉 부모 클래스를 자식 클래스로 치환해도 문제가 없어야 한다는 것이다. 
+- 자식 클래스는 최소한 자신의 부모 클래스에서 가능한 행위는 수행할 수 있어야 한다는 원칙
+- 즉, 자식 클래스는 언제나 부모 클래스의 역할을 대체할 수 있어야 한다는 것을 의미하며, 부모 클래스와 자식 클래스의 행위가 일관됨을 의미한다.
+- 예를 들어 `Car` 이라는 부모 클래스가 있고, 이를 상속하는 `HyundaiCar` , `KiaCar` 이라는 하위 클래스가 있다고 할때, 하위 클래스들은 코드 상에서 `Car` 로 다루어질 수 있어야 한다. 즉 부모 클래스를 자식 클래스로 치환해도 문제가 없어야 한다는 것이다.
 
 ### 4. ISP(Interface Segregation Principle) : 인터페이스 분리 원칙
 
-- 자신이 사용하지 않는 인터페이스는 구현하지 말아야 한다는 설계 원칙 
+- 자신이 사용하지 않는 인터페이스는 구현하지 말아야 한다는 설계 원칙
 - 하나의 거대한 인터페이스보다 여러 개의 구체적인 인터페이스가 낫다는 것을 의미한다. 즉, SRP는 객체의 단일 책임을 뜻한다면 ISP는 인터페이스의 단일 책임을 의미한다.
-- 예를 들어 `Phone` 이라는 인터페이스에서 `call()`, `sms()`, `alarm()` 등 함수를 모두 정의하는 것보다, `Call`, `Sms`, `Alarm` 인터페이스를 각각 정의하여 `Phone` 클래스에서 인터페이스를 구현하도록 설계해야 ISP를 만족할 수 있다. 
+- 예를 들어 `Phone` 이라는 인터페이스에서 `call()`, `sms()`, `alarm()` 등 함수를 모두 정의하는 것보다, `Call`, `Sms`, `Alarm` 인터페이스를 각각 정의하여 `Phone` 클래스에서 인터페이스를 구현하도록 설계해야 ISP를 만족할 수 있다.
 
 ![image](https://user-images.githubusercontent.com/67703882/213910905-a9bb72c9-7f4d-4366-a7d5-b4a98dcaf6ac.png)
 
 ### 5. DIP(Dependency Inversion Principle) : 의존 역전 원칙
 
-- 객체들이 서로 정보를 주고 받을 때 의존 관계가 형성되는데, 이때 객체들은 <u>나름대로의 원칙</u>을 갖고 정보를 주고 받아야 한다는 설계 원칙 
+- 객체들이 서로 정보를 주고 받을 때 의존 관계가 형성되는데, 이때 객체들은 <u>나름대로의 원칙</u>을 갖고 정보를 주고 받아야 한다는 설계 원칙
 - 여기서 나름대로의 원칙이란 추상성이 낮은 클래스보다 높은 클래스와 의존 관계를 맺어야 한다는 것을 의미한다.
 
 - 인터페이스를 활용하면 이 원칙을 준수할 수 있다. 아래 예시에서 `Client` 객체는 `Cat`, `Dog`, `Bird` 의 `crying()` 함수가 아닌 `Animal` 인터페이스의 `crying()` 함수를 호출함으로써 DIP 를 만족할 수 있다.
 
 ![image](https://user-images.githubusercontent.com/67703882/213910725-10691d96-1a20-45d2-a5bd-1ed438f08982.png)
-

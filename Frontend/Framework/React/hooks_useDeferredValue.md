@@ -14,7 +14,7 @@ const deferredValue = useDeferredValue(value);
 ```tsx
 export const SearchBar = () => {
   const [query, setQuery] = useState("");
- 
+
   return (
   	<input value={query} onChange={e => setQuery(e.target.value)} />
     <Suspense fallback={<Loading />}>
@@ -30,7 +30,7 @@ export const SearchBar = () => {
 export const SearchBar = () => {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
-  
+
   return (
   	...
     <Suspense fallback={<Loading />}>
@@ -45,7 +45,7 @@ export const SearchBar = () => {
 ## vs useTransition
 
 - `useTransition` 는 상태를 업데이트하는 set함수를 인자로 받는 반면, `useDeferredValue`는 상태 값 자체를 받아 사용한다.
-- 즉, 낮은 우선순위로 처리해야 할 작업에 대해 직접적으로 상태를 업데이트할 수 있는 코드에 접근할 수 있다면 `useTransition` 을 사용하고, 만약 컴포넌트의 `props`  등 상태 업데이트에 관여할 수 없다면 `useDeferredValue`를 사용하면 된다.
+- 즉, 낮은 우선순위로 처리해야 할 작업에 대해 직접적으로 상태를 업데이트할 수 있는 코드에 접근할 수 있다면 `useTransition` 을 사용하고, 만약 컴포넌트의 `props` 등 상태 업데이트에 관여할 수 없다면 `useDeferredValue`를 사용하면 된다.
 
 ## vs 디바운싱
 

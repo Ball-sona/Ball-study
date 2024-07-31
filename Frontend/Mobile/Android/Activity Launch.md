@@ -8,14 +8,14 @@ Intent는 수행되어야 하는 작업 정보를 담은 메세지 객체로, �
 
 - Intent의 body에는 `ACTION_VIEW`, `ACTION_MAIN` 등 수행되어야 하는 작업을 의미하는 **action**과 작업 대상인 **data**가 담겨 있다.
 
-- Explicit intent: 해당 Intent를 받아 처리할 액티비티가 명확하게 명시되어 있다. 
+- Explicit intent: 해당 Intent를 받아 처리할 액티비티가 명확하게 명시되어 있다.
 
   ```java
   Intent reqmsg = new Intent(MainActivity.this, SettingActivity.class);
   startActivity(reqmsg);
   ```
 
-- Implicit intent: 받는 컴포넌트가 명시되어 있지 않아, 이를 처리할 수 있는 시스템(단말기) 내 컴포넌트가 호출된다. 
+- Implicit intent: 받는 컴포넌트가 명시되어 있지 않아, 이를 처리할 수 있는 시스템(단말기) 내 컴포넌트가 호출된다.
 
   ```java
   Intent reqmsg = new Intent(Intent.ACTION_SEND);
@@ -25,9 +25,9 @@ Intent는 수행되어야 하는 작업 정보를 담은 메세지 객체로, �
 
 ## Intent filter
 
-- 앱 내 모든 액티비티는 `AndroidManifest.xml`에 열거되어야 한다. 
-- `AndroidManifest.xml` 에서 각 <u>액티비티들이 어떻게 실행될지를 의미하는 intent filter</u>를 적용할 수 있다. 
-- intent filter를 action이 `MAIN` 이고 category가 `LAUNCHER`로 정의하면, 해당 액티비티가 main activity가 된다. 
+- 앱 내 모든 액티비티는 `AndroidManifest.xml`에 열거되어야 한다.
+- `AndroidManifest.xml` 에서 각 <u>액티비티들이 어떻게 실행될지를 의미하는 intent filter</u>를 적용할 수 있다.
+- intent filter를 action이 `MAIN` 이고 category가 `LAUNCHER`로 정의하면, 해당 액티비티가 main activity가 된다.
 
 ```xml
 <activity
@@ -60,8 +60,6 @@ new ActivityResultCallback<ActivityResult>() {
 })
 ```
 
-
-
 ```java
 // MainActivity에서 ActivityResultLauncher 객체 생성
 ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
@@ -82,7 +80,7 @@ ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResul
 
 // MainActivity에서 SettingActivity 호출하는 함수 (setting 버튼 클릭 시 호출)
 private void startSettingActivity(int reqCode) {
-    Intent reqmsg = new Intent(MainActivity.this, SettingActivity.class); // explicit 
+    Intent reqmsg = new Intent(MainActivity.this, SettingActivity.class); // explicit
     reqmsg.putExtra("serverHostName", serverHostName);
     reqmsg.putExtra("serverPortNumber", String.valueOf(serverPortNumber));
     startActivityForResult.launch(reqmsg);
@@ -92,23 +90,23 @@ private void startSettingActivity(int reqCode) {
 ### SettingActivity -> MainActivity
 
 ```java
-// onCreate in SettingActivity 
-Intent reqmsg = getIntent(); 
+// onCreate in SettingActivity
+Intent reqmsg = getIntent();
 servHostName = reqmsg.getStringExtra("serverHostName");
 servPortNumber = reqmsg.getStringExtra("serverPortNumber");
 
 // onClick in SettingActivity
 if (id == R.id.confirm) {
-    Intent resmsg = new Intent(); 
+    Intent resmsg = new Intent();
     resmsg.putExtra("serverHostName", viewHostName.getText().toString());
     resmsg.putExtra("serverPortNumber", viewPortNumber.getText().toString());
 } else if (id == R.id.cancel) {
     setResult(RESULT_CANCELED); // result code
 }
-finish(); 
+finish();
 ```
 
-SettingActivity는 따로 MainActivitiy를 시작시킬 필요가 없다. MainActivity에서 SettingActivity를 시작시킬 때, ActivityResultLauncher 객체인 `startActivityForResult` 를 생성 후 `ActivityResultCallback` 라는 콜백 객체를 생성하여 SettingActivity가 종료될 때까지 기다리고 있기 때문이다. 
+SettingActivity는 따로 MainActivitiy를 시작시킬 필요가 없다. MainActivity에서 SettingActivity를 시작시킬 때, ActivityResultLauncher 객체인 `startActivityForResult` 를 생성 후 `ActivityResultCallback` 라는 콜백 객체를 생성하여 SettingActivity가 종료될 때까지 기다리고 있기 때문이다.
 
 ## Activity 종료하기
 

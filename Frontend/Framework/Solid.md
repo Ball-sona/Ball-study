@@ -3,7 +3,7 @@
 Solid.js feels like what I always wanted **React to be**.
 
 ```jsx
-import { onCleanup, createSignal } from "solid-js";
+import { onCleanup, createSignal } from 'solid-js';
 
 function Component() {
   const [count, setCount] = createSignal(0);

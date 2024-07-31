@@ -36,30 +36,30 @@
 
   ```yaml
   name: CI
-  	
+
   on:
     push:
-      branches: [ main ]
+      branches: [main]
     pull_request:
-      branches: [ main ]
-  
+      branches: [main]
+
   jobs:
     build:
       runs-on: ubuntu-latest
-  
+
       steps:
-      - uses: actions/checkout@v2
-  
-      - name: Run a one-line script
-        run: echo Hello, world!
-  
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+        - uses: actions/checkout@v2
+
+        - name: Run a one-line script
+          run: echo Hello, world!
+
+        - name: Run a multi-line script
+          run: |
+            echo Add other actions to build,
+            echo test, and deploy your project.
   ```
 
-  - `on`  : event에 대해 작성. 어떤 조건에 workflow를 실행할지.
+  - `on` : event에 대해 작성. 어떤 조건에 workflow를 실행할지.
     - push. pull_request. schedule
   - `jobs` : build 라는 job을 생성하고 그 아래에 2개의 step이 존재하는 구조임
   - `runs-on` : 어떤 OS에서 실행될지 지정

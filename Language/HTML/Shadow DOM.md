@@ -9,16 +9,18 @@
   ```html
   <!-- 렌더링할 템플릿 선언 -->
   <template id="my-template">
-  	<p>hello shado Dom!</p>
-  	<slot name="title"></slot>
-  	<slot></slot>
+    <p>hello shado Dom!</p>
+    <slot name="title"></slot>
+    <slot></slot>
   </template>
   <!-- 사용자 커스텀 요소마다 다른 요소를 삽입 -->
   <my-template>
-  	<h1 slot="title">Hello World!</h1> <!-- Light DOM -->
+    <h1 slot="title">Hello World!</h1>
+    <!-- Light DOM -->
   </my-template>
   <my-template>
-  	<h1>asdf</h1> <!-- Light DOM -->
+    <h1>asdf</h1>
+    <!-- Light DOM -->
   </my-template>
   ```
 

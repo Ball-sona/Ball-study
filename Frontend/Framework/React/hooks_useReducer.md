@@ -49,9 +49,7 @@ export default function App() {
       <div>{state.count}</div>
       <button onClick={() => dispatcher({ type: 'up' })}>+</button>
       <button onClick={() => dispatcher({ type: 'down' })}>-</button>
-      <button onClick={() => dispatcher({ type: 'reset', payload: { count: 1 } })}>
-        reset
-      </button>
+      <button onClick={() => dispatcher({ type: 'reset', payload: { count: 1 } })}>reset</button>
     </>
   );
 }
@@ -83,10 +81,7 @@ function useState(initialState) {
 ```jsx
 function useReducer(reducer, initialState, init) {
   const [state, setState] = useState(init ? init(initialState) : initialState);
-  const dispatch = useCallback(
-    (action) => setState((prev) => reducer(prev, action)),
-    [reducer],
-  );
+  const dispatch = useCallback((action) => setState((prev) => reducer(prev, action)), [reducer]);
   return useMemo(() => [state, dispatch], [state, dispatch]);
 }
 ```

@@ -4,32 +4,32 @@
 
 ## 프로젝트 구상 단계
 
-1. 설계 로드맵 구상 
+1. 설계 로드맵 구상
    - 1인용 흑백 콘솔 테트리스
-   - 1인용 흑백 콘솔 테트리스 + duplicated screen 
-   - 1인용 컬러 테트리스 + duplicated screen 
-   - 1인용 컬러 테트리스 + Echo Server -> 멀티 스레딩/소켓 
+   - 1인용 흑백 콘솔 테트리스 + duplicated screen
+   - 1인용 컬러 테트리스 + duplicated screen
+   - 1인용 컬러 테트리스 + Echo Server -> 멀티 스레딩/소켓
    - 2인용 컬러 테트리스 + Tetris Server
-2. Source Tree 구상 
-   - deterministic 요소 : 데이터 모델 -> 키 입력, 화면 출력, 타이머 구동 등 
-   - non-deterministic 요소 : 외부 인터페이스 -> 블록 출현, 충돌, 행 삭제 등 
+2. Source Tree 구상
+   - deterministic 요소 : 데이터 모델 -> 키 입력, 화면 출력, 타이머 구동 등
+   - non-deterministic 요소 : 외부 인터페이스 -> 블록 출현, 충돌, 행 삭제 등
 3. 데이터 모델 구상
    - 시나리오들이 집합화된 결과물인 순서도
-   - 시나리오들이 연산화된 결과물인 객체간 연산 정의 
-4. 데이터 모델 코딩 
-   - 단순 시나리오에서 점진적으로 확장하기 
-   - 데이터 모델의 단순성 추구 : 경계 조건의 중요성 인식 
+   - 시나리오들이 연산화된 결과물인 객체간 연산 정의
+4. 데이터 모델 코딩
+   - 단순 시나리오에서 점진적으로 확장하기
+   - 데이터 모델의 단순성 추구 : 경계 조건의 중요성 인식
 
 ## 정적 변수와 동적 변수 분리
 
 - 정적 변수
-  - 테트리스 게임 시작 후 변하지 않는 값. 모든 게임에서 동일한 값 사용 
+
+  - 테트리스 게임 시작 후 변하지 않는 값. 모든 게임에서 동일한 값 사용
   - ex. 블록 데이터를 담은 행렬 배열 및 Matrix 배열, 해당 배열을 통해 결정한 테트리스 화면 벽 두께 등
   - `Tetris.init()` 을 통해 초기화
 
 - 동적 변수
   - `Tetris board = new Tetris(dy,dx);`
-
 
 ## 프로젝트 아키텍처
 
@@ -46,9 +46,9 @@
 
 ## State 관리
 
-### ver1. TetrisState 
+### ver1. TetrisState
 
-하나의 Tetris 객체는 하나의 TetrisState(`Running`,`Newblock`,`Finished` 중 하나)를 가질 수 있다. 하나의 TetrisModel은 하나의 Tetris 객체를 가지고 전체 테트리스 화면을 관리하게 되므로, 결론적으로 1개의 게임(싱글 플레이어 기준)은 1개의 `TetrisState`를 가지게 되는 것이다. 
+하나의 Tetris 객체는 하나의 TetrisState(`Running`,`Newblock`,`Finished` 중 하나)를 가질 수 있다. 하나의 TetrisModel은 하나의 Tetris 객체를 가지고 전체 테트리스 화면을 관리하게 되므로, 결론적으로 1개의 게임(싱글 플레이어 기준)은 1개의 `TetrisState`를 가지게 되는 것이다.
 
 TetrisModel에서는 MainActivity로부터 전달받은 key값을 가지고 screen, block 데이터와 TetrisState를 업데이트 후, 현재 TetrisState를 반환한다. MainActivity는 Model로부터 받은 TetrisState를 가지고 게임 상태를 판단 후 적절한 작업을 수행한다.
 
@@ -58,14 +58,14 @@ TetrisModel에서는 MainActivity로부터 전달받은 key값을 가지고 scre
 
 안드로이드 액티비티의 생태주기를 고려하여 좀 더 정교한 상태 관리를 위해 현재 앱의 UI 상태를 나타내는 `GameState` 와 이들의 전이를 유발하는 `GameCommand`를 생성한다.
 
-click 이벤트 발생시 매번 호출되는 `executeCommand` 함수에서 전달 받은 command와 key를 통해 적절한 작업을 수행하게 되고, gameState와 tetrisStater가 적절하게 업데이트 된다. 
+click 이벤트 발생시 매번 호출되는 `executeCommand` 함수에서 전달 받은 command와 key를 통해 적절한 작업을 수행하게 되고, gameState와 tetrisStater가 적절하게 업데이트 된다.
 
-## SettingActivity 추가하기 
+## SettingActivity 추가하기
 
-- MainActivity -> SettingActivity: `registerForActivityResult` 통해 SettingActivity 호출 후 return 값(ip 주소와 포트번호) 받아오기 
-- SettingActivity -> MainActivity: `resIntent.putExtra` 와 `setResult` 통해 MainActivity에 return 값 전달 
+- MainActivity -> SettingActivity: `registerForActivityResult` 통해 SettingActivity 호출 후 return 값(ip 주소와 포트번호) 받아오기
+- SettingActivity -> MainActivity: `resIntent.putExtra` 와 `setResult` 통해 MainActivity에 return 값 전달
 
-## Timer  
+## Timer
 
 ```java
 private final Handler handlerForTimer = new Handler(Looper.getMainLooper());
@@ -88,8 +88,8 @@ private void launchTimer() {
 ## Mirror Mode(ver.1)
 
 - peerTetrisView, peerTetrisModel 생성
-- 메인 스레드는 Loopback 스레드에 키 전송 -> Loopback 스레드는 받은 키를 다시 메인 스레드에 전달 
-- 메인 스레드는 Loopback 스레드로부터 받은 키를 PeerTetris에 반영 
+- 메인 스레드는 Loopback 스레드에 키 전송 -> Loopback 스레드는 받은 키를 다시 메인 스레드에 전달
+- 메인 스레드는 Loopback 스레드로부터 받은 키를 PeerTetris에 반영
 
 UI 업데이트는 결국 무조건 메인 스레드에서만 처리해야한다는 것 주의! Loopback 스레드에 키를 보내는 이유는 그냥 스레드 통신을 공부하기 위함...
 

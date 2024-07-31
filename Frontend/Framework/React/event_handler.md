@@ -52,7 +52,7 @@ interface SyntheticEvent<T = Element, E = Event>
 
 ### 이벤트 등록
 
-1. 리액트는 `click`, `change` 등 모든 NativeEvent 목록을 List에 저장해둔다. 
+1. 리액트는 `click`, `change` 등 모든 NativeEvent 목록을 List에 저장해둔다.
 
 > [최근 코드](https://github.com/facebook/react/blob/main/packages/react-dom-bindings/src/events/EventRegistry.js#L10)를 보면 Set에 저장하는 것 같은데 확인해보자.
 
@@ -80,7 +80,7 @@ export function registerSimpleEvents() {
 2. 트리거된 이벤트 리스너는 리액트에서 정의한 `dispatchEvent` 함수를 호출한다.
 3. 호출 시 넘겨받은 이벤트 객체로부터 'target DOM 노드'을 식별한 후, 해당 DOM 노드가 어떤 'Fiber 노드 인스턴스'와 매칭되는지 확인한다.
 4. 해당 fiber 노드 인스턴스를 찾으면, 해당 노드에서부터 fiber 루트 노드에 이르기까지 fiber tree를 순회하며 '매칭되는 이벤트(`onClick`)'을 가지고 있는 fiber node을 발견할 때마다 해당 이벤트 리스너를 `dispatchQueue` 라는 배열에 저장한다.
-5. 이후 루트에 도착하면 `dispatchQueue`에 들어간 순서대로 리스너 함수를 실행한다. 이때 리스너의 propagation 여부와 이벤트 중복 여부를 확인한 후에 `executeDispatch` 함수를 호출하여 리스너 함수를 실행한다. 
+5. 이후 루트에 도착하면 `dispatchQueue`에 들어간 순서대로 리스너 함수를 실행한다. 이때 리스너의 propagation 여부와 이벤트 중복 여부를 확인한 후에 `executeDispatch` 함수를 호출하여 리스너 함수를 실행한다.
 
 ## 참고 자료
 

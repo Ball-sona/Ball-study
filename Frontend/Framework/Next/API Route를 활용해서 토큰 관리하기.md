@@ -9,13 +9,9 @@ Next.js API Route, Cookie를 활용하여 '유저 인증'하기
 ```tsx
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function tokenHandler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
+export default function tokenHandler(req: NextApiRequest, res: NextApiResponse) {
   const { method, body, cookies } = req;
   switch (method) {
-      
     // GET /api/token 요청 시 토큰 값 반환
     case 'GET': {
       const { accessToken, refreshToken } = cookies;
@@ -40,7 +36,7 @@ export default function tokenHandler(
       }
 
       res.setHeader('Set-Cookie', [
-        `accessToken=${accessToken}; path=/; Max-Age=5400;`,  // 1.5시간 유효
+        `accessToken=${accessToken}; path=/; Max-Age=5400;`, // 1.5시간 유효
         `refreshToken=${refreshToken}; path=/; Max-Age=86400;`, // 24시간 유
       ]);
       return res.status(200).json({
@@ -49,7 +45,7 @@ export default function tokenHandler(
       });
     }
 
-    // DELETE /api/token 요청 시 쿠키 값 제거 
+    // DELETE /api/token 요청 시 쿠키 값 제거
     case 'DELETE': {
       res.setHeader('Set-Cookie', [
         `accessToken=null; path=/; Max-Age=0;`,
@@ -71,7 +67,7 @@ export default function tokenHandler(
 
 ## API 함수 작성
 
-`/api/auth.ts` 에서 `/api/token`에 API 요청하는 함수 작성 
+`/api/auth.ts` 에서 `/api/token`에 API 요청하는 함수 작성
 
 ```ts
 const NEXT_API: AxiosInstance = axios.create({
@@ -89,10 +85,7 @@ export const getTokenAsync = async () => {
   return data;
 };
 // 토큰을 쿠키에 저장하는 함수
-export const setTokenInCookieAsync = async (
-  accessToken: string,
-  refreshToken: string,
-) => {
+export const setTokenInCookieAsync = async (accessToken: string, refreshToken: string) => {
   const response = await NEXT_API.post('/auth/token', {
     accessToken,
     refreshToken,
@@ -107,8 +100,9 @@ export const setTokenInCookieAsync = async (
 
 ```ts
 API.interceptors.response.use(
-  (res: AxiosResponse) => res, 	// 응답 정상 
-  async (error) => { 						 // 응답 실패
+  (res: AxiosResponse) => res, // 응답 정상
+  async (error) => {
+    // 응답 실패
     // 액세스 토큰이 유효하지 않을 경우
     if (error.response.status === 401) {
       try {
@@ -141,19 +135,16 @@ API.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  },
+  }
 );
 ```
 
-## 서버 사이드에서 로그인 안한 유저 접근 막기 
+## 서버 사이드에서 로그인 안한 유저 접근 막기
 
 `getServerSideProps` 가 실행되기 이전에 만약 쿠키에 토큰이 없는 유저, 즉 로그인 안한 유저의 페이지 접근을 막는 고차함수 `withAuth`
 
 ```tsx
-const AUTH_URL = [
-  '/user/login',
-  '/user/register',
-];
+const AUTH_URL = ['/user/login', '/user/register'];
 
 export function withAuth(getServerSideProps: GetServerSideProps) {
   return async (context: GetServerSidePropsContext) => {
@@ -169,7 +160,7 @@ export function withAuth(getServerSideProps: GetServerSideProps) {
         },
       };
     }
-  
+
     return await getServerSideProps(context);
   };
 }
@@ -177,6 +168,6 @@ export function withAuth(getServerSideProps: GetServerSideProps) {
 
 ## 결론
 
-- 유저가 로그인에 성공하면 서버로부터 받은 엑세스/리프레쉬 토큰을 `/api/token`에 전달하여 브라우저 쿠키(퍼스트사이드 쿠키)에 저장 
+- 유저가 로그인에 성공하면 서버로부터 받은 엑세스/리프레쉬 토큰을 `/api/token`에 전달하여 브라우저 쿠키(퍼스트사이드 쿠키)에 저장
 - 토큰이 필요한 API 요청 시, 쿠키에서 토큰 값을 가져와 사용
 - 만약 엑세스 토큰이 만료되어 API 요청 실패 시, 리프레시 토큰과 함께 토큰 재발급을 서버에 요청하고, 새로운 토큰을 쿠키에 업데이트한 후 재요청

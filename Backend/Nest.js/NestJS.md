@@ -20,7 +20,7 @@ Node.js에서 실행하는 서버 사이드 프레임워크
 
 ## 아키텍처
 
-- Controller -> Service -> Repository 
+- Controller -> Service -> Repository
 
 ## 설치 및 세팅
 
@@ -40,11 +40,11 @@ nest g controller weather --no-spec # weather.controller.ts 생성
 
 ```json
 {
-	"compileOptions:":{
-    "module": "commonjs", 
+  "compileOptions:": {
+    "module": "commonjs",
     "emitDecoratorMetadata": true, // 데코레이터의 메타데이터를 같이 내보낼지 여부
-    "experimentalDecorators": true, // 데코레이터를 사용할지 여부
-	}
+    "experimentalDecorators": true // 데코레이터를 사용할지 여부
+  }
 }
 ```
 

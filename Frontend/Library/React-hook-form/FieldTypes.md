@@ -28,7 +28,7 @@ export type UseFormRegister<TFieldValues extends FieldValues> = <
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   name: TFieldName,
-  options?: RegisterOptions<TFieldValues, TFieldName>,
+  options?: RegisterOptions<TFieldValues, TFieldName>
 ) => UseFormRegisterReturn<TFieldName>;
 ```
 
@@ -56,15 +56,16 @@ export type Path<T> = T extends any ? PathInternal<T> : never;
  * Helper type for recursively constructing paths through a type.
  * This obscures the internal type param TraversedTypes from exported contract.
  */
-type PathInternal<T, TraversedTypes = T> = T extends ReadonlyArray<infer V>
-  ? IsTuple<T> extends true
-    ? {
-        [K in TupleKeys<T>]-?: PathImpl<K & string, T[K], TraversedTypes>;
-      }[TupleKeys<T>]
-    : PathImpl<ArrayKey, V, TraversedTypes>
-  : {
-      [K in keyof T]-?: PathImpl<K & string, T[K], TraversedTypes>;
-    }[keyof T];
+type PathInternal<T, TraversedTypes = T> =
+  T extends ReadonlyArray<infer V>
+    ? IsTuple<T> extends true
+      ? {
+          [K in TupleKeys<T>]-?: PathImpl<K & string, T[K], TraversedTypes>;
+        }[TupleKeys<T>]
+      : PathImpl<ArrayKey, V, TraversedTypes>
+    : {
+        [K in keyof T]-?: PathImpl<K & string, T[K], TraversedTypes>;
+      }[keyof T];
 ```
 
 엄 상당히 복잡하지만, 가장 먼저 `T`가 `readonly` 배열인지를 확인한다. 일단 `readonly` 배열이 아니라 가정하고 살펴보자.
@@ -91,8 +92,8 @@ type PathImpl<K extends string | number, V, TraversedTypes> = V extends
   | BrowserNativeObject
   ? `${K}`
   : true extends AnyIsEqual<TraversedTypes, V>
-  ? `${K}`
-  : `${K}` | `${K}.${PathInternal<V, TraversedTypes | V>}`;
+    ? `${K}`
+    : `${K}` | `${K}.${PathInternal<V, TraversedTypes | V>}`;
 ```
 
 `PathImpl`은 한마디로 `T[K]` 가 원시 타입일 때까지 '재귀적으로' 분해하면서 `T` 내 모든 속성을 추출해낸다.

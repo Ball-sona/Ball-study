@@ -34,7 +34,7 @@ export const TabContainer = () => {
 };
 ```
 
-만약 사용자가 'posts' 탭을 선택했다가 잘못 선택한 걸 깨닫고 바로 'contact' 탭을 선택했다고 해보자. 이미 `Posts` 컴포넌트 렌더링이 시작되었기 때문에 이 렌더링이 종료될 때까지 기다렸다가 `Contact` 컴포넌트를 보여줄 수 있고, 이 과정에서 UI 블로킹이 발생한다. 
+만약 사용자가 'posts' 탭을 선택했다가 잘못 선택한 걸 깨닫고 바로 'contact' 탭을 선택했다고 해보자. 이미 `Posts` 컴포넌트 렌더링이 시작되었기 때문에 이 렌더링이 종료될 때까지 기다렸다가 `Contact` 컴포넌트를 보여줄 수 있고, 이 과정에서 UI 블로킹이 발생한다.
 
 ```tsx
 const [isPending, startTransition] = useTransition();
@@ -51,7 +51,7 @@ const selectTab = (nextTab: Tab) => {
 - 리액트는 Fiber 알고리즘을 통해 여러 렌더링 작업을 '동시에' 실행 가능하다.
   - 정확히는 렌더링을 여러 작업으로 쪼개 번갈아가면서 실행
 - `Posts` 컴포넌트를 렌더링하던 중에, 사용자가 'contact' 탭을 누른다면 `Contact` 컴포넌트를 비동기적으로 렌더링하기 시작한다.
-- `Contact` 컴포넌트의 렌더링이 완료되기 전까지 `setTab` 업데이트를 지연(defer)시킨다. 
+- `Contact` 컴포넌트의 렌더링이 완료되기 전까지 `setTab` 업데이트를 지연(defer)시킨다.
 - 현재 비동기 렌더링 작업을 기다리며 상태 업데이트를 지연시키고 있는 상태인지, 즉 현재 트랜지션 상태인지는 `isPending` 을 통해 알 수 있고, 낮은 우선순위로 지정할 상태 업데이트, 즉 다른 업데이트가 일어날 때까지 지연시킬 '상태 업데이트'는 `startTransition` 에 인자로 전달한다.
 
 트랜지션을 통해 여러 렌더링 작업을 '동시에' 실행하고, 이 과정에서 상태 업데이트의 '우선순위'를 지정하여 부드러운 UI 전환을 제공할 수 있다.
@@ -77,4 +77,3 @@ export const TabContainer = () => {
 이때 `startTransition` 에는 동기적으로 실행되는 <u>상태를 업데이트하는 함수</u>만 인자로 넘길 수 있다. (`setTimeout` 등 비동기 함수 안됨)
 
 https://17.reactjs.org/docs/concurrent-mode-patterns.html#the-three-steps
-

@@ -20,12 +20,12 @@ def permutation(arr, c):
   arr = sorted(arr)
   used = [0 for _ in range(len(arr))]
   res = []
- 	
+
   def generate(chosen, used):
     if len(chosen) == c:
     	res.append(chosen)
-      return 
-    
+      return
+
     for i in range(len(arr)):
       if not used[i]:
         chosen.append(arr[i])
@@ -55,18 +55,17 @@ print(list(comb)) # [('A', 'B'), ('A', 'C'), ('B', 'C')]
 def combination(arr, c):
   arr = sorted(arr)
   res = []
- 	
+
   def generate(chosen):
     if len(chosen) == c:
     	res.append(chosen)
-      return 
-    
+      return
+
     s = arr.index(chosen[-1])+1 if chosen else 0 # 순열이므로, 들어있는 숫자보다 큰 것만 넣기.
     for i in range(s, len(arr)):
       chosen.append(arr[i])
       generate(chosen)
       chosen.pop()
-        
+
   generate([])
 ```
-

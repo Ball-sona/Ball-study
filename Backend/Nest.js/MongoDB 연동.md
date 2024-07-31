@@ -11,11 +11,11 @@ yarn add @nestjs/mongoose mongoose
 ```ts
 export type PostDocument = Post & Document;
 
-@Schema() 
+@Schema()
 export class Post {
-	@Prop() 
+	@Prop()
 	id:number;
-	
+
 	@Prop()
 	title:string;
   ...
@@ -29,7 +29,7 @@ export const PostSchema = SchemaFactory.createForClass(Post);
 ```js
 @Injectable()
 export class PostMongoRepository implements PostRepository {
-	constructor(@InejectModel(Post.name) private postModel: Model<PostDocument>)  
+	constructor(@InejectModel(Post.name) private postModel: Model<PostDocument>)
 }
 ```
 
@@ -54,4 +54,3 @@ export class PostMongoRepository implements PostRepository {
   // ...
 })
 ```
-

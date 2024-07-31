@@ -8,7 +8,7 @@ Github 에서 특정 브랜치에서 작업 완료 후 main 브랜치(혹은 dev
 
 ## Merge Commit
 
-머지 종류 중 default 값으로, 일반적으로 많이 사용되는 머지 방법이다. 상황에 따라  `Fast-forward`, `Recursive` 총 2가지 방식이 존재할 수 있다.
+머지 종류 중 default 값으로, 일반적으로 많이 사용되는 머지 방법이다. 상황에 따라 `Fast-forward`, `Recursive` 총 2가지 방식이 존재할 수 있다.
 
 ### Fast-forward
 
@@ -24,7 +24,7 @@ Github 에서 특정 브랜치에서 작업 완료 후 main 브랜치(혹은 dev
 
 <img width="706" alt="스크린샷 2023-03-17 12 43 05" src="https://user-images.githubusercontent.com/67703882/225807321-82169866-84aa-48d8-8a45-dec1e6d734a6.png">
 
-`develop` 이 `master` 에서 분기된 이후, `master` 에서 hotfix 등 추가적인 커밋이 발생할 수 있다. 이때는  `develop`이 `master` 보다 순수 최신 버전이라고 보기에는 어렵다. 이런 경우에는 두 브랜치가 각자 다르게 가지고 있는 부분을 합친 새로운 커밋 메세지를 만들어서 병합하게 된다. 
+`develop` 이 `master` 에서 분기된 이후, `master` 에서 hotfix 등 추가적인 커밋이 발생할 수 있다. 이때는 `develop`이 `master` 보다 순수 최신 버전이라고 보기에는 어렵다. 이런 경우에는 두 브랜치가 각자 다르게 가지고 있는 부분을 합친 새로운 커밋 메세지를 만들어서 병합하게 된다.
 
 ## Squash Merge
 
@@ -32,7 +32,7 @@ Github 에서 특정 브랜치에서 작업 완료 후 main 브랜치(혹은 dev
 
 <img width="643" alt="스크린샷 2023-03-17 12 46 21" src="https://user-images.githubusercontent.com/67703882/225807720-198b88c4-80d3-456b-8323-cd94cae51427.png">
 
-브랜치 및 커밋 히스토리를 깔끔하게 관리할 수 있다는 장점이 있으나, atomic commit level로 rollback하는 것이 불가능하다. 
+브랜치 및 커밋 히스토리를 깔끔하게 관리할 수 있다는 장점이 있으나, atomic commit level로 rollback하는 것이 불가능하다.
 
 ### 명령어
 
@@ -55,8 +55,6 @@ git checkout <base_branch>
 /* 베이스 브랜치에서 */
 git merge <checkouted_branch>
 ```
-
-
 
 ## 참고자료
 

@@ -39,7 +39,7 @@ const promise = new Promise(function (resolve, reject) {
 ```js
 promise.then(
   (result) => console.log(result),
-  (error) => console.log(error),
+  (error) => console.log(error)
 );
 ```
 

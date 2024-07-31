@@ -4,9 +4,10 @@ OAuth는 인터넷 사용자들이 <u>비밀번호를 제공하지 않고</u> �
 
 - OAuth의 목적은 Access Token을 발급하는 것이라 할 수 있음.
 
-## OAuth 참여자 
+## OAuth 참여자
 
 - Resource Server : 클라이언트가 제어하고자 하는 자원을 보유. Kakao, Facebook, Google 등
+
   - Authorization Server : 인증을 전담하는 서버
 
 - Resource Owner : 클라이언트가 제공하는 서비스를 통해 로그인하는 실제 유저
@@ -26,12 +27,12 @@ Client는 Resource Server를 이용하기 위해서는 사전에 등록하는 �
 2. 해당 주소로 접속하면 Resource Server는 Resource Owner가 현재 로그인되어 있는지 확인 후, 만약 되어있지 않다면 로그인 화면을 보여준다.
 3. 로그인에 성공했다면, Resource Server는 현재 접속해있는 주소의 client ID와 redirect URL이 자신이 갖고 있는 값과 일치하는 지 확인한다.
 4. 만약 일치한다면, Resource Server는 Resource Owner에게 scope에 해당하는 데이터를 허용해도 될지 동의를 구하는 화면을 보여준다.
-5.  Resource Owner가 동의했다면, Resource Server는 해당 user id와 허용한 scope에 대한 정보를 자신의 DB에 저장한다.
+5. Resource Owner가 동의했다면, Resource Server는 해당 user id와 허용한 scope에 대한 정보를 자신의 DB에 저장한다.
 
 6. 이후 Resource Server는 redirect_url에 authorization code를 Resource Owner에게 전달한다. (`https://client/callback?code=3`)
 
-7. Resource Owner의 브라우저는 redirect_url에 이동하게 되고, Client는 authorization code를  알게 된다.
-8. Client는 client_id, client_secret, redirect_url 그리고 authorization code를 담아서 Resource Server에 전송한다. 
+7. Resource Owner의 브라우저는 redirect_url에 이동하게 되고, Client는 authorization code를 알게 된다.
+8. Client는 client_id, client_secret, redirect_url 그리고 authorization code를 담아서 Resource Server에 전송한다.
 9. Resource Server는 이를 확인하고 자신이 갖고 있는 값과 모두 일치한다면, 이때 **Access Token**을 발급해준다. (이때 authorization code는 지움)
 10. Client는 발급 받은 Access Token을 자신의 DB에 저장한다.
 
@@ -55,7 +56,7 @@ Access Token이 만료되었을 경우 Refresh Token을 다시 발급받아야 �
 <img width="826" alt="스크린샷 2023-04-22 18 25 17" src="https://user-images.githubusercontent.com/67703882/233775579-1cbc250e-3194-4962-9b50-322173bc55fc.png">
 
 0. 카카오 개발자 페이지에서 설정해준 redirect_url
-1. 클라이언트에서 플랫폼 로그인 url 
+1. 클라이언트에서 플랫폼 로그인 url
 
 ![스크린샷 2023-05-26 17.00.29](/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-26 17.00.29.png)
 
@@ -78,13 +79,8 @@ https://opentutorials.org/course/3405/22004
 
 https://2dowon.github.io/docs/react/social_login/
 
-
-
-
-
-2. 
+2.
 
 #### 참고
 
-<img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-27 13.06.51.png" alt="스크린샷 2023-05-27 13.06.51" style="zoom: 50%;" /> 
-
+<img src="/Users/gongsona/Library/Application Support/typora-user-images/스크린샷 2023-05-27 13.06.51.png" alt="스크린샷 2023-05-27 13.06.51" style="zoom: 50%;" />

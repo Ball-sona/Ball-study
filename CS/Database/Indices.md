@@ -43,7 +43,7 @@
 
 - B+ 트리 색인
 
-  - B-tree 색인군(B, B+, B*) 중에 가장 많이 쓰인다.
+  - B-tree 색인군(B, B+, B\*) 중에 가장 많이 쓰인다.
   - 루트에서 모든 리프 노드까지의 길이가 동일하다.
 
   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dfd4182c-59df-47ef-a5c2-37fb08efe240/Untitled.png)

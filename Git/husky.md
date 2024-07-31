@@ -89,7 +89,7 @@ yarn add @commitlint/cli @commitlint/config-conventional -g
 
 ```js
 module.exports = {
-  extends: ["@commitlint/config-conventional"],
+  extends: ['@commitlint/config-conventional'],
 };
 ```
 
@@ -98,7 +98,6 @@ module.exports = {
 > Conventional Commits
 >
 > - msg format : `type(scope?): message`
->
 > - type : build, ci, chore, docs, feat, fix, perf, refactor, revert, style, test
 
 ### 3. create commit-msg hook

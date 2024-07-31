@@ -135,7 +135,7 @@ welcome(
   },
   function () {
     console.log('hi child');
-  },
+  }
 );
 ```
 

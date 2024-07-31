@@ -14,7 +14,7 @@
 
 ```css
 .container {
-	overflow:auto;
+  overflow: auto;
   scroll-snap-type: y mandatory;
 }
 
@@ -30,8 +30,8 @@ scroll-snap-type: [snap-axis] [snap strictness]
 ```
 
 - axis : 스크롤이 적용될 축
-  - x, y, block, inline, both 
-- strictness: 스냅 적용 방식 
+  - x, y, block, inline, both
+- strictness: 스냅 적용 방식
   - mandatory: 스크롤 위치가 스냅 위치와 정확하게 일치해야만 스냅
   - proximity: 스크롤 위치가 스냅 위치와 가까워지면 자연스럽게 스냅
 
@@ -54,4 +54,3 @@ scroll-snap-type: [snap-axis] [snap strictness]
 ## 참고 문헌
 
 https://inpa.tistory.com/entry/CSS-%F0%9F%93%9A-%EC%B5%9C%EC%8B%A0-CSS-%EA%B8%B0%EB%8A%A5-%F0%9F%8E%A8-CSS-Scroll-snap
-

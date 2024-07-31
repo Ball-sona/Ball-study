@@ -1,7 +1,7 @@
 # HTTP Cookie
 
-- 브라우저에서 어떤 사이트를 방문할 경우 그 사이트가 사용하고 있는 서버를 통해 클라이언트 로컬에 설치(저장)되는 작은 데이터 파일을 말한다. 
-- 쿠키는 `key-value` 형식으로 이루어져 있다. 
+- 브라우저에서 어떤 사이트를 방문할 경우 그 사이트가 사용하고 있는 서버를 통해 클라이언트 로컬에 설치(저장)되는 작은 데이터 파일을 말한다.
+- 쿠키는 `key-value` 형식으로 이루어져 있다.
 
 <img src="https://user-images.githubusercontent.com/67703882/201508437-7de7fd8e-e08c-41d6-bbb0-b1db5b513cdd.png" alt="image" style="zoom:67%;" />
 
@@ -14,7 +14,7 @@
    Host: www.test.com
    ```
 
-2. `www.test.com` 의 서버는 HTTP Response Header의 `Set-Cookie`에 클라이언트에 전달할 데이터를 담은 후 응답한다. 
+2. `www.test.com` 의 서버는 HTTP Response Header의 `Set-Cookie`에 클라이언트에 전달할 데이터를 담은 후 응답한다.
 
    ```http
    HTTP/1.1 200 OK
@@ -25,7 +25,7 @@
 
 3. 브라우저는 서버로부터 받은 쿠키를 클라이언트의 메모리나 디스크에 저장한다.
 
-4. 이후 클라이언트는 "유효기간"이 만료될 때까지 `www.test.com`에 요청을 할 때마다 서버로부터 받았던 쿠키를 `Cookie` 헤더에 담아서 그대로 돌려 보낸다. 
+4. 이후 클라이언트는 "유효기간"이 만료될 때까지 `www.test.com`에 요청을 할 때마다 서버로부터 받았던 쿠키를 `Cookie` 헤더에 담아서 그대로 돌려 보낸다.
 
    ```http
    GET /index.html HTTP/1.1
@@ -33,14 +33,14 @@
    Cookie: name=sona; age=24
    ```
 
-   이때 `www.test.com` 에 머무는 한 `/index.html`를 요청하든 `/user.html`를 요청하든 매번 같은 쿠키를 서버에 돌려 보낸다. 
+   이때 `www.test.com` 에 머무는 한 `/index.html`를 요청하든 `/user.html`를 요청하든 매번 같은 쿠키를 서버에 돌려 보낸다.
 
 5. 서버는 브라우저로부터 받은 쿠키를 읽어 사용자 인증 등 여러 용도로 데이터를 활용한다.
 
 ## 유효 기간
 
-- 서버가 `Set-Cookie` 헤더를 통해 브라우저로 쿠키를 보내는 것은 일회성 작업(stateless)이지만, 브라우저가 `Cookie` 헤더를 통해 서버로 쿠키를 돌려 보내는 것은 일정 시간동안 반복해서 수행되는 작업이다. 
-- 서버는 맨 처음 쿠키를 생성하여 클라이언트에 보낼 때, "브라우저가 쿠키를 얼마나 오랫동안 돌려 보내야 하는지", 즉 **쿠키의 유효 기간을 설정**할 수 있다. 
+- 서버가 `Set-Cookie` 헤더를 통해 브라우저로 쿠키를 보내는 것은 일회성 작업(stateless)이지만, 브라우저가 `Cookie` 헤더를 통해 서버로 쿠키를 돌려 보내는 것은 일정 시간동안 반복해서 수행되는 작업이다.
+- 서버는 맨 처음 쿠키를 생성하여 클라이언트에 보낼 때, "브라우저가 쿠키를 얼마나 오랫동안 돌려 보내야 하는지", 즉 **쿠키의 유효 기간을 설정**할 수 있다.
 
 ```
 Set-Cookie: <key>=<value>; Expires=<종료시점>
@@ -52,9 +52,9 @@ Expires 속성에는 쿠키 유효기간 종료 시점을 지정해주고, Max-A
 ### 세션 쿠키 vs 영속 쿠키
 
 - 세션 쿠키(session cookie): 유효기간을 지정하지 않은 쿠키. 브라우저 닫으면 해당 쿠키는 삭제된다.
-- 영속 쿠키(persistent cookie): 특정 만료시점이나 유효 기간이 지정된 쿠키. 브라우저 닫아도 유효기간이 남아있다면 쿠키가 삭제되지 않는다. 
+- 영속 쿠키(persistent cookie): 특정 만료시점이나 유효 기간이 지정된 쿠키. 브라우저 닫아도 유효기간이 남아있다면 쿠키가 삭제되지 않는다.
 
-## 적용 범위 
+## 적용 범위
 
 ### Domain
 
@@ -62,9 +62,9 @@ Expires 속성에는 쿠키 유효기간 종료 시점을 지정해주고, Max-A
 Set-Cookie: <key>=<value>; Domain=<도메인>
 ```
 
-도메인 속성 값을 설정하면 해당 쿠키는 **지정된 도메인과 서브 도메인**에서만 유효하다. 
+도메인 속성 값을 설정하면 해당 쿠키는 **지정된 도메인과 서브 도메인**에서만 유효하다.
 
-- 만약 `Domain=test.com` 설정 시 `a.test.com` 에서 받은 쿠키를 `b.test.com`  으로도 보내게 된다. 즉, 서브 도메인들이 쿠키를 공유하는 효과가 발생한다.
+- 만약 `Domain=test.com` 설정 시 `a.test.com` 에서 받은 쿠키를 `b.test.com` 으로도 보내게 된다. 즉, 서브 도메인들이 쿠키를 공유하는 효과가 발생한다.
 - 만약 설정하지 않으면 "현재 도메인"에만 쿠키를 보낸다.
 
 ### Path
@@ -90,7 +90,7 @@ Set-Cookie: <key>=<value>; Secure; HttpOnly
 
 ### HttpOnly
 
-- HttpOnly 속성을 설정 시 브라우저에서 `Document.cookie` 객체를 통해 접근할 수 없다. 
+- HttpOnly 속성을 설정 시 브라우저에서 `Document.cookie` 객체를 통해 접근할 수 없다.
 - XSS 공격 방지
 
 ## Third-party Cookie
@@ -101,7 +101,7 @@ Set-Cookie: <key>=<value>; Secure; HttpOnly
 
 ## Samesite Cookie
 
-Samesite 쿠키는 서드파티 쿠키의 보안적 허점을 보완하기 위해 만들어진 기술이다. 
+Samesite 쿠키는 서드파티 쿠키의 보안적 허점을 보완하기 위해 만들어진 기술이다.
 
 ### CSRF(Cross Site Request Forgery)
 
@@ -124,7 +124,7 @@ Samesite는 도메인이 다른 사이트(Cross Site)로 전송하는 요청의 
   - Top Level Navigation: `<a>` 클릭 시, `window.location.replace` 에 의해 자동으로 이동 시, `302` 리다이렉트된 경우 (`<iframe>`, `<img>`에 의한 요청은 Navigation이라 할 수 없다.)
   - `POST` 나 `DELETE` 는 서버의 상태를 변경시킬 수 있으므로 '위험한 요청'으로 간주하여 서드파티쿠키 전송이 제한되지만, `GET`은 안전한 요청으로 간주되어 `Lax`로 설정된 쿠키를 전송된다.
 
-### 브라우저의 Samesite 
+### 브라우저의 Samesite
 
--  Chrome, Firefox, Safari, Edge 등 대부분의 최신 브라우저에서는 `Samesite` 의 기본값이 `Lax` 이다. 
+- Chrome, Firefox, Safari, Edge 등 대부분의 최신 브라우저에서는 `Samesite` 의 기본값이 `Lax` 이다.
 - `Samesite`의 값을 `none`으로 설정하기 위해서는, `Secure` 속성이 반드시 명시되어 있어야 한다.

@@ -12,17 +12,17 @@
 
 - renderToString와 동일하게 HTML 문자열로 변환
 - 차이점은 리액트에서만 사용하는 추가적인 DOM 속성을 만들지 않음.
-- HTML 크기를 약간 더 줄일 수 있다. 
+- HTML 크기를 약간 더 줄일 수 있다.
 - 단, 브라우저 API 사용 절대 불가능. 즉, 아무런 브라우저 액션이 없는 정적인 내용만 담긴 페이지인 경우.
 
 ## renderToNodeStream
 
-> react 18부터 지원이 중단되었다. 
+> react 18부터 지원이 중단되었다.
 
 - renderToString와 결과물 동일하나 2가지 차이점 존재
   - 브라우저에서 사용 완전 불가능. 즉 Node.js 환경에 의존
   - 결과물이 HTML 문자열이 아니라 Node.js의 ReadableStream
-- 브라우저에 제공할 HTML 파일을 작은 단위로 쪼개서 연속적으로 작성. 
+- 브라우저에 제공할 HTML 파일을 작은 단위로 쪼개서 연속적으로 작성.
 
 ## renderToStaticNodeStream
 
@@ -31,11 +31,9 @@
 
 ## renderToPipeableStream
 
-> 18버전에서 추가됨 
+> 18버전에서 추가됨
 
 ## renderToReadbleStream
-
-
 
 ## hydrate
 
@@ -47,16 +45,16 @@ render와 hydrate 모두 인수로 컴포넌트와 HTML 요소 받는다.
 
 ```jsx
 // render
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // hydrate
-ReactDOM.hyrdate(<App />, document.getElementById(containerId))
+ReactDOM.hyrdate(<App />, document.getElementById(containerId));
 ```
 
-- rendrer는 HTML 요소에 해당 컴포넌트 렌더링해서 이벤트 핸들러 붙이는 작업까지 한번에 수행 
+- rendrer는 HTML 요소에 해당 컴포넌트 렌더링해서 이벤트 핸들러 붙이는 작업까지 한번에 수행
 - hydrate는 이미 렌더링된 HTML이 있다고 가정하고, 이 렌더링된 HTML을 기준으로 이벤트를 붙이는 작업만 실행
-- 만약. hydrate에 넘겨진 요소가 renderToStaticMarkup 등으로 만들어진 순수한 HTML 이라면. App 컴포넌트에 있는 요소가 있기를 기대했지만 없다는 경고 문구가 출력. 
-- 즉, hydrate는 서버에서 전달받은 요소가 App을 이미 렌더링한 결과물이라는 가정하에 진행. 
+- 만약. hydrate에 넘겨진 요소가 renderToStaticMarkup 등으로 만들어진 순수한 HTML 이라면. App 컴포넌트에 있는 요소가 있기를 기대했지만 없다는 경고 문구가 출력.
+- 즉, hydrate는 서버에서 전달받은 요소가 App을 이미 렌더링한 결과물이라는 가정하에 진행.
 
 ### suppressHydrationWarning
 
