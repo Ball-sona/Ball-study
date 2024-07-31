@@ -1,6 +1,6 @@
 # 브라우저 구성 요소
 
-<img src='https://github.com/user-attachments/assets/b370e996-e610-4792-92fe-4e8263801cb3' />
+<img src='https://github.com/user-attachments/assets/b370e996-e610-4792-92fe-4e8263801cb3' width="80%" />
 
 ### 브라우저 엔진
 
@@ -18,6 +18,7 @@
 ### 네트워크 레이어
 
 - HTTP/HTTPS 통신을 통해 외부 리소스를 가져오고 서버와 통신하는 역할
+- 병렬 스레드
 
 ### Javascript Interpreter
 
@@ -33,5 +34,3 @@
 
 - 브라우저 자체에서 데이터를 로컬에 저장하기 위한 레이어
 - 쿠키, 로컬 스토리지, 세션 스토리지, IndexedDB, 웹 SQL, 파일시스템 등
-
-'통신'은 병렬 스레드에 의해 진행. '렌더링 엔진'은 거의 모든 경우 단일 스레드
