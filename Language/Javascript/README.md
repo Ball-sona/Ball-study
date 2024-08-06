@@ -88,13 +88,13 @@
 
 - [브라우저 문서](/Language/Javascript/1.Browser/Document.md)
 - [DOM 조작](/Language/Javascript/1.Browser/DOM.md)
-- [사이즈, 스크롤, 좌표](/Language/Javascript/1.Browser/Size,Scroll,Coordinates.md)
+- [사이즈, 스크롤, 좌표](/Language/Javascript/1.Browser/Size,%20Scroll,%20Coordinates.md)
 
 ### 이벤트 기초
 
-- [브라우저 이벤트](/Language/Javascript/1.Browser/Broswer_Event.md)
-- [버블링과 캡처링](/Language/Javascript/1.Browser/Bubbling_and_Capturing.md)
-- [이벤트 위임](/Language/Javascript/1.Browser/Event_Delegation.md)
+- [브라우저 이벤트](/Language/Javascript/1.Browser/Broswer%20Event.md)
+- [버블링과 캡처링](/Language/Javascript/1.Browser/Bubbling%20and%20Capturing.md)
+- [이벤트 위임](/Language/Javascript/1.Browser/Event%20Delegation.md)
 
 ### 폼과 폼 조작
 
@@ -102,8 +102,8 @@
 
 ### 문서와 리소스 로딩
 
-- [defer, async 스크립트](/Language/Javascript/1.Browser/Defer,Async.md)
-- [리소스 로딩](/Language/Javascript/1.Browser/Resource_Loading.md)
+- [defer, async 스크립트](/Language/Javascript/1.Browser/Defer,%20Async.md)
+- [리소스 로딩](/Language/Javascript/1.Browser/Resource%20Loading.md)
 
 ### 기타
 
@@ -113,9 +113,11 @@
 
 ### 이진 데이터와 파일
 
-- [이진 데이터]()
+- [이진 데이터](/Language/Javascript/2.%20Additional/Binary%20Data.md)
+- [Blob](/Language/Javascript/2.%20Additional/Blob.md)
 
-- 네트워크 요청
+### 네트워크 요청
+
 - 브라우저에 이벤트 저장하기
 - 에니메이션
 - 웹 컴포넌트
