@@ -110,3 +110,50 @@ const RevealingModule = {
 
 export default RevealingModule;
 ```
+
+## 4. 싱글톤 패턴
+
+- 클래스의 인스턴스가 오직 하나만 존재하도록 제한하는 패턴
+- 전역에서 접근 및 공유해야 하는 단 하나의 객체가 필요할 때 유용하다.
+
+```js
+let instance;
+
+const randomNumber = Math.random();
+
+class MySingleTon {
+  constructor() {
+    if (!instance) {
+      instance = this;
+    }
+    return instance;
+  }
+  getRandomNumber() {
+    return randomNumber;
+  }
+}
+
+const singleA = new MySingleTon();
+const singleB = new MySingleTon();
+console.log(singleA === singleB); // true
+console.log(singleA.getRandomNumber() === singleB.getRandomNumber()); // true
+```
+
+### 특징
+
+- 정적 클래스나 객체와는 다르게 초기화를 지연시킬 수 있다.
+- 인스턴스가 정확히 하나만 있어야 하고, 접근 용이한 곳에 위치해야 한다.
+- 인스턴스에 대한 전역 접근이 허용된다.
+- 서브클래싱을 통해서만 확장할 수 있어야 한다.
+
+### 초기화 지연
+
+> 이미 존재하는 인스턴스가 없어야한다?
+
+- 정적 클래스나 객체와는 다르게 초기화를 지연시킬 수 있다.
+
+## 5. 프로토타입 패턴
+
+## 6. 팩토리 패턴
+
+## 7. 추상 팩토리 패턴
