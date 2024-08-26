@@ -23,7 +23,7 @@ class Car {
 
 ### 프로토타입 가진 생성자
 
-- 프로토타입 객체를 통해 <u>모든 인스턴스들이 공통 메서드를 공유</u>할 수 있도록 할 수 있다.
+프로토타입 객체를 통해 <u>모든 인스턴스들이 공통 메서드를 공유</u>할 수 있도록 할 수 있다.
 
 ```js
 Car.prototype.toString() = () => { /**...**/ };
@@ -116,9 +116,10 @@ export default RevealingModule;
 - 클래스의 인스턴스가 오직 하나만 존재하도록 제한하는 패턴
 - 전역에서 접근 및 공유해야 하는 단 하나의 객체가 필요할 때 유용하다.
 
+### 구현 예시
+
 ```js
 let instance;
-
 const randomNumber = Math.random();
 
 class MySingleTon {
@@ -141,19 +142,151 @@ console.log(singleA.getRandomNumber() === singleB.getRandomNumber()); // true
 
 ### 특징
 
-- 정적 클래스나 객체와는 다르게 초기화를 지연시킬 수 있다.
 - 인스턴스가 정확히 하나만 있어야 하고, 접근 용이한 곳에 위치해야 한다.
 - 인스턴스에 대한 전역 접근이 허용된다.
+- 정적 클래스나 객체와는 다르게 <u>초기화를 지연</u>시킬 수 있다.
+  - 필요할 때까지 리소스나 메모리 소모하지 않도록 지연 생성
 - 서브클래싱을 통해서만 확장할 수 있어야 한다.
 
-### 초기화 지연
+>  싱글톤을 정적 인스턴스로 구현했다 하더라도, 필요할 때까지는 리소스나 메모리를 소모하지 않도록 지연 생성될 수 있다?
 
-> 이미 존재하는 인스턴스가 없어야한다?
-
-- 정적 클래스나 객체와는 다르게 초기화를 지연시킬 수 있다.
+>  자바스크립트에서 싱글토이 필요하다는 것은 설계를 다시 생각해봐야 한다는 신호일수도 있다..? 싱클톤 클래스 만드는 대신에 직접 객체 하나를 생성해도 되기 때문.?
 
 ## 5. 프로토타입 패턴
 
+- 이미 존재하는 객체를 복제해 만든 템플릿을 기반으로 새 객체를 생성하는 패턴
+- 프로토타입 상속 기반 = 클래스를 정의하고 이를 상속받는 방식이 아니라, 존재하는 다른 객체를 '복제'하는 방식임.
+- 생성자 함수의 프로토타입이 name 속성을 가지고 있다면 -> 해당 생성자 함수를 사용해 만들어진 객체는 모두 name 속성을 가지게 된다.
+
+- 자바스크립트에서 클래스와 생성자도 결국 내부적으로 함수와 프로토타입으로 컴파일된다.
+
+### 구현 예시
+
+어떻게 프로토타입 상속 구현할까?
+
+```js
+const myCar = {
+  id: 1,
+  name: 'GV80',
+  drive: () => console.log('im driving!');
+}
+const yourCar = Object.create(myCar, {
+  id: {
+    value: GLOBAL.nextId(),
+    enumberable: true,
+  }
+}); 
+```
+
+> 차등 상속? 
+
+> 프로토타입 관계는 객체 속성을 나열할 때 문제를 일으킬 수 있으므로 `hasOwnProperty()` 로 속성 체크하는 게 좋다?
+
+```js
+class Vehicle extends VehiclePrototype {
+ 	constructor(model) {
+    super(model);
+  }
+}
+```
+
+`extends` 키워드를 사용해서 프로토타입 상속 가능하다. 
+
+>  단, 이 방식은 읽기 전용 속성을 사용할 수 없다.
+
+```js
+const beget = (() => {
+  class F {
+    constructor() {}
+  }
+  return proto => {
+    F.prototype = proto;
+    return new F();
+  }
+})();
+```
+
 ## 6. 팩토리 패턴
 
+- 필요한 타입의 팩토리 객체를 생성하는 방법을 제공하는 패턴
+- 동적 요소나 애플리케이션 구조에 깊게 의지하는 등의 상황처럼 객체 생성이 복잡할 때 유용
+
+### 구현 예시
+
+```js
+class VehicleFactory {
+  constructor() {
+    this.vehicleClass = Car;
+  }
+  createVehicle(options) {
+    const { type, ...customOptions } = options;
+    switch (type) {
+      case 'car':
+        this.vehicleClass = Car;
+        break;
+      case 'truck':
+        this.vehicleClass = Truck;
+        break;
+    }
+    return new this.vehicleClass(customOptions);
+  }
+}
+
+const vehicleFactory = new VehicleFactory();
+const car = vehicleFactory.createVehicle({
+  type: 'car',
+  color: 'yellow',
+});
+
+const truck = vehicleFactory.createVehicle({
+  type:'truck',
+  color:'black'
+})
+```
+
+> 객체 생성 과정을 인터페이스 뒤에 추상화한다..
+
+### 언제 유용한가?
+
+- 객체나 컴포넌트 생성 과정이 복잡한 경우
+- 상황에 맞춰 다양한 객체 인스턴스를 편리하게 생성할 수 있는 방법이 필요할 때
+- 같은 속성을 공유하는 여러 작은 객체나 컴포넌트를 다뤄야할 때
+- 덕 타이핑 같은 API 규칙만 충족하면 되는 다른 객체의 인스턴스와 함께 객체를 구성할 때 
+
 ## 7. 추상 팩토리 패턴
+
+- 같은 목표를 가진 팩토리들을 하나의 그룹으로 캡슐화하는 패턴 
+- 객체의 생성 과정에 영향을 받지 않아야 하거나 여러 타입의 객체로 작업해야 하는 경우 
+
+### 구현 예시
+
+```js
+class AbstractVehicleFactory {
+  constructor() {
+    this.types = {};
+  }
+  getVehicle(type, customOptions) {
+    const Vehicle = this.types[type];
+    return Vehicle ? new Vehicle(customOptions) : null;
+  }
+  registerVehicle(type, Vehicle) {
+    const proto = Vehicle.prototype;
+    if (proto.drive && proto.breakDown) {
+      this.types[type] = Vehicle;
+    }
+  }
+}
+
+const abstractVehicleFactory = new AbstractVehicleFactory();
+
+abstractVehicleFactory.registerVehicle('car', Car);
+abstractVehicleFactory.registerVehicle('car', Truck);
+
+const car = vehicleFactory.getVehicle('car', {
+  color: 'yellow',
+});
+```
+
+- 추상 팩토리 `AbstractVehicleFactory` 는 차량 타입만 정의
+- 구체적 팩토리는 차량의 공통 기능을 충족하는 클래스만 구현
+
