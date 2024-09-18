@@ -241,7 +241,7 @@ const car = vehicleFactory.createVehicle({
 const truck = vehicleFactory.createVehicle({
   type:'truck',
   color:'black'
-})
+});
 ```
 
 > 객체 생성 과정을 인터페이스 뒤에 추상화한다..
